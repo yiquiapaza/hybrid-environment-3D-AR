@@ -12,7 +12,7 @@ using System.IO;
 
 public class UtilIO
 {
-    public void CreatFolder(string nameFolder)
+    public static void CreatFolder(string nameFolder)
     {
 #if UNITY_EDITOR
         if(AssetDatabase.IsValidFolder(nameFolder))
@@ -37,7 +37,7 @@ public class UtilIO
 #endif
     }
 
-    public string ReadFile(string NameFolder, string NameFile, GameObject gameObject)
+    public static string ReadFile(string NameFolder, string NameFile, GameObject gameObject)
     {
         string jsonData = "";
 #if UNITY_EDITOR
@@ -59,5 +59,15 @@ public class UtilIO
 #endif
 
         return jsonData;
+    }
+
+    public static GenericObject GenericObjectJson(string JsonString)
+    {
+        return JsonUtility.FromJson<GenericObject>(JsonString);
+    }
+
+    public static GenericObjects GenericObjecsJson(string JsonString)
+    {
+        return JsonUtility.FromJson<GenericObjects>(JsonString);
     }
 }
