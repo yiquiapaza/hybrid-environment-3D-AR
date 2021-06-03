@@ -1,4 +1,15 @@
-
 {
-	"country": "Peru"
+	"countries":
+		[
+			{	
+				"country": "A",
+				"population_1975": 12925179,
+				"energyConsumption_1975": 12925179
+			},
+			{
+				"country": "B",
+				"population_1975": 12925179,
+				"energyConsumption_1975": 12925179
+			}
+		]
 }

@@ -36,7 +36,7 @@ public class UtilIO
         */
 #endif
     }
-
+    //TODO Delete the parameter gameObject when update code 
     public static string ReadFile(string NameFolder, string NameFile, GameObject gameObject)
     {
         string jsonData = "";
