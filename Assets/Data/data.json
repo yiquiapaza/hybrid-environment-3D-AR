@@ -3,13 +3,37 @@
 		[
 			{	
 				"country": "A",
+				"region": "OC",
+				"code": "AUS",
 				"population_1975": 12925179,
-				"energyConsumption_1975": 12925179
+				"arable_area_1975": 41283,
+				"energy_consumption_1975": 57974,
+				"gdp_per_capita_1975": 3798,
+				"life_expectancy_women_1975": 73.76,
+				"life_expectancy_men_1975": 67.04,
+				"life_expectancy_1975": 70.26,
+				"infant_mortality_1975": 19.33,
+				"number_personal_computer_1975": 0,
+				"indexed_population_1975": 0.010545315378442414,
+				"indexed_energy_consumption_1975": 0.015716243380290852,
+				"index_gdp_1975": 0.13058726447531288
 			},
 			{
 				"country": "B",
-				"population_1975": 12925179,
-				"energyConsumption_1975": 12925179
+				"region": "AS",
+				"code": "CHN",
+				"population_1975": 851410624,
+				"arable_area_1975": 102165,
+				"energy_consumption_1975": 138400,
+				"gdp_per_capita_1975": 206,
+				"life_expectancy_women_1975": 61.98,
+				"life_expectancy_men_1975": 60.9,
+				"life_expectancy_1975": 61.52,
+				"infant_mortality_1975": 67.16,
+				"number_personal_computer_1975": 0,
+				"indexed_population_1975": 0.6946436522570753,
+				"indexed_energy_consumption_1975": 0.03751902721620475,
+				"index_gdp_1975": 0.007082932196396644
 			}
 		]
 }

@@ -8,11 +8,10 @@ using UnityEditor;
 
 public class LoadFile:MonoBehaviour
 {
-    private UtilIO IO;
     private void Start()
     {
-        IO = new UtilIO();
-        Debug.Log(IO.ReadFile("Data", "data.json", gameObject));
+        
+        Debug.Log(UtilIO.ReadFile("Data", "data.json", gameObject));
     }
 
 }
