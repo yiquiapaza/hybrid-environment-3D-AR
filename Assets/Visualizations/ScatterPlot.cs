@@ -10,6 +10,10 @@ public class ScatterPlot : MonoBehaviour
 
     private GameObject CountryA;
     private GameObject CountryB;
+    private GameObject CountryC;
+    private GameObject CountryD;
+    private GameObject CountryE;
+    private GameObject CountryF;
 
     private string JsonData = null;
     private GenericObjects genericObjects;
@@ -32,10 +36,11 @@ public class ScatterPlot : MonoBehaviour
     void Start()
     {
         InstantiateAllObjets();
-        UpdatePopulation(1975);
+        UpdaNameGameObject();
 
-        CountryA.GetComponent<ToolTipSpawner>().toolTipText = genericObjects.countries[0].country;
 
+
+        UpdatePositionsFirstExperiment(1975, genericObjects);
         Debug.Log(CountryA.transform.position);
         Debug.Log(CountryB.transform.position);
        
@@ -47,26 +52,142 @@ public class ScatterPlot : MonoBehaviour
         
     }
 
-    void UpdaPosition(GameObject country, GenericObjects genericObjects, int index)
+    void UpdaNameGameObject()
     {
-
+        CountryA.GetComponent<ToolTipSpawner>().toolTipText = genericObjects.countries[0].country;
+        CountryB.GetComponent<ToolTipSpawner>().toolTipText = genericObjects.countries[1].country;
+        CountryC.GetComponent<ToolTipSpawner>().toolTipText = genericObjects.countries[2].country;
+        CountryD.GetComponent<ToolTipSpawner>().toolTipText = genericObjects.countries[3].country;
+        CountryE.GetComponent<ToolTipSpawner>().toolTipText = genericObjects.countries[4].country;
+        CountryF.GetComponent<ToolTipSpawner>().toolTipText = genericObjects.countries[5].country;
     }
 
-    void UpdatePopulation(int year)
+    void UpdatePositionsFirstExperiment(int year, GenericObjects genericObjects)
     {
         switch ( year )
         {
             case 1975:
+                CountryA.transform.position = new Vector3(
+                    InitialPosition.x + Util.ScaleEnergyConsumption(genericObjects.countries[0].energy_consumption_1975),
+                    InitialPosition.y + Util.ScaleGDPPercapita(genericObjects.countries[0].gdp_per_capita_1975),
+                    0);
+                CountryB.transform.position = new Vector3(
+                    InitialPosition.x + Util.ScaleEnergyConsumption(genericObjects.countries[1].energy_consumption_1975),
+                    InitialPosition.y + Util.ScaleGDPPercapita(genericObjects.countries[1].gdp_per_capita_1975),
+                    0);
+                CountryC.transform.position = new Vector3(
+                    InitialPosition.x + Util.ScaleEnergyConsumption(genericObjects.countries[2].energy_consumption_1975),
+                    InitialPosition.y + Util.ScaleGDPPercapita(genericObjects.countries[2].gdp_per_capita_1975),
+                    0);
+                CountryD.transform.position = new Vector3(
+                    InitialPosition.x + Util.ScaleEnergyConsumption(genericObjects.countries[3].energy_consumption_1975),
+                    InitialPosition.y + Util.ScaleGDPPercapita(genericObjects.countries[3].gdp_per_capita_1975),
+                    0);
+                CountryE.transform.position = new Vector3(
+                    InitialPosition.x + Util.ScaleEnergyConsumption(genericObjects.countries[4].energy_consumption_1975),
+                    InitialPosition.y + Util.ScaleGDPPercapita(genericObjects.countries[4].gdp_per_capita_1975),
+                    0);
+                CountryF.transform.position = new Vector3(
+                    InitialPosition.x + Util.ScaleEnergyConsumption(genericObjects.countries[5].energy_consumption_1975),
+                    InitialPosition.y + Util.ScaleGDPPercapita(genericObjects.countries[5].gdp_per_capita_1975),
+                    0);
+                break;
+            case 1976:
+                CountryA.transform.position = new Vector3(InitialPosition.x, InitialPosition.y, InitialPosition.z);
+                CountryB.transform.position = new Vector3(InitialPosition.x + 0.05f, InitialPosition.y, InitialPosition.z);
+                break;
+            case 1977:
+                CountryA.transform.position = new Vector3(InitialPosition.x, InitialPosition.y, InitialPosition.z);
+                CountryB.transform.position = new Vector3(InitialPosition.x + 0.05f, InitialPosition.y, InitialPosition.z);
+                break;
+            case 1978:
+                CountryA.transform.position = new Vector3(InitialPosition.x, InitialPosition.y, InitialPosition.z);
+                CountryB.transform.position = new Vector3(InitialPosition.x + 0.05f, InitialPosition.y, InitialPosition.z);
+                break;
+            case 1979:
+                CountryA.transform.position = new Vector3(InitialPosition.x, InitialPosition.y, InitialPosition.z);
+                CountryB.transform.position = new Vector3(InitialPosition.x + 0.05f, InitialPosition.y, InitialPosition.z);
+                break;
+            case 1980:
+                CountryA.transform.position = new Vector3(InitialPosition.x, InitialPosition.y, InitialPosition.z);
+                CountryB.transform.position = new Vector3(InitialPosition.x + 0.05f, InitialPosition.y, InitialPosition.z);
+                break;
+            case 1981:
+                CountryA.transform.position = new Vector3(InitialPosition.x, InitialPosition.y, InitialPosition.z);
+                CountryB.transform.position = new Vector3(InitialPosition.x + 0.05f, InitialPosition.y, InitialPosition.z);
+                break;
+            case 1982:
+                CountryA.transform.position = new Vector3(InitialPosition.x, InitialPosition.y, InitialPosition.z);
+                CountryB.transform.position = new Vector3(InitialPosition.x + 0.05f, InitialPosition.y, InitialPosition.z);
+                break;
+            case 1983:
+                CountryA.transform.position = new Vector3(InitialPosition.x, InitialPosition.y, InitialPosition.z);
+                CountryB.transform.position = new Vector3(InitialPosition.x + 0.05f, InitialPosition.y, InitialPosition.z);
+                break;
+            case 1984:
+                CountryA.transform.position = new Vector3(InitialPosition.x, InitialPosition.y, InitialPosition.z);
+                CountryB.transform.position = new Vector3(InitialPosition.x + 0.05f, InitialPosition.y, InitialPosition.z);
+                break;
+            case 1985:
+                CountryA.transform.position = new Vector3(InitialPosition.x, InitialPosition.y, InitialPosition.z);
+                CountryB.transform.position = new Vector3(InitialPosition.x + 0.05f, InitialPosition.y, InitialPosition.z);
+                break;
+            case 1986:
+                CountryA.transform.position = new Vector3(InitialPosition.x, InitialPosition.y, InitialPosition.z);
+                CountryB.transform.position = new Vector3(InitialPosition.x + 0.05f, InitialPosition.y, InitialPosition.z);
+                break;
+            case 1987:
+                CountryA.transform.position = new Vector3(InitialPosition.x, InitialPosition.y, InitialPosition.z);
+                CountryB.transform.position = new Vector3(InitialPosition.x + 0.05f, InitialPosition.y, InitialPosition.z);
+                break;
+            case 1988:
+                CountryA.transform.position = new Vector3(InitialPosition.x, InitialPosition.y, InitialPosition.z);
+                CountryB.transform.position = new Vector3(InitialPosition.x + 0.05f, InitialPosition.y, InitialPosition.z);
+                break;
+            case 1989:
+                CountryA.transform.position = new Vector3(InitialPosition.x, InitialPosition.y, InitialPosition.z);
+                CountryB.transform.position = new Vector3(InitialPosition.x + 0.05f, InitialPosition.y, InitialPosition.z);
+                break;
+            case 1990:
+                CountryA.transform.position = new Vector3(InitialPosition.x, InitialPosition.y, InitialPosition.z);
+                CountryB.transform.position = new Vector3(InitialPosition.x + 0.05f, InitialPosition.y, InitialPosition.z);
+                break;
+            case 1991:
+                CountryA.transform.position = new Vector3(InitialPosition.x, InitialPosition.y, InitialPosition.z);
+                CountryB.transform.position = new Vector3(InitialPosition.x + 0.05f, InitialPosition.y, InitialPosition.z);
+                break;
+            case 1992:
+                CountryA.transform.position = new Vector3(InitialPosition.x, InitialPosition.y, InitialPosition.z);
+                CountryB.transform.position = new Vector3(InitialPosition.x + 0.05f, InitialPosition.y, InitialPosition.z);
+                break;
+            case 1993:
+                CountryA.transform.position = new Vector3(InitialPosition.x, InitialPosition.y, InitialPosition.z);
+                CountryB.transform.position = new Vector3(InitialPosition.x + 0.05f, InitialPosition.y, InitialPosition.z);
+                break;
+            case 1994:
+                CountryA.transform.position = new Vector3(InitialPosition.x, InitialPosition.y, InitialPosition.z);
+                CountryB.transform.position = new Vector3(InitialPosition.x + 0.05f, InitialPosition.y, InitialPosition.z);
+                break;
+            case 1995:
+                CountryA.transform.position = new Vector3(InitialPosition.x, InitialPosition.y, InitialPosition.z);
+                CountryB.transform.position = new Vector3(InitialPosition.x + 0.05f, InitialPosition.y, InitialPosition.z);
+                break;
+            case 1996:
                 CountryA.transform.position = new Vector3(InitialPosition.x, InitialPosition.y, InitialPosition.z);
                 CountryB.transform.position = new Vector3(InitialPosition.x + 0.05f, InitialPosition.y, InitialPosition.z);
                 break;
         }
     }
 
+
     void InstantiateAllObjets()
     {
         CountryA = Instantiate(ElementsGeneric);
         CountryB = Instantiate(ElementsGeneric);
+        CountryC = Instantiate(ElementsGeneric);
+        CountryD = Instantiate(ElementsGeneric);
+        CountryE = Instantiate(ElementsGeneric);
+        CountryF = Instantiate(ElementsGeneric);
     }
 
 
