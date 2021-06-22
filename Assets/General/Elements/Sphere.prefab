@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 65419585353694749}
   - component: {fileID: 4492380896637495124}
   - component: {fileID: 4097378893489177804}
+  - component: {fileID: 4886449768908624425}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -132,3 +133,22 @@ MonoBehaviour:
   pivotDistance: 0.25
   toolTipText: B
   anchor: {fileID: 0}
+--- !u!95 &4886449768908624425
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7988994336461424710}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
