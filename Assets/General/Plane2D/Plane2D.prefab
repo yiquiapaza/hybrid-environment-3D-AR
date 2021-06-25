@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7974904724295830582}
   - component: {fileID: 2140497130517661793}
   m_Layer: 0
-  m_Name: AxesY
+  m_Name: AxisY
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26,8 +26,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1038203427808974816}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.25, y: 0, z: -0.01}
-  m_LocalScale: {x: 0.003072646, y: 0.26, z: 1}
+  m_LocalPosition: {x: -0.27, y: 0, z: -0.01}
+  m_LocalScale: {x: 0.005, y: 0.54, z: 1}
   m_Children: []
   m_Father: {fileID: 6836589679047640089}
   m_RootOrder: 1
@@ -58,7 +58,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 680505b4b4f3400f9fd3ebb242751819, type: 2}
+  - {fileID: 2100000, guid: 47f3c5e1cb6142ba9697cd4c86d74321, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 5083753240976021834}
   - component: {fileID: 6916728003312683353}
   m_Layer: 0
-  m_Name: AxesX
+  m_Name: AxisX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -137,8 +137,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6430300749387110892}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.13, z: -0.01}
-  m_LocalScale: {x: 0.5, y: 0.003072646, z: 1}
+  m_LocalPosition: {x: 0, y: -0.27, z: -0.01}
+  m_LocalScale: {x: 0.54, y: 0.005, z: 1}
   m_Children: []
   m_Father: {fileID: 6836589679047640089}
   m_RootOrder: 0
@@ -169,7 +169,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 680505b4b4f3400f9fd3ebb242751819, type: 2}
+  - {fileID: 2100000, guid: c4a1b7475a654dd0acaa0cfdfba2e20c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -199,7 +199,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6910194085163536073}
-  - component: {fileID: 8299004649775461937}
   m_Layer: 0
   m_Name: Plane2D
   m_TagString: Untagged
@@ -223,19 +222,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &8299004649775461937
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8185766901489674272}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.54, y: 0.3, z: 0.01}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8669730190371843434
 GameObject:
   m_ObjectHideFlags: 0
@@ -247,7 +233,7 @@ GameObject:
   - component: {fileID: 5788334871350465933}
   - component: {fileID: 8891959945603519384}
   - component: {fileID: 8973555044290047896}
-  - component: {fileID: 1574639909306931920}
+  - component: {fileID: 1193262109903698399}
   m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
@@ -264,7 +250,7 @@ Transform:
   m_GameObject: {fileID: 8669730190371843434}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.54, y: 0.3, z: 0.01}
+  m_LocalScale: {x: 0.54, y: 0.54, z: 0.01}
   m_Children: []
   m_Father: {fileID: 6910194085163536073}
   m_RootOrder: 0
@@ -287,7 +273,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a8de2758c4b4460cae694f0d50d94fbb, type: 2}
+  - {fileID: 2100000, guid: 07ebc80273d64c84b923be3e5f484151, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -316,7 +302,7 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8669730190371843434}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &1574639909306931920
+--- !u!65 &1193262109903698399
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
