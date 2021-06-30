@@ -18,7 +18,8 @@ public class InputData : MonoBehaviour
         stopwatch.Start();
         //StartCoroutine(CoroutineCountDown(1000, "Basic Corutine A"));
         //StartCoroutine(CoroutineCountDown(1000, "Basic Corutine B"));
-        var a = Task.Run(() => TaskAsyncCountDown(10, "BasicAsyncCasll"));
+        //var a = Task.Run(() => TaskAsyncCountDown(10, "BasicAsyncCasll"));
+        var a = Task.Run(() => UpdateMessaje());
     }
 
     // Update is called once per frame
@@ -56,11 +57,23 @@ public class InputData : MonoBehaviour
         }
     }
 
-    void ColorObjectUpdate(int color)
+    public static async Task GetAnsync(string url)
     {
-        if (color % 2 == 0)
-            gameObject.GetComponent<Renderer>().material.color = Color.red;
-        else
-            gameObject.GetComponent<Renderer>().material.color = Color.green;
+        using(var client = new HttpClient())
+        {
+            var message = await client.GetAsync(url);
+            if (!message.IsSuccessStatusCode)
+                throw new Exception();
+            UnityEngine.Debug.Log(message.Content.ReadAsStringAsync().Result);
+        }
+    }
+
+    public async Task UpdateMessaje()
+    {
+        while(true)
+        {
+            await Task.Run(() => GetAnsync("https://pokeapi.co/api/v2/pokemon/ditto"));
+            await Task.Delay(1000).ConfigureAwait(false);
+        }
     }
 }
