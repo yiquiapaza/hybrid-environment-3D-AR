@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CountryL : MonoBehaviour
+public class ScatterPlot2D : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
