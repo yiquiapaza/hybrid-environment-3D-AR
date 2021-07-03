@@ -5,18 +5,9 @@ using UnityEngine.Networking;
 
 public class ScatterPlot3D : MonoBehaviour
 {
-    [Tooltip("Country A Object, with this you can manipulate position, traslation and size")]
+    [Tooltip("Object Template, with this you can manipulate position, traslation and size")]
     [SerializeField]
-    private GameObject CountryA = null;
-    [Tooltip("Country B Object, with this you can manipulate position, traslation and size")]
-    [SerializeField]
-    private GameObject CountryB = null;
-    [Tooltip("Country C Object, with this you can manipulate position, traslation and size")]
-    [SerializeField]
-    private GameObject CountryC = null;
-    [Tooltip("Country D Object, with this you can manipulate position, traslation and size")]
-    [SerializeField]
-    private GameObject CountryD = null;
+    private GameObject TemplateObject = null;
 
     [Tooltip("Material that use for regin 1")]
     [SerializeField]
@@ -31,15 +22,21 @@ public class ScatterPlot3D : MonoBehaviour
     [SerializeField]
     private Material Region4 = null;
 
+    private GameObject CountryA = null;
+    private GameObject CountryB = null;
+    private GameObject CountryC = null;
+    private GameObject CountryD = null;
+
     void Start()
     {
+        InitialInstantiateObjects();
         StartCoroutine(WaitOneSecond());
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public IEnumerator ObjectPositionUpdate()
@@ -67,10 +64,39 @@ public class ScatterPlot3D : MonoBehaviour
             //LogToUnityConsole(i, flag);
             tmp++;
             if (tmp % 2 == 0)
-                gameObject.GetComponent<Renderer>().material = Region1;
+                CountryA.GetComponent<Renderer>().material = Region1;
             else
-                gameObject.GetComponent<Renderer>().material = Region2;
+                CountryA.GetComponent<Renderer>().material = Region2;
             yield return StartCoroutine(ObjectPositionUpdate());
         }
     }
+
+    void InitialInstantiateObjects()
+    {
+        CountryA = Instantiate(TemplateObject);
+        CountryB = Instantiate(TemplateObject);
+        CountryC = Instantiate(TemplateObject);
+        CountryD = Instantiate(TemplateObject);
+
+        CountryA.GetComponent<Renderer>().material = Region1;
+        CountryB.GetComponent<Renderer>().material = Region2;
+        CountryC.GetComponent<Renderer>().material = Region3;
+        CountryD.GetComponent<Renderer>().material = Region4;
+
+        Debug.Log(CountryA.gameObject.name);
+        Debug.Log(CountryB.gameObject.name);
+    }
+
+
+    void UpdatePositionObjects(int year = 1975)
+    {
+        Vector3 CurrentPosition = YearPosition(year);
+
+    }
+
+    Vector3 YearPosition(int year)
+    {
+        return new Vector3(0,0,0); 
+    }
+
 }
