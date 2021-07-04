@@ -42,7 +42,6 @@ public class UtilIO
         string jsonData = "";
 #if UNITY_EDITOR
         CreatFolder(NameFolder);
-        Debug.Log(Directory.GetCurrentDirectory() + "\\Assets\\" + NameFolder + "\\" + NameFile);
         if (File.Exists(Directory.GetCurrentDirectory() + "\\Assets\\" + NameFolder + "\\" + NameFile))
         {
             StreamReader sr = new StreamReader(Directory.GetCurrentDirectory() + "\\Assets\\" + NameFolder + "\\" + NameFile);

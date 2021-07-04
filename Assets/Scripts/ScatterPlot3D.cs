@@ -73,6 +73,7 @@ public class ScatterPlot3D : MonoBehaviour
 
     void InitialInstantiateObjects()
     {
+        GetData();
         CountryA = Instantiate(TemplateObject);
         CountryB = Instantiate(TemplateObject);
         CountryC = Instantiate(TemplateObject);
@@ -99,6 +100,10 @@ public class ScatterPlot3D : MonoBehaviour
         return new Vector3(0,0,0); 
     }
 
-    
+    void GetData()
+    {
+        Debug.Log(UtilIO.ReadFile("Data", "data.json", CountryA));
+
+    }
 
 }
