@@ -103,6 +103,8 @@ public class ScatterPlot3D : MonoBehaviour
     void GetData()
     {
         Debug.Log(UtilIO.ReadFile("Data", "data.json", CountryA));
+        var tmp = UtilIO.ReadFile("Data", "data.json", CountryA);
+        Debug.Log(UtilIO.GenericObjecsJson(tmp).countries[2].year[0].indexed_population);
 
     }
 

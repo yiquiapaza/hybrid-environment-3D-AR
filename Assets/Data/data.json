@@ -1,25 +1,88 @@
 {
-	"countries":
-		[
-			{	
-				"country": "A",
-				"region": "OC",
-				"code": "AUS"
-			},
-			{
-				"country": "B",
-				"region": "AS",
-				"code": "CHN"
-			},
-			{	
-				"country": "C",
-				"region": "EU",
-				"code": "DNK"
-			},
-			{
-				"country": "D",
-				"region": "AF",
-				"code": "GMB"
-			}
-		]
+	"countries":[
+		{	
+			"country": "A",
+			"region": "OC",
+			"code": "AUS",
+			"year":[
+				{
+					"population": 12925179,
+					"areble_area": 41283,
+					"energy_consumption": 57974,
+					"gdp_per_capita": 3798,
+					"life_expectancy_women": 73.76,
+					"life_expectancy_men": 67.02,
+					"life_expectancy": 70.26,
+					"infant_mortality": 19.33,
+					"number_personal_computer": 0,
+					"indexed_population": 0.010545315378442414,
+					"indexed_energy_consumption": 0.015716243380290852,
+					"indexed_gdp": 0.13058726447531288
+				}
+			]
+		},
+		{
+			"country": "B",
+			"region": "AS",
+			"code": "CHN",
+			"year":[
+				{
+					"population": 12925179,
+					"areble_area": 41283,
+					"energy_consumption": 57974,
+					"gdp_per_capita": 3798,
+					"life_expectancy_women": 73.76,
+					"life_expectancy_men": 67.02,
+					"life_expectancy": 70.26,
+					"infant_mortality": 19.33,
+					"number_personal_computer": 0,
+					"indexed_population": 0.010545315378442414,
+					"indexed_energy_consumption": 0.015716243380290852,
+					"indexed_gdp": 0.13058726447531288
+				}
+			]
+		},
+		{	
+			"country": "C",
+			"region": "EU",
+			"code": "DNK",
+			"year":[
+				{
+					"population": 12925179,
+					"areble_area": 41283,
+					"energy_consumption": 57974,
+					"gdp_per_capita": 3798,
+					"life_expectancy_women": 73.76,
+					"life_expectancy_men": 67.02,
+					"life_expectancy": 70.26,
+					"infant_mortality": 19.33,
+					"number_personal_computer": 0,
+					"indexed_population": 0.010545315378442414,
+					"indexed_energy_consumption": 0.015716243380290852,
+					"indexed_gdp": 0.13058726447531288
+				}
+			]
+		},
+		{
+			"country": "D",
+			"region": "AF",
+			"code": "GMB",
+			"year1975":[
+				{
+					"population": 12925179,
+					"areble_area": 41283,
+					"energy_consumption": 57974,
+					"gdp_per_capita": 3798,
+					"life_expectancy_women": 73.76,
+					"life_expectancy_men": 67.02,
+					"life_expectancy": 70.26,
+					"infant_mortality": 19.33,
+					"number_personal_computer": 0,
+					"indexed_population": 0.010545315378442414,
+					"indexed_energy_consumption": 0.015716243380290852,
+					"indexed_gdp": 0.13058726447531288
+				}
+			]
+		}
+	]
 }
