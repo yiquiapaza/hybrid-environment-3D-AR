@@ -25,5 +25,20 @@ public class Constants
 
     public const int MAX_VALUE_YEAR = 2000;
     public const int MIN_VALUE_YEAR = 1975;
-    
+
+    public const string NAME_FILE = "data.json";
+    public const string NAME_DIRECTORY = "Data";
+
+    public const int POPULATION = 0;
+    public const int AREBLE_AREA = 1;
+    public const int ENERGY_CONSUMPTION = 2;
+    public const int GDP_PER_CAPITA = 3;
+    public const int LIFE_EXPECTANCY_WOMEN = 4;
+    public const int LIFE_EXPECTANCY_MEN = 5;
+    public const int LIFE_EXPECTANCY = 6;
+    public const int INFANT_MORTALITY = 7;
+    public const int NUMBER_PERSONAL_COMPUTER = 8;
+    public const int INDEXED_POPULATION = 9;
+    public const int INDEXED_ENERGY_CONSUMPTION = 10;
+    public const int INDEXES_GDP = 11;
 }

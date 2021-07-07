@@ -30,7 +30,7 @@ public class ScatterPlot : MonoBehaviour
 
     void Awake()
     {
-        JsonData = UtilIO.ReadFile(DIRECTORY_NAME, FILE_NAME, gameObject);
+        JsonData = UtilIO.ReadFile(DIRECTORY_NAME, FILE_NAME);
         genericObjects = UtilIO.GenericObjecsJson(JsonData);
         InitialPosition = transform.position;
     }

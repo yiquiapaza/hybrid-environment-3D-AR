@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class LinePlot : MonoBehaviour
 {
-    private LoadFile file;
-
     // Start is called before the first frame update
     void Start()
     {

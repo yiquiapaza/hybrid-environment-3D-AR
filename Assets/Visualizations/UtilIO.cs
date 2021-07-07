@@ -37,9 +37,9 @@ public class UtilIO
 #endif
     }
     //TODO Delete the parameter gameObject when update code 
-    public static string ReadFile(string NameFolder, string NameFile, GameObject gameObject)
+    public static string ReadFile(string NameFolder, string NameFile)
     {
-        string jsonData = "";
+        string jsonData = "Error";
 #if UNITY_EDITOR
         CreatFolder(NameFolder);
         if (File.Exists(Directory.GetCurrentDirectory() + "\\Assets\\" + NameFolder + "\\" + NameFile))
@@ -51,9 +51,7 @@ public class UtilIO
 #if WINDOWS_UWP
         jsonData = Path.Combine(ApplicationData.Current.LocalFolder.Path, NameFile);
         if(string.IsNullOrEmpty(jsonData))
-            gameObject.GetComponent<Renderer>().material.color = Color.red;
-        else
-            gameObject.GetComponent<Renderer>().material.color = Color.blue;
+            jsonData = "Error"
         Debug.Log(jsonData);
 #endif
 

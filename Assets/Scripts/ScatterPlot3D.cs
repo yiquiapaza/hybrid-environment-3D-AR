@@ -27,10 +27,15 @@ public class ScatterPlot3D : MonoBehaviour
     private GameObject CountryC = null;
     private GameObject CountryD = null;
 
+    private string RawData = null;
+    private GenericObjects DataObject = null;
+
     void Start()
     {
+        GetData();
         InitialInstantiateObjects();
         StartCoroutine(WaitOneSecond());
+        UpdatePositionObjects();
     }
 
     // Update is called once per frame
@@ -71,9 +76,26 @@ public class ScatterPlot3D : MonoBehaviour
         }
     }
 
+    public IEnumerator GetDataServer()
+    {
+        using (UnityWebRequest client = UnityWebRequest.Get("127.0.0.1:3000"))
+        {
+
+            yield return client.SendWebRequest();
+            if (client.isHttpError)
+            {
+                Debug.Log(client.error);
+            }
+            else
+            {
+                //DataObject = UtilIO.GenericObjecsJson(client.downloadHandler.text);
+                Debug.Log(client.downloadHandler.text);
+            }
+        }
+    }
+
     void InitialInstantiateObjects()
     {
-        GetData();
         CountryA = Instantiate(TemplateObject);
         CountryB = Instantiate(TemplateObject);
         CountryC = Instantiate(TemplateObject);
@@ -88,23 +110,29 @@ public class ScatterPlot3D : MonoBehaviour
         Debug.Log(CountryB.gameObject.name);
     }
 
-
-    void UpdatePositionObjects(int year = 1975)
+    void UpdatePositionObjects(int year = 0, int axesX = 1, int axesY = 2, int axesZ = 3)
     {
-        Vector3 CurrentPosition = YearPosition(year);
-
-    }
-
-    Vector3 YearPosition(int year)
-    {
-        return new Vector3(0,0,0); 
+        CountryA.transform.localPosition = new Vector3(
+            Util.ScaleEnergyConsumption(DataObject.countries[0].year[0].energy_consumption),
+            Util.ScaleGDPPercapita(DataObject.countries[0].year[0].gdp_per_capita), 0);
+        CountryB.transform.localPosition = new Vector3(
+            Util.ScaleEnergyConsumption(DataObject.countries[1].year[0].energy_consumption),
+            Util.ScaleGDPPercapita(DataObject.countries[1].year[0].gdp_per_capita), 0);
+        CountryC.transform.localPosition = new Vector3(
+            Util.ScaleEnergyConsumption(DataObject.countries[2].year[0].energy_consumption),
+            Util.ScaleGDPPercapita(DataObject.countries[2].year[0].gdp_per_capita), 0);
+        CountryD.transform.localPosition = new Vector3(
+            Util.ScaleEnergyConsumption(DataObject.countries[3].year[0].energy_consumption),
+            Util.ScaleGDPPercapita(DataObject.countries[3].year[0].gdp_per_capita), 0);
     }
 
     void GetData()
-    {
-        Debug.Log(UtilIO.ReadFile("Data", "data.json", CountryA));
-        var tmp = UtilIO.ReadFile("Data", "data.json", CountryA);
-        Debug.Log(UtilIO.GenericObjecsJson(tmp).countries[2].year[0].indexed_population);
+    {   RawData = UtilIO.ReadFile("Data", "data.json");
+
+        if (RawData != "Error")
+            DataObject = UtilIO.GenericObjecsJson(RawData);
+        else
+            StartCoroutine(GetDataServer());
 
     }
 
