@@ -29,6 +29,8 @@ public class Constants
     public const string NAME_FILE = "data.json";
     public const string NAME_DIRECTORY = "Data";
 
+    public const string ENDPOINT_RAWDATA = "http://192.168.0.104:3000/";
+
     public const int POPULATION = 0;
     public const int AREBLE_AREA = 1;
     public const int ENERGY_CONSUMPTION = 2;

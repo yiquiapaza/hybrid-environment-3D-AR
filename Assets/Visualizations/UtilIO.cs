@@ -51,7 +51,7 @@ public class UtilIO
 #if WINDOWS_UWP
         jsonData = Path.Combine(ApplicationData.Current.LocalFolder.Path, NameFile);
         if(string.IsNullOrEmpty(jsonData))
-            jsonData = "Error"
+            jsonData = "Error";
         Debug.Log(jsonData);
 #endif
 

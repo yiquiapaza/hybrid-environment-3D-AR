@@ -59,7 +59,7 @@ public class ScatterPlot2D : MonoBehaviour
 
     public IEnumerator ObjectPositionUpdate()
     {
-        using (UnityWebRequest client = UnityWebRequest.Get("127.0.0.1:3000"))
+        using (UnityWebRequest client = UnityWebRequest.Get("http://192.168.0.104:3000/"))
         {
 
             yield return client.SendWebRequest();
@@ -70,7 +70,7 @@ public class ScatterPlot2D : MonoBehaviour
             else
             {
                 UpdatePositionObjects();
-                Debug.Log(client.downloadHandler.data);
+                Debug.Log(client.downloadHandler.text);
             }
         }
     }
@@ -86,13 +86,14 @@ public class ScatterPlot2D : MonoBehaviour
                 CountryA.GetComponent<Renderer>().material = OC;
             else
                 CountryA.GetComponent<Renderer>().material = EU;
+            yield return new WaitForSeconds(0.5f);
             yield return StartCoroutine(ObjectPositionUpdate());
         }
     }
 
     public IEnumerator GetDataServer()
     {
-        using (UnityWebRequest client = UnityWebRequest.Get("127.0.0.1:3000"))
+        using (UnityWebRequest client = UnityWebRequest.Get(Constants.ENDPOINT_RAWDATA))
         {
 
             yield return client.SendWebRequest();
@@ -102,7 +103,7 @@ public class ScatterPlot2D : MonoBehaviour
             }
             else
             {
-                //DataObject = UtilIO.GenericObjecsJson(client.downloadHandler.text);
+                DataObject = UtilIO.GenericObjecsJson(client.downloadHandler.text);
                 Debug.Log(client.downloadHandler.text);
             }
         }
@@ -233,9 +234,9 @@ public class ScatterPlot2D : MonoBehaviour
         RawData = UtilIO.ReadFile("Data", "data.json");
 
         if (RawData != "Error")
-            DataObject = UtilIO.GenericObjecsJson(RawData);
-        else
             StartCoroutine(GetDataServer());
+        else
+            DataObject = UtilIO.GenericObjecsJson(RawData);
 
     }
 }
