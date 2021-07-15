@@ -67,4 +67,9 @@ public class UtilIO
     {
         return JsonUtility.FromJson<GenericObjects>(JsonString);
     }
+
+    public static Country CountryJson(string JsonString)
+    {
+        return JsonUtility.FromJson<Country>(JsonString);
+    }
 }

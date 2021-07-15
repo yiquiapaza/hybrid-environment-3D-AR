@@ -42,10 +42,7 @@ public class ScatterPlot3D : MonoBehaviour
     private GameObject CountryO = null;
     private GameObject CountryP = null;
 
-    private string RawData = null;
     private GenericObjects DataObject = null;
-
-    private GameObject test;
 
     void Start()
     {
@@ -56,13 +53,13 @@ public class ScatterPlot3D : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {   
 
     }
 
-    public IEnumerator ObjectPositionUpdate()
+    public IEnumerator ObjectsUpdate()
     {
-        using (UnityWebRequest client = UnityWebRequest.Get(Constants.ENDPOINT_RAWDATA))
+        using (UnityWebRequest client = UnityWebRequest.Get(Constants.ENDPOINT_COUNTRY))
         {
 
             yield return client.SendWebRequest();
@@ -73,24 +70,17 @@ public class ScatterPlot3D : MonoBehaviour
             else
             {
                 UpdatePositionObjects();
+                SelectCountry(UtilIO.CountryJson(client.downloadHandler.text));
                 Debug.Log(client.downloadHandler.text);
             }
         }
     }
     public IEnumerator WaitOneSecond()
     {
-        int tmp = 0;
         while (true)
         {
-            //Debug.Log(tmp);
-            //LogToUnityConsole(i, flag);
-            tmp++;
-            if (tmp % 2 == 0)
-                CountryA.GetComponent<Renderer>().material = OC;
-            else
-                CountryA.GetComponent<Renderer>().material = EU;
             yield return new WaitForSeconds(0.5f);
-            yield return StartCoroutine(ObjectPositionUpdate());
+            yield return StartCoroutine(ObjectsUpdate());
         }
     }
 
@@ -131,10 +121,11 @@ public class ScatterPlot3D : MonoBehaviour
         CountryO = Instantiate(TemplateObject);
         CountryP = Instantiate(TemplateObject);
 
-        test = Instantiate(TemplateObject);
-        test.GetComponent<Renderer>().material.color = Color.red;
-        test.transform.localPosition = gameObject.transform.position;
+        InitialMaterialObjects();
+    }
 
+    void InitialMaterialObjects()
+    {
         CountryA.GetComponent<Renderer>().material = OC;
         CountryB.GetComponent<Renderer>().material = AS;
         CountryC.GetComponent<Renderer>().material = EU;
@@ -236,13 +227,69 @@ public class ScatterPlot3D : MonoBehaviour
             gameObject.transform.position.z);
     }
 
-    void GetData()
-    {   RawData = UtilIO.ReadFile("Data", "data.json");
-
-        if (RawData != "Error")
-            StartCoroutine(GetDataServer());
+    void SelectCountry(Country country)
+    {
+        if (country.status == 1)
+        {
+            InitialMaterialObjects();
+            switch (country.name)
+            {
+                case Constants.COUNTRY_A:
+                    CountryA.GetComponent<Renderer>().material.color = Color.red;
+                    break;
+                case Constants.COUNTRY_B:
+                    CountryB.GetComponent<Renderer>().material.color = Color.red;
+                    break;
+                case Constants.COUNTRY_C:
+                    CountryA.GetComponent<Renderer>().material.color = Color.red;
+                    break;
+                case Constants.COUNTRY_D:
+                    CountryB.GetComponent<Renderer>().material.color = Color.red;
+                    break;
+                case Constants.COUNTRY_F:
+                    CountryA.GetComponent<Renderer>().material.color = Color.red;
+                    break;
+                case Constants.COUNTRY_G:
+                    CountryB.GetComponent<Renderer>().material.color = Color.red;
+                    break;
+                case Constants.COUNTRY_H:
+                    CountryA.GetComponent<Renderer>().material.color = Color.red;
+                    break;
+                case Constants.COUNTRY_I:
+                    CountryB.GetComponent<Renderer>().material.color = Color.red;
+                    break;
+                case Constants.COUNTRY_J:
+                    CountryA.GetComponent<Renderer>().material.color = Color.red;
+                    break;
+                case Constants.COUNTRY_K:
+                    CountryB.GetComponent<Renderer>().material.color = Color.red;
+                    break;
+                case Constants.COUNTRY_L:
+                    CountryA.GetComponent<Renderer>().material.color = Color.red;
+                    break;
+                case Constants.COUNTRY_M:
+                    CountryB.GetComponent<Renderer>().material.color = Color.red;
+                    break;
+                case Constants.COUNTRY_N:
+                    CountryA.GetComponent<Renderer>().material.color = Color.red;
+                    break;
+                case Constants.COUNTRY_O:
+                    CountryB.GetComponent<Renderer>().material.color = Color.red;
+                    break;
+                case Constants.COUNTRY_P:
+                    CountryA.GetComponent<Renderer>().material.color = Color.red;
+                    break;
+            }
+        }
         else
-            DataObject = UtilIO.GenericObjecsJson(RawData);
+            InitialMaterialObjects();
     }
+
+    void GetData()
+    {   
+        StartCoroutine(GetDataServer());
+    }
+
+
 
 }

@@ -30,6 +30,7 @@ public class Constants
     public const string NAME_DIRECTORY = "Data";
 
     public const string ENDPOINT_RAWDATA = "http://192.168.0.104:3000/";
+    public const string ENDPOINT_COUNTRY = "http://192.168.0.104:3000/country";
 
     public const int POPULATION = 0;
     public const int AREBLE_AREA = 1;
@@ -43,4 +44,21 @@ public class Constants
     public const int INDEXED_POPULATION = 9;
     public const int INDEXED_ENERGY_CONSUMPTION = 10;
     public const int INDEXES_GDP = 11;
+
+    public const string COUNTRY_A = "a";
+    public const string COUNTRY_B = "b";
+    public const string COUNTRY_C = "c";
+    public const string COUNTRY_D = "d";
+    public const string COUNTRY_E = "e";
+    public const string COUNTRY_F = "f";
+    public const string COUNTRY_G = "g";
+    public const string COUNTRY_H = "h";
+    public const string COUNTRY_I = "i";
+    public const string COUNTRY_J = "j";
+    public const string COUNTRY_K = "k";
+    public const string COUNTRY_L = "l";
+    public const string COUNTRY_M = "m";
+    public const string COUNTRY_N = "n";
+    public const string COUNTRY_O = "o";
+    public const string COUNTRY_P = "p";
 }
