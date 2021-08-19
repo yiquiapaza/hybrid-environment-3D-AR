@@ -45,20 +45,20 @@ public class Constants
     public const int INDEXED_ENERGY_CONSUMPTION = 10;
     public const int INDEXES_GDP = 11;
 
-    public const string COUNTRY_A = "a";
-    public const string COUNTRY_B = "b";
-    public const string COUNTRY_C = "c";
-    public const string COUNTRY_D = "d";
-    public const string COUNTRY_E = "e";
-    public const string COUNTRY_F = "f";
-    public const string COUNTRY_G = "g";
-    public const string COUNTRY_H = "h";
-    public const string COUNTRY_I = "i";
-    public const string COUNTRY_J = "j";
-    public const string COUNTRY_K = "k";
-    public const string COUNTRY_L = "l";
-    public const string COUNTRY_M = "m";
-    public const string COUNTRY_N = "n";
-    public const string COUNTRY_O = "o";
-    public const string COUNTRY_P = "p";
+    public const string COUNTRY_A = "A";
+    public const string COUNTRY_B = "B";
+    public const string COUNTRY_C = "C";
+    public const string COUNTRY_D = "D";
+    public const string COUNTRY_E = "E";
+    public const string COUNTRY_F = "F";
+    public const string COUNTRY_G = "G";
+    public const string COUNTRY_H = "H";
+    public const string COUNTRY_I = "I";
+    public const string COUNTRY_J = "J";
+    public const string COUNTRY_K = "K";
+    public const string COUNTRY_L = "L";
+    public const string COUNTRY_M = "M";
+    public const string COUNTRY_N = "N";
+    public const string COUNTRY_O = "O";
+    public const string COUNTRY_P = "P";
 }

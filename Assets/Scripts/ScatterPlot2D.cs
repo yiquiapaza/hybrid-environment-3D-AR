@@ -24,6 +24,8 @@ public class ScatterPlot2D : MonoBehaviour
     [Tooltip("Material that use for NA region")]
     [SerializeField]
     private Material NA = null;
+    [SerializeField]
+    private Material TRA = null;
 
     private GameObject CountryA = null;
     private GameObject CountryB = null;
@@ -77,7 +79,7 @@ public class ScatterPlot2D : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.1f);
             yield return StartCoroutine(ObjectPositionUpdate());
         }
     }
@@ -226,9 +228,9 @@ public class ScatterPlot2D : MonoBehaviour
 
     void SelectCountry(Country country)
     {
+        InitialMaterialObjects();
         if (country.status == 1)
         {
-            InitialMaterialObjects();
             switch (country.name)
             {
                 case Constants.COUNTRY_A:
@@ -238,48 +240,71 @@ public class ScatterPlot2D : MonoBehaviour
                     CountryB.GetComponent<Renderer>().material.color = Color.red;
                     break;
                 case Constants.COUNTRY_C:
-                    CountryA.GetComponent<Renderer>().material.color = Color.red;
+                    CountryC.GetComponent<Renderer>().material.color = Color.red;
                     break;
                 case Constants.COUNTRY_D:
-                    CountryB.GetComponent<Renderer>().material.color = Color.red;
+                    CountryD.GetComponent<Renderer>().material.color = Color.red;
+                    break;
+                case Constants.COUNTRY_E:
+                    CountryE.GetComponent<Renderer>().material.color = Color.red;
                     break;
                 case Constants.COUNTRY_F:
-                    CountryA.GetComponent<Renderer>().material.color = Color.red;
+                    CountryF.GetComponent<Renderer>().material.color = Color.red;
                     break;
                 case Constants.COUNTRY_G:
-                    CountryB.GetComponent<Renderer>().material.color = Color.red;
+                    CountryG.GetComponent<Renderer>().material.color = Color.red;
                     break;
                 case Constants.COUNTRY_H:
-                    CountryA.GetComponent<Renderer>().material.color = Color.red;
+                    CountryH.GetComponent<Renderer>().material.color = Color.red;
                     break;
                 case Constants.COUNTRY_I:
-                    CountryB.GetComponent<Renderer>().material.color = Color.red;
+                    CountryI.GetComponent<Renderer>().material.color = Color.red;
                     break;
                 case Constants.COUNTRY_J:
-                    CountryA.GetComponent<Renderer>().material.color = Color.red;
+                    CountryJ.GetComponent<Renderer>().material.color = Color.red;
                     break;
                 case Constants.COUNTRY_K:
-                    CountryB.GetComponent<Renderer>().material.color = Color.red;
+                    CountryK.GetComponent<Renderer>().material.color = Color.red;
                     break;
                 case Constants.COUNTRY_L:
-                    CountryA.GetComponent<Renderer>().material.color = Color.red;
+                    CountryL.GetComponent<Renderer>().material.color = Color.red;
                     break;
                 case Constants.COUNTRY_M:
-                    CountryB.GetComponent<Renderer>().material.color = Color.red;
+                    CountryM.GetComponent<Renderer>().material.color = Color.red;
                     break;
                 case Constants.COUNTRY_N:
-                    CountryA.GetComponent<Renderer>().material.color = Color.red;
+                    CountryN.GetComponent<Renderer>().material.color = Color.red;
                     break;
                 case Constants.COUNTRY_O:
-                    CountryB.GetComponent<Renderer>().material.color = Color.red;
+                    CountryO.GetComponent<Renderer>().material.color = Color.red;
                     break;
                 case Constants.COUNTRY_P:
-                    CountryA.GetComponent<Renderer>().material.color = Color.red;
+                    CountryP.GetComponent<Renderer>().material.color = Color.red;
                     break;
             }
         }
         else
             InitialMaterialObjects();
+    }
+
+    void InitialMaterialTranparent()
+    {
+        CountryA.GetComponent<Renderer>().material = TRA;
+        CountryB.GetComponent<Renderer>().material = TRA;
+        CountryC.GetComponent<Renderer>().material = TRA;
+        CountryD.GetComponent<Renderer>().material = TRA;
+        CountryE.GetComponent<Renderer>().material = TRA;
+        CountryF.GetComponent<Renderer>().material = TRA;
+        CountryG.GetComponent<Renderer>().material = TRA;
+        CountryH.GetComponent<Renderer>().material = TRA;
+        CountryI.GetComponent<Renderer>().material = TRA;
+        CountryJ.GetComponent<Renderer>().material = TRA;
+        CountryK.GetComponent<Renderer>().material = TRA;
+        CountryL.GetComponent<Renderer>().material = TRA;
+        CountryM.GetComponent<Renderer>().material = TRA;
+        CountryN.GetComponent<Renderer>().material = TRA;
+        CountryO.GetComponent<Renderer>().material = TRA;
+        CountryP.GetComponent<Renderer>().material = TRA;
     }
 
     void GetData()
