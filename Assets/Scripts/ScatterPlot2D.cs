@@ -106,21 +106,37 @@ public class ScatterPlot2D : MonoBehaviour
     void InitialInstantiateObjects()
     {
         CountryA = Instantiate(TemplateObject);
+        CountryA.name = Constants.COUNTRY_A;
         CountryB = Instantiate(TemplateObject);
+        CountryB.name = Constants.COUNTRY_B;
         CountryC = Instantiate(TemplateObject);
+        CountryC.name = Constants.COUNTRY_C;
         CountryD = Instantiate(TemplateObject);
+        CountryD.name = Constants.COUNTRY_D;
         CountryE = Instantiate(TemplateObject);
+        CountryE.name = Constants.COUNTRY_E;
         CountryF = Instantiate(TemplateObject);
+        CountryF.name = Constants.COUNTRY_F;
         CountryG = Instantiate(TemplateObject);
+        CountryG.name = Constants.COUNTRY_G;
         CountryH = Instantiate(TemplateObject);
+        CountryH.name = Constants.COUNTRY_H;
         CountryI = Instantiate(TemplateObject);
+        CountryI.name = Constants.COUNTRY_I;
         CountryJ = Instantiate(TemplateObject);
+        CountryJ.name = Constants.COUNTRY_J;
         CountryK = Instantiate(TemplateObject);
+        CountryK.name = Constants.COUNTRY_K;
         CountryL = Instantiate(TemplateObject);
+        CountryL.name = Constants.COUNTRY_L;
         CountryM = Instantiate(TemplateObject);
+        CountryM.name = Constants.COUNTRY_M;
         CountryN = Instantiate(TemplateObject);
+        CountryN.name = Constants.COUNTRY_N;
         CountryO = Instantiate(TemplateObject);
+        CountryO.name = Constants.COUNTRY_O;
         CountryP = Instantiate(TemplateObject);
+        CountryP.name = Constants.COUNTRY_P;
     }
 
     void InitialMaterialObjects()
