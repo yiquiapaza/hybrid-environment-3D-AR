@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2751015052348224116}
   m_Layer: 0
-  m_Name: GenericViewPlane2D
+  m_Name: Axes2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,6 +44,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GenericViewXaxis
       objectReference: {fileID: 0}
+    - target: {fileID: 6636508283081853702, guid: 1418f266e22ad0e46a68b3604b2aa62e,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c4a1b7475a654dd0acaa0cfdfba2e20c, type: 2}
     - target: {fileID: 7874290414573091605, guid: 1418f266e22ad0e46a68b3604b2aa62e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -119,6 +124,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GenericViewYaxis
       objectReference: {fileID: 0}
+    - target: {fileID: 6636508283081853702, guid: 1418f266e22ad0e46a68b3604b2aa62e,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 47f3c5e1cb6142ba9697cd4c86d74321, type: 2}
     - target: {fileID: 7874290414573091605, guid: 1418f266e22ad0e46a68b3604b2aa62e,
         type: 3}
       propertyPath: m_LocalPosition.x
