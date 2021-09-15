@@ -26,7 +26,7 @@ public class GenericAxisPrefab : MonoBehaviour
     {
         var label = Instantiate(_axisLabelPrefab, _axisRoot.transform, false);
         float posX = _length / 2;
-        float posY = _length / 8;
+        float posY = _length / 16;
         if (!_swapped)
             posY *= -1;
         label.transform.localPosition = new Vector3(posX, posY, 0.0f);
