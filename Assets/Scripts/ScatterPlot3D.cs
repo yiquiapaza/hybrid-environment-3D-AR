@@ -50,7 +50,7 @@ public class ScatterPlot3D : MonoBehaviour
     {
         GetData();
         InitialInstantiateObjects();
-        StartCoroutine(WaitOneSecond());
+        //StartCoroutine(WaitOneSecond());
     }
 
     // Update is called once per frame
@@ -107,23 +107,40 @@ public class ScatterPlot3D : MonoBehaviour
     void InitialInstantiateObjects()
     {
         CountryA = Instantiate(TemplateObject);
+        CountryA.name = Constants.COUNTRY_A;
         CountryB = Instantiate(TemplateObject);
+        CountryB.name = Constants.COUNTRY_B;
         CountryC = Instantiate(TemplateObject);
+        CountryC.name = Constants.COUNTRY_C;
         CountryD = Instantiate(TemplateObject);
+        CountryD.name = Constants.COUNTRY_D;
         CountryE = Instantiate(TemplateObject);
+        CountryE.name = Constants.COUNTRY_E;
         CountryF = Instantiate(TemplateObject);
+        CountryF.name = Constants.COUNTRY_F;
         CountryG = Instantiate(TemplateObject);
+        CountryG.name = Constants.COUNTRY_G;
         CountryH = Instantiate(TemplateObject);
+        CountryH.name = Constants.COUNTRY_H;
         CountryI = Instantiate(TemplateObject);
+        CountryI.name = Constants.COUNTRY_I;
         CountryJ = Instantiate(TemplateObject);
+        CountryJ.name = Constants.COUNTRY_J;
         CountryK = Instantiate(TemplateObject);
+        CountryK.name = Constants.COUNTRY_K;
         CountryL = Instantiate(TemplateObject);
+        CountryL.name = Constants.COUNTRY_L;
         CountryM = Instantiate(TemplateObject);
+        CountryM.name = Constants.COUNTRY_M;
         CountryN = Instantiate(TemplateObject);
+        CountryN.name = Constants.COUNTRY_N;
         CountryO = Instantiate(TemplateObject);
+        CountryO.name = Constants.COUNTRY_O;
         CountryP = Instantiate(TemplateObject);
+        CountryP.name = Constants.COUNTRY_P;
 
         InitialMaterialObjects();
+        CreateAnimation(CountryA, Constants.COUNTRY_A_POPULATION, Constants.COUNTRY_A_GDP_PER_CAPITA, Constants.COUNTRY_A_ENERGY_CONSUMPTION);
     }
 
     void InitialMaterialObjects()
@@ -148,85 +165,7 @@ public class ScatterPlot3D : MonoBehaviour
 
     void UpdatePositionObjects(int year = 0, int axesX = 1, int axesY = 2, int axesZ = 3)
     {
-        CountryA.transform.localPosition = new Vector3(
-            gameObject.transform.position.x + Util.ScaleEnergyConsumption(DataObject.countries[0].year[0].energy_consumption),
-            gameObject.transform.position.y + Util.ScaleGDPPercapita(DataObject.countries[0].year[0].gdp_per_capita),
-            gameObject.transform.position.z);
-
-        CountryB.transform.localPosition = new Vector3(
-            gameObject.transform.position.x + Util.ScaleEnergyConsumption(DataObject.countries[1].year[0].energy_consumption),
-            gameObject.transform.position.y + Util.ScaleGDPPercapita(DataObject.countries[1].year[0].gdp_per_capita),
-            gameObject.transform.position.z);
-
-        CountryC.transform.localPosition = new Vector3(
-            gameObject.transform.position.x + Util.ScaleEnergyConsumption(DataObject.countries[2].year[0].energy_consumption),
-            gameObject.transform.position.y + Util.ScaleGDPPercapita(DataObject.countries[2].year[0].gdp_per_capita),
-            gameObject.transform.position.z);
-
-        CountryD.transform.localPosition = new Vector3(
-            gameObject.transform.position.x + Util.ScaleEnergyConsumption(DataObject.countries[3].year[0].energy_consumption),
-            gameObject.transform.position.y + Util.ScaleGDPPercapita(DataObject.countries[3].year[0].gdp_per_capita),
-            gameObject.transform.position.z);
-
-        CountryE.transform.localPosition = new Vector3(
-            gameObject.transform.position.x + Util.ScaleEnergyConsumption(DataObject.countries[4].year[0].energy_consumption),
-            gameObject.transform.position.y + Util.ScaleGDPPercapita(DataObject.countries[4].year[0].gdp_per_capita),
-            gameObject.transform.position.z);
-
-        CountryF.transform.localPosition = new Vector3(
-            gameObject.transform.position.x + Util.ScaleEnergyConsumption(DataObject.countries[5].year[0].energy_consumption),
-            gameObject.transform.position.y + Util.ScaleGDPPercapita(DataObject.countries[5].year[0].gdp_per_capita),
-            gameObject.transform.position.z);
-
-        CountryG.transform.localPosition = new Vector3(
-            gameObject.transform.position.x + Util.ScaleEnergyConsumption(DataObject.countries[6].year[0].energy_consumption),
-            gameObject.transform.position.y + Util.ScaleGDPPercapita(DataObject.countries[6].year[0].gdp_per_capita),
-            gameObject.transform.position.z);
-
-        CountryH.transform.localPosition = new Vector3(
-            gameObject.transform.position.x + Util.ScaleEnergyConsumption(DataObject.countries[7].year[0].energy_consumption),
-            gameObject.transform.position.y + Util.ScaleGDPPercapita(DataObject.countries[7].year[0].gdp_per_capita),
-            gameObject.transform.position.z);
-
-        CountryI.transform.localPosition = new Vector3(
-            gameObject.transform.position.x + Util.ScaleEnergyConsumption(DataObject.countries[8].year[0].energy_consumption),
-            gameObject.transform.position.y + Util.ScaleGDPPercapita(DataObject.countries[8].year[0].gdp_per_capita),
-            gameObject.transform.position.z);
-
-        CountryJ.transform.localPosition = new Vector3(
-            gameObject.transform.position.x + Util.ScaleEnergyConsumption(DataObject.countries[9].year[0].energy_consumption),
-            gameObject.transform.position.y + Util.ScaleGDPPercapita(DataObject.countries[9].year[0].gdp_per_capita),
-            gameObject.transform.position.z);
-
-        CountryK.transform.localPosition = new Vector3(
-            gameObject.transform.position.x + Util.ScaleEnergyConsumption(DataObject.countries[10].year[0].energy_consumption),
-            gameObject.transform.position.y + Util.ScaleGDPPercapita(DataObject.countries[10].year[0].gdp_per_capita),
-            gameObject.transform.position.z);
-
-        CountryL.transform.localPosition = new Vector3(
-            gameObject.transform.position.x + Util.ScaleEnergyConsumption(DataObject.countries[11].year[0].energy_consumption),
-            gameObject.transform.position.y + Util.ScaleGDPPercapita(DataObject.countries[11].year[0].gdp_per_capita),
-            gameObject.transform.position.z);
-
-        CountryM.transform.localPosition = new Vector3(
-            gameObject.transform.position.x + Util.ScaleEnergyConsumption(DataObject.countries[12].year[0].energy_consumption),
-            gameObject.transform.position.y + Util.ScaleGDPPercapita(DataObject.countries[12].year[0].gdp_per_capita),
-            gameObject.transform.position.z);
-
-        CountryN.transform.localPosition = new Vector3(
-            gameObject.transform.position.x + Util.ScaleEnergyConsumption(DataObject.countries[13].year[0].energy_consumption),
-            gameObject.transform.position.y + Util.ScaleGDPPercapita(DataObject.countries[13].year[0].gdp_per_capita),
-            gameObject.transform.position.z);
-
-        CountryO.transform.localPosition = new Vector3(
-            gameObject.transform.position.x + Util.ScaleEnergyConsumption(DataObject.countries[14].year[0].energy_consumption),
-            gameObject.transform.position.y + Util.ScaleGDPPercapita(DataObject.countries[14].year[0].gdp_per_capita),
-            gameObject.transform.position.z);
-
-        CountryP.transform.localPosition = new Vector3(
-            gameObject.transform.position.x + Util.ScaleEnergyConsumption(DataObject.countries[15].year[0].energy_consumption),
-            gameObject.transform.position.y + Util.ScaleGDPPercapita(DataObject.countries[15].year[0].gdp_per_capita),
-            gameObject.transform.position.z);
+        
     }
 
     void SelectCountry(Country country)
@@ -314,6 +253,39 @@ public class ScatterPlot3D : MonoBehaviour
         StartCoroutine(GetDataServer());
     }
 
+    void CreateAnimation(GameObject gameObject, float[] scaleData, float[] positionXData, float[] positionYData)
+    {
+        Animation animation = gameObject.GetComponent<Animation>();
+        Keyframe[] positionX, positionY, scale;
+        positionX = new Keyframe[26];
+        positionY = new Keyframe[26];
+        scale = new Keyframe[26];
+        float time = 0.0f;
+        for (int i = 0; i < scaleData.Length; i++)
+        {
+            scale[i] = new Keyframe(time, Util.ScalePopulation(scaleData[i]));
+            positionX[i] = new Keyframe(time, Util.ScaleGDPPercapita(positionXData[i]));
+            positionY[i] = new Keyframe(time, Util.ScaleEnergyConsumption(positionYData[i]));
+            time += 0.30f;
+        }
+        //keys[0] = new Keyframe(0.0f, 0.0f);
+        //keys[1] = new Keyframe(5.0f, 2.0f);
+        //keys[2] = new Keyframe(6.0f, 3.0f);
+        AnimationCurve scaleCurve = new AnimationCurve(scale);
+        AnimationCurve positionxCuerve = new AnimationCurve(positionX);
+        AnimationCurve positionyCuerve = new AnimationCurve(positionY);
+        AnimationClip animationClip;
+        animationClip = new AnimationClip();
+        animationClip.legacy = true;
+        animationClip.SetCurve("", typeof(Transform), "localPosition.x", positionxCuerve);
+        animationClip.SetCurve("", typeof(Transform), "localPosition.y", positionyCuerve);
+        animationClip.SetCurve("", typeof(Transform), "localScale.x", scaleCurve);
+        animationClip.SetCurve("", typeof(Transform), "localScale.y", scaleCurve);
+        animationClip.SetCurve("", typeof(Transform), "localScale.z", scaleCurve);
+        animation.AddClip(animationClip, "Animation" + gameObject.name);
+        animation.wrapMode = WrapMode.Loop;
+        animation.Play("Animation"+gameObject.name);
+    }
 
 
 }
