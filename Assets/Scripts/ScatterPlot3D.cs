@@ -48,6 +48,7 @@ public class ScatterPlot3D : MonoBehaviour
 
     void Start()
     {
+        gameObject.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
         GetData();
         InitialInstantiateObjects();
         //StartCoroutine(WaitOneSecond());
