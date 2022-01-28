@@ -24,7 +24,7 @@ public class Main : MonoBehaviour
     {
         
     }
-    
+     
     public void UpdateTitle()
     { 
     
