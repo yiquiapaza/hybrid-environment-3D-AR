@@ -22,12 +22,14 @@ public class InteractionTechniques : MonoBehaviour
         globalCoordinates.x = gameObject.transform.rotation.x;
         globalCoordinates.y = gameObject.transform.rotation.y;
         globalCoordinates.z = gameObject.transform.rotation.z;
+
+        StartCoroutine(ExampleCoroutine());
     }
 
     // Update is called once per frame
     void Update()
     {
-        StartCoroutine(SendRotation());
+        //StartCoroutine(SendRotation());
     }
 
     //TODO: implmentes these methods
@@ -60,5 +62,19 @@ public class InteractionTechniques : MonoBehaviour
                 Debug.Log("Form upload complete!");
             }
         }
+    }
+    IEnumerator ExampleCoroutine()
+    {
+        while (true) 
+        {
+            yield return new WaitForSeconds(1F);
+            StartCoroutine(SendRotation());
+            ExampleToCallFunction();
+        }
+    }
+
+    void ExampleToCallFunction() 
+    {
+        Debug.Log("Call A function");
     }
 }
