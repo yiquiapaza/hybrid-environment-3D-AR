@@ -8,6 +8,7 @@ public class InteractionTechniques : MonoBehaviour
     // Start is called before the first frame update
 
     private Vector3 globalCoordinates = Vector3.zero;
+    private Vector3 globlaTmp = Vector3.zero;
 
     private WWWForm rotationPost;
 
@@ -15,21 +16,20 @@ public class InteractionTechniques : MonoBehaviour
     float tiltAngle = 60.0f;
 
     void Start()
-    {
-        rotationPost = new WWWForm();
-        
+    {        
 
         globalCoordinates.x = gameObject.transform.rotation.x;
         globalCoordinates.y = gameObject.transform.rotation.y;
         globalCoordinates.z = gameObject.transform.rotation.z;
 
         StartCoroutine(ExampleCoroutine());
+        //StartCoroutine(SendRotation());
     }
 
     // Update is called once per frame
     void Update()
     {
-        //StartCoroutine(SendRotation());
+
     }
 
     //TODO: implmentes these methods
@@ -45,11 +45,13 @@ public class InteractionTechniques : MonoBehaviour
     }
 
     IEnumerator SendRotation()
-    {
+    {        
+        rotationPost = new WWWForm();
+
         rotationPost.AddField("x", gameObject.transform.rotation.x.ToString());
         rotationPost.AddField("y", gameObject.transform.rotation.y.ToString());
         rotationPost.AddField("z", gameObject.transform.rotation.z.ToString());
-        using (UnityWebRequest client = UnityWebRequest.Post("http://localhost/roration", rotationPost)) 
+        using (UnityWebRequest client = UnityWebRequest.Post("http://192.168.0.104:3000/rotation", rotationPost)) 
         {
             yield return client.SendWebRequest();
 
@@ -59,6 +61,7 @@ public class InteractionTechniques : MonoBehaviour
             }
             else
             {
+                globlaTmp.y = gameObject.transform.rotation.y;
                 Debug.Log("Form upload complete!");
             }
         }
