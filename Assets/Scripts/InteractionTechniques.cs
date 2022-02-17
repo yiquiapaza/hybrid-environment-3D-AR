@@ -23,7 +23,7 @@ public class InteractionTechniques : MonoBehaviour
         globalCoordinates.z = gameObject.transform.rotation.z;
 
         StartCoroutine(ExampleCoroutine());
-        //StartCoroutine(SendRotation());
+        ExampleVisualStudio2022();
     }
 
     // Update is called once per frame
@@ -79,5 +79,10 @@ public class InteractionTechniques : MonoBehaviour
     void ExampleToCallFunction() 
     {
         Debug.Log("Call A function");
+    }
+
+    void ExampleVisualStudio2022 ()
+    {
+        Debug.Log("Test");
     }
 }
