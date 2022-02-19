@@ -6,13 +6,14 @@ using UnityEngine.Networking;
 
 public class HololensClient : MonoBehaviour
 {
+
     // Start is called before the first frame update
     void Start()
     {
-    #if UNITY_WSA
+    //#if UNITY_WSA
         Debug.Log("Hello desde Hololens");
         StartCoroutine(WaitGetRotation());
-    #endif
+    //#endif
     }
 
     // Update is called once per frame
@@ -26,6 +27,16 @@ public class HololensClient : MonoBehaviour
         using (UnityWebRequest client = UnityWebRequest.Get("http://192.168.0.104:3000/rotation"))
         {
             yield return client.SendWebRequest();
+            if(client.isNetworkError)
+            {
+                Debug.Log(client.error);
+            }
+            else
+            {
+                Debug.Log(Rotation.CreateFromJSON(client.downloadHandler.text).x);
+                Debug.Log(Rotation.CreateFromJSON(client.downloadHandler.text).y);
+                Debug.Log(Rotation.CreateFromJSON(client.downloadHandler.text).z);
+            }
         }
     }
 
