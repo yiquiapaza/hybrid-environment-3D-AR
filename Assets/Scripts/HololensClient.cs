@@ -33,9 +33,12 @@ public class HololensClient : MonoBehaviour
             }
             else
             {
-                Debug.Log(Rotation.CreateFromJSON(client.downloadHandler.text).x);
-                Debug.Log(Rotation.CreateFromJSON(client.downloadHandler.text).y);
-                Debug.Log(Rotation.CreateFromJSON(client.downloadHandler.text).z);
+                Debug.Log(client.downloadHandler.text);
+                
+                gameObject.transform.localEulerAngles = new Vector3( Rotation.CreateFromJSON(client.downloadHandler.text).x * Mathf.Rad2Deg,
+                                                                    Rotation.CreateFromJSON(client.downloadHandler.text).y * Mathf.Rad2Deg,
+                                                                    Rotation.CreateFromJSON(client.downloadHandler.text).z * Mathf.Rad2Deg);
+
             }
         }
     }
