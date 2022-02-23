@@ -35,7 +35,7 @@ public class HololensClient : MonoBehaviour
             {
                 Debug.Log(client.downloadHandler.text);
                 
-                gameObject.transform.localEulerAngles = new Vector3( Rotation.CreateFromJSON(client.downloadHandler.text).x * Mathf.Rad2Deg,
+                gameObject.transform.rotation = Quaternion.Euler( Rotation.CreateFromJSON(client.downloadHandler.text).x * Mathf.Rad2Deg,
                                                                     Rotation.CreateFromJSON(client.downloadHandler.text).y * Mathf.Rad2Deg,
                                                                     Rotation.CreateFromJSON(client.downloadHandler.text).z * Mathf.Rad2Deg);
 
