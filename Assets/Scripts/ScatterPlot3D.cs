@@ -6,7 +6,6 @@ using UnityEngine.Networking;
 public class ScatterPlot3D : MonoBehaviour
 {
     [Tooltip("Object Template, with this you can manipulate position, traslation and size")]
-    [SerializeField]
     private GameObject TemplateObject = null;
 
     [Tooltip("Material that use for OC region")]
@@ -48,6 +47,8 @@ public class ScatterPlot3D : MonoBehaviour
 
     void Start()
     {
+        TemplateObject = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+        TemplateObject.AddComponent<Animation>();
         gameObject.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
         GetData();
         InitialInstantiateObjects();
@@ -243,26 +244,6 @@ public class ScatterPlot3D : MonoBehaviour
                     break;
             }
         }
-    }
-
-    void InitialMaterialTranparent()
-    {
-        CountryA.GetComponent<Renderer>().material = TRA;
-        CountryB.GetComponent<Renderer>().material = TRA;
-        CountryC.GetComponent<Renderer>().material = TRA;
-        CountryD.GetComponent<Renderer>().material = TRA;
-        CountryE.GetComponent<Renderer>().material = TRA;
-        CountryF.GetComponent<Renderer>().material = TRA;
-        CountryG.GetComponent<Renderer>().material = TRA;
-        CountryH.GetComponent<Renderer>().material = TRA;
-        CountryI.GetComponent<Renderer>().material = TRA;
-        CountryJ.GetComponent<Renderer>().material = TRA;
-        CountryK.GetComponent<Renderer>().material = TRA;
-        CountryL.GetComponent<Renderer>().material = TRA;
-        CountryM.GetComponent<Renderer>().material = TRA;
-        CountryN.GetComponent<Renderer>().material = TRA;
-        CountryO.GetComponent<Renderer>().material = TRA;
-        CountryP.GetComponent<Renderer>().material = TRA;
     }
 
     void GetData()
