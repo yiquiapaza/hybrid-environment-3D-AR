@@ -245,7 +245,7 @@ public class ScatterPlot2D : MonoBehaviour
     void SelectCountry(Country country)
     {
         InitialMaterialObjects();
-        if (country.status == 1)
+        if (country.state == 1)
         {
             switch (country.name)
             {

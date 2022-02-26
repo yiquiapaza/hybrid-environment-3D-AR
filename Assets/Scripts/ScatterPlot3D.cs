@@ -189,8 +189,8 @@ public class ScatterPlot3D : MonoBehaviour
     void SelectCountry(Country country)
     {
         InitialMaterialObjects();
-        Debug.Log(country.status);
-        if (country.status == 1)
+        Debug.Log(country.state);
+        if (country.state == 1)
         {
             switch (country.name)
             {
