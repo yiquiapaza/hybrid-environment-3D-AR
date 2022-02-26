@@ -8,19 +8,19 @@ public class ScatterPlot3D : MonoBehaviour
     [Tooltip("Object Template, with this you can manipulate position, traslation and size")]
     private GameObject TemplateObject = null;
 
-    [Tooltip("Material that use for OC region")]
+    [Tooltip("Material that use for OC region MRTK_Standard_TransparentEmerald")]
     [SerializeField]
     private Material OC = null;
-    [Tooltip("Material that use for AS region")]
+    [Tooltip("Material that use for AS region MRTK_Standard_TransparentGreen")]
     [SerializeField]
     private Material AS = null;
-    [Tooltip("Material that use for EU region")]
+    [Tooltip("Material that use for EU region MRTK_Standard_TransparentOrange")]
     [SerializeField]
     private Material EU = null;
-    [Tooltip("Material that use for AF region")]
+    [Tooltip("Material that use for AF region MRTK_Standard_TransparentPurple")]
     [SerializeField]
     private Material AF = null;
-    [Tooltip("Material that use for NA region")]
+    [Tooltip("Material that use for NA region MRTK_Standard_TransparentYellow")]
     [SerializeField]
     private Material NA = null;
     [SerializeField]
