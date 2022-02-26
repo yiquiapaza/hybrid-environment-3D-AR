@@ -29,8 +29,11 @@ public class Constants
     public const string NAME_FILE = "data.json";
     public const string NAME_DIRECTORY = "Data";
 
-    public const string ENDPOINT_RAWDATA = "http://192.168.0.104:3000/";
-    public const string ENDPOINT_COUNTRY = "http://192.168.0.104:3000/country";
+    public const string HOST = "http://192.168.0.104:3000";
+
+    public const string ENDPOINT_RAWDATA = HOST + "/";
+    public const string ENDPOINT_COUNTRY = HOST + "/country";
+    public const string ENDPOINT_ROTATE  = HOST + "/rotate";
 
     public const int POPULATION = 0;
     public const int AREBLE_AREA = 1;

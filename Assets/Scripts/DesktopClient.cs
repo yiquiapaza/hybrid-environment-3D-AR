@@ -29,7 +29,7 @@ public class DesktopClient : MonoBehaviour
         postRotation.AddField("y", gameObject.transform.rotation.y.ToString());
         postRotation.AddField("z", gameObject.transform.rotation.z.ToString());
  
-        using (UnityWebRequest client = UnityWebRequest.Post("http://192.168.0.104:3000/rotation", postRotation))
+        using (UnityWebRequest client = UnityWebRequest.Post(Constants.ENDPOINT_ROTATE, postRotation))
         {
             yield return client.SendWebRequest();
 

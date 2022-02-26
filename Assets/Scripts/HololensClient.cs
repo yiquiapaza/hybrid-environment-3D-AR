@@ -24,7 +24,7 @@ public class HololensClient : MonoBehaviour
 
     IEnumerator GetRotation()
     {
-        using (UnityWebRequest client = UnityWebRequest.Get("http://192.168.0.104:3000/rotation"))
+        using (UnityWebRequest client = UnityWebRequest.Get(Constants.ENDPOINT_ROTATE))
         {
             yield return client.SendWebRequest();
             if(client.isNetworkError)

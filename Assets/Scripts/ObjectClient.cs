@@ -23,7 +23,7 @@ public class ObjectClient : MonoBehaviour, IMixedRealityInputHandler
     {
         objectPost.AddField("name", gameObject.name);
         objectPost.AddField("state", "true");
-        using (UnityWebRequest client = UnityWebRequest.Post("http://192.168.0.104:3000/object", objectPost))
+        using (UnityWebRequest client = UnityWebRequest.Post(Constants.ENDPOINT_COUNTRY, objectPost))
         {
             yield return client.SendWebRequest();
             if (client.isHttpError)
