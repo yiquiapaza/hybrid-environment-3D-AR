@@ -6,8 +6,8 @@ using UnityEngine.Networking;
 public class ScatterPlot3D : MonoBehaviour
 {
     [Tooltip("Object Template, with this you can manipulate position, traslation and size")]
+    [SerializeField]
     private GameObject TemplateObject = null;
-
     [Tooltip("Material that use for OC region MRTK_Standard_TransparentEmerald")]
     [SerializeField]
     private Material OC = null;
@@ -47,9 +47,6 @@ public class ScatterPlot3D : MonoBehaviour
 
     void Start()
     {
-        TemplateObject = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-        TemplateObject.AddComponent<Animation>();
-        gameObject.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
         GetData();
         InitialInstantiateObjects();
         //StartCoroutine(WaitOneSecond());
@@ -57,8 +54,9 @@ public class ScatterPlot3D : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {   
-
+    {
+        new WaitForSeconds(1);
+        Debug.Log(gameObject.transform.position.ToString());
     }
 
     public IEnumerator ObjectsUpdate()
@@ -151,10 +149,10 @@ public class ScatterPlot3D : MonoBehaviour
         CreateAnimation(CountryG, Constants.COUNTRY_G_POPULATION, Constants.COUNTRY_G_GDP_PER_CAPITA, Constants.COUNTRY_G_ENERGY_CONSUMPTION);
         CreateAnimation(CountryH, Constants.COUNTRY_H_POPULATION, Constants.COUNTRY_H_GDP_PER_CAPITA, Constants.COUNTRY_H_ENERGY_CONSUMPTION);
         CreateAnimation(CountryI, Constants.COUNTRY_I_POPULATION, Constants.COUNTRY_I_GDP_PER_CAPITA, Constants.COUNTRY_I_ENERGY_CONSUMPTION);
+        CreateAnimation(CountryL, Constants.COUNTRY_L_POPULATION, Constants.COUNTRY_L_GDP_PER_CAPITA, Constants.COUNTRY_L_ENERGY_CONSUMPTION);
         CreateAnimation(CountryJ, Constants.COUNTRY_J_POPULATION, Constants.COUNTRY_J_GDP_PER_CAPITA, Constants.COUNTRY_J_ENERGY_CONSUMPTION);
         CreateAnimation(CountryK, Constants.COUNTRY_K_POPULATION, Constants.COUNTRY_K_GDP_PER_CAPITA, Constants.COUNTRY_K_ENERGY_CONSUMPTION);
         CreateAnimation(CountryN, Constants.COUNTRY_N_POPULATION, Constants.COUNTRY_N_GDP_PER_CAPITA, Constants.COUNTRY_N_ENERGY_CONSUMPTION);
-
         CreateAnimation(CountryM, Constants.COUNTRY_M_POPULATION, Constants.COUNTRY_M_GDP_PER_CAPITA, Constants.COUNTRY_M_ENERGY_CONSUMPTION);
         CreateAnimation(CountryO, Constants.COUNTRY_O_POPULATION, Constants.COUNTRY_O_GDP_PER_CAPITA, Constants.COUNTRY_O_ENERGY_CONSUMPTION);
         CreateAnimation(CountryP, Constants.COUNTRY_P_POPULATION, Constants.COUNTRY_P_GDP_PER_CAPITA, Constants.COUNTRY_P_ENERGY_CONSUMPTION);
@@ -262,8 +260,8 @@ public class ScatterPlot3D : MonoBehaviour
         for (int i = 0; i < scaleData.Length; i++)
         {
             scale[i] = new Keyframe(time, Util.ScalePopulation(scaleData[i]));
-            positionX[i] = new Keyframe(time, gameObject.transform.localPosition.x + Util.ScaleGDPPercapita(positionXData[i]));
-            positionY[i] = new Keyframe(time, gameObject.transform.localPosition.y + Util.ScaleEnergyConsumption(positionYData[i]));
+            positionX[i] = new Keyframe(time,Util.ScaleGDPPercapita(positionXData[i]));
+            positionY[i] = new Keyframe(time,Util.ScaleEnergyConsumption(positionYData[i]));
             time += 0.30f;
         }
         AnimationCurve scaleCurve = new AnimationCurve(scale);
