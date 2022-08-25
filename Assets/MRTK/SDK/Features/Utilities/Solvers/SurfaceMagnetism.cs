@@ -1,5 +1,5 @@
-// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License. See LICENSE in the project root for license information.
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
 
 using Microsoft.MixedReality.Toolkit.Physics;
 using System;
@@ -61,7 +61,7 @@ namespace Microsoft.MixedReality.Toolkit.Utilities.Solvers
             /// Blend between tracked transform and the surface normal orientation
             /// </summary>
             Blended = 3,
-            
+
             /// <summary>
             /// Face toward this object's position
             /// </summary>
@@ -70,7 +70,7 @@ namespace Microsoft.MixedReality.Toolkit.Utilities.Solvers
         #endregion
 
         #region SurfaceMagnetism Parameters
-        
+
         [SerializeField]
         [Tooltip("Array of LayerMask to execute from highest to lowest priority. First layermask to provide a raycast hit will be used by component")]
         private LayerMask[] magneticSurfaces = { UnityEngine.Physics.DefaultRaycastLayers };
@@ -388,14 +388,24 @@ namespace Microsoft.MixedReality.Toolkit.Utilities.Solvers
         /// <returns>Quaternion, the orientation to use for the object</returns>
         private Quaternion CalculateMagnetismOrientation(Vector3 direction, Vector3 surfaceNormal)
         {
+            // Compute the up vector of our current working rotation,
+            // to avoid gimbal lock instability when normal is also pointing upwards.
+            // This "current" up vector is used in the LookRotation, which causes
+            // the derived rotation to fit "closest" to the current up vector.
+            Vector3 currentUpVector = WorkingRotation * Vector3.up;
+
+            Quaternion trackedReferenceRotation = Quaternion.LookRotation(-direction, currentUpVector);
+            Quaternion surfaceReferenceRotation = Quaternion.LookRotation(-surfaceNormal, currentUpVector);
+
+            // If requested, compute FromTo from the current computed Up to global Up,
+            // and apply to the computed quat; this will ensure object stays globally vertical.
             if (KeepOrientationVertical)
             {
-                direction.y = 0;
-                surfaceNormal.y = 0;
+                Vector3 trackedReferenceUp = trackedReferenceRotation * Vector3.up;
+                trackedReferenceRotation = Quaternion.FromToRotation(trackedReferenceUp, Vector3.up) * trackedReferenceRotation;
+                Vector3 surfaceReferenceUp = surfaceReferenceRotation * Vector3.up;
+                surfaceReferenceRotation = Quaternion.FromToRotation(surfaceReferenceUp, Vector3.up) * surfaceReferenceRotation;
             }
-
-            var trackedReferenceRotation = Quaternion.LookRotation(-direction, Vector3.up);
-            var surfaceReferenceRotation = Quaternion.LookRotation(-surfaceNormal, Vector3.up);
 
             switch (CurrentOrientationMode)
             {

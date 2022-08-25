@@ -1,5 +1,5 @@
-// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License. See LICENSE in the project root for license information.
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
 
 using Microsoft.MixedReality.Toolkit.Utilities;
 using UnityEngine;
@@ -55,20 +55,20 @@ namespace Microsoft.MixedReality.Toolkit.UI
         {
             Quaternion rotation = transform.Rotation * Quaternion.Inverse(worldPoseOnManipulationStart.Rotation);
             Vector3 eulers = rotation.eulerAngles;
-            if (constraintOnRotation.HasFlag(AxisFlags.XAxis))
+            if (constraintOnRotation.IsMaskSet(AxisFlags.XAxis))
             {
                 eulers.x = 0;
             }
-            if (constraintOnRotation.HasFlag(AxisFlags.YAxis))
+            if (constraintOnRotation.IsMaskSet(AxisFlags.YAxis))
             {
                 eulers.y = 0;
             }
-            if (constraintOnRotation.HasFlag(AxisFlags.ZAxis))
+            if (constraintOnRotation.IsMaskSet(AxisFlags.ZAxis))
             {
                 eulers.z = 0;
             }
 
-            transform.Rotation = useLocalSpaceForConstraint 
+            transform.Rotation = useLocalSpaceForConstraint
                 ? worldPoseOnManipulationStart.Rotation * Quaternion.Euler(eulers)
                 : Quaternion.Euler(eulers) * worldPoseOnManipulationStart.Rotation;
         }

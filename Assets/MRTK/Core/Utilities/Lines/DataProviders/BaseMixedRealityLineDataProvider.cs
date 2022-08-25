@@ -1,5 +1,5 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License. See LICENSE in the project root for license information.
+﻿// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
 
 using Microsoft.MixedReality.Toolkit.Physics;
 using System.Collections.Generic;
@@ -11,7 +11,7 @@ namespace Microsoft.MixedReality.Toolkit.Utilities
     /// Base class that provides data about a line.
     /// </summary>
     /// <remarks>Data to be consumed by other classes like the <see cref="BaseMixedRealityLineRenderer"/></remarks>
-    [ExecuteAlways] 
+    [ExecuteAlways]
     public abstract class BaseMixedRealityLineDataProvider : MonoBehaviour
     {
         #region Properties
@@ -164,7 +164,7 @@ namespace Microsoft.MixedReality.Toolkit.Utilities
         public float VelocitySearchRange
         {
             get => velocitySearchRange;
-            set =>  velocitySearchRange = Mathf.Clamp(value, 0.001f, 0.1f);
+            set => velocitySearchRange = Mathf.Clamp(value, 0.001f, 0.1f);
         }
 
         [SerializeField]
@@ -346,13 +346,13 @@ namespace Microsoft.MixedReality.Toolkit.Utilities
 
                 Vector3 currentPoint = GetUnClampedPoint(normalizedLength);
 
-                float currDistance = Vector3.Distance(lastPoint, currentPoint);
-                distanceSoFar += currDistance;
+                float segmentLength = Vector3.Distance(lastPoint, currentPoint);
+                distanceSoFar += segmentLength;
 
                 if (distanceSoFar >= worldLength)
                 {
                     // We've reached the world length, so subtract the amount we overshot
-                    normalizedLength -= (distanceSoFar - worldLength) / currDistance * normalizedSegmentLength;
+                    normalizedLength -= ((distanceSoFar - worldLength) / segmentLength) * normalizedSegmentLength;
                     break;
                 }
 
@@ -471,7 +471,7 @@ namespace Microsoft.MixedReality.Toolkit.Utilities
                 Debug.LogError("Invalid point index");
                 return Vector3.zero;
             }
-            
+
             Vector3 point = GetPointInternal(pointIndex);
             TransformPoint(ref point);
             return point;
@@ -611,8 +611,8 @@ namespace Microsoft.MixedReality.Toolkit.Utilities
             {
                 strength = distortionStrength.Evaluate(normalizedLength);
             }
-            
-            for (int i = 0; i <distorters.Count; i++)
+
+            for (int i = 0; i < distorters.Count; i++)
             {
                 Distorter distorter = distorters[i];
                 if (distorter.DistortionEnabled)

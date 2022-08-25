@@ -1,5 +1,5 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License. See LICENSE in the project root for license information.
+﻿// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
 
 using Microsoft.MixedReality.Toolkit.Utilities;
 using System;
@@ -17,15 +17,13 @@ namespace Microsoft.MixedReality.Toolkit.Input
     [AddComponentMenu("Scripts/MRTK/Providers/WindowsMixedRealityHandRecorder")]
     public class WindowsMixedRealityHandRecorder : MonoBehaviour
     {
-        private static readonly int jointCount = Enum.GetNames(typeof(TrackedHandJoint)).Length;
-
         /// <summary>
         /// The joint positioned at the origin at the start of the recording.
         /// </summary>
         /// <remarks>
-        /// If the reference joint moves between start and stop of recording then final position is used as an offset.
-        /// Example: A "poke" gesture can be simulated by moving the index finger forward between start and stop,
-        /// giving an offset that creates a poking motion when interpolated.
+        /// <para>If the reference joint moves between start and stop of recording then final position is used as an offset.</para>
+        /// <para>Example: A "poke" gesture can be simulated by moving the index finger forward between start and stop,
+        /// giving an offset that creates a poking motion when interpolated.</para>
         /// </remarks>
         public TrackedHandJoint ReferenceJoint { get; set; } = TrackedHandJoint.IndexTip;
 
@@ -56,8 +54,8 @@ namespace Microsoft.MixedReality.Toolkit.Input
 
         public void RecordHandStop()
         {
-            MixedRealityPose[] jointPoses = new MixedRealityPose[jointCount];
-            for (int i = 0; i < jointCount; ++i)
+            MixedRealityPose[] jointPoses = new MixedRealityPose[ArticulatedHandPose.JointCount];
+            for (int i = 0; i < ArticulatedHandPose.JointCount; ++i)
             {
                 HandJointUtils.TryGetJointPose((TrackedHandJoint)i, recordingHand, out jointPoses[i]);
             }
@@ -71,21 +69,17 @@ namespace Microsoft.MixedReality.Toolkit.Input
             StoreRecordedHandPose(pose.ToJson(), filename);
         }
 
-#if WINDOWS_UWP
         private static void StoreRecordedHandPose(string data, string filename)
         {
+#if WINDOWS_UWP
             string path = Path.Combine(Application.persistentDataPath, filename);
             using (TextWriter writer = File.CreateText(path))
             {
                 writer.Write(data);
             }
-        }
 #else
-        private static void StoreRecordedHandPose(string data, string filename)
-        {
-            Debug.Log(data);
-        }
+            Debug.Log($"{filename}: {data}");
 #endif
+        }
     }
-
 }

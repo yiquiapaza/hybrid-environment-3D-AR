@@ -1,5 +1,5 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License. See LICENSE in the project root for license information.
+﻿// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
 
 using Microsoft.MixedReality.Toolkit.Utilities.Gltf.Schema.Extensions;
 using System;
@@ -117,6 +117,11 @@ namespace Microsoft.MixedReality.Toolkit.Utilities.Gltf.Schema
         public GameObject GameObjectReference { get; internal set; }
 
         /// <summary>
+        /// The Node Id and corresponding GameObject pairs.
+        /// </summary>
+        public Dictionary<int, GameObject> NodeGameObjectPairs { get; internal set; } = new Dictionary<int, GameObject>();
+
+        /// <summary>
         /// The list of registered glTF extensions found for this object.
         /// </summary>
         public List<GltfExtension> RegisteredExtensions { get; internal set; } = new List<GltfExtension>();
@@ -126,5 +131,18 @@ namespace Microsoft.MixedReality.Toolkit.Utilities.Gltf.Schema
         /// Importers should run on the main thread; all other loading scenarios should likely use the background thread
         /// </summary>
         internal bool UseBackgroundThread { get; set; } = true;
+
+        /// <summary>
+        /// Get an accessor from an accessor index
+        /// </summary>
+        public GltfAccessor GetAccessor(int index)
+        {
+            if (index < 0) return null;
+
+            var accessor = accessors[index];
+            accessor.BufferView = bufferViews[accessor.bufferView];
+            accessor.BufferView.Buffer = buffers[accessor.BufferView.buffer];
+            return accessor;
+        }
     }
 }

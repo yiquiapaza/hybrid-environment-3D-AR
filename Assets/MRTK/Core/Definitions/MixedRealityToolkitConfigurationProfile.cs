@@ -1,5 +1,5 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License. See LICENSE in the project root for license information.
+﻿// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
 
 using Microsoft.MixedReality.Toolkit.Boundary;
 using Microsoft.MixedReality.Toolkit.CameraSystem;
@@ -9,6 +9,7 @@ using Microsoft.MixedReality.Toolkit.SceneSystem;
 using Microsoft.MixedReality.Toolkit.SpatialAwareness;
 using Microsoft.MixedReality.Toolkit.Teleport;
 using Microsoft.MixedReality.Toolkit.Utilities;
+using System;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -20,11 +21,26 @@ namespace Microsoft.MixedReality.Toolkit
     /// <summary>
     /// Configuration profile settings for the Mixed Reality Toolkit.
     /// </summary>
-    [CreateAssetMenu(menuName = "Mixed Reality Toolkit/Profiles/Mixed Reality Toolkit Configuration Profile", fileName = "MixedRealityToolkitConfigurationProfile", order = (int)CreateProfileMenuItemIndices.Configuration)]
-    [HelpURL("https://microsoft.github.io/MixedRealityToolkit-Unity/Documentation/MixedRealityConfigurationGuide.html")]
+    [CreateAssetMenu(menuName = "Mixed Reality/Toolkit/Profiles/Mixed Reality Toolkit Configuration Profile", fileName = "MixedRealityToolkitConfigurationProfile", order = (int)CreateProfileMenuItemIndices.Configuration)]
+    [HelpURL("https://docs.microsoft.com/windows/mixed-reality/mrtk-unity/configuration/mixed-reality-configuration-guide")]
     public class MixedRealityToolkitConfigurationProfile : BaseMixedRealityProfile
     {
         #region Mixed Reality Toolkit configurable properties
+
+        [SerializeField]
+        [Tooltip("Experience Settings profile.")]
+        private MixedRealityExperienceSettingsProfile experienceSettingsProfile;
+
+        /// <summary>
+        /// Profile for configuring the experience settings of your project.
+        /// Determines whether your project targers AR/VR, the scale of your experience, and the height of the user where applicable
+        /// </summary>
+        public MixedRealityExperienceSettingsProfile ExperienceSettingsProfile
+        {
+            get { return experienceSettingsProfile; }
+            internal set { experienceSettingsProfile = value; }
+        }
+
 
         [SerializeField]
         [Tooltip("The scale of the Mixed Reality experience.")]
@@ -32,7 +48,13 @@ namespace Microsoft.MixedReality.Toolkit
 
         /// <summary>
         /// The desired the scale of the experience.
+        /// Profile for configuring the experience settings of your project.
+        /// Determines whether your project targers AR/VR, the scale of your experience, and the height of the user where applicable
         /// </summary>
+        /// <remarks>
+        /// The target experience scale is now configured via ExperienceSettingsProfile
+        /// </remarks>
+        [Obsolete("The target experience scale is now configured via ExperienceSettingsProfile, please use the ExperienceSettingsProfile.TargetExperienceScale instead")]
         public ExperienceScale TargetExperienceScale
         {
             get { return targetExperienceScale; }
@@ -130,30 +152,31 @@ namespace Microsoft.MixedReality.Toolkit
         /// </summary>
         public bool IsBoundarySystemEnabled
         {
-            get { return boundarySystemType != null && boundarySystemType.Type != null && enableBoundarySystem && boundaryVisualizationProfile != null; }
+            get { return BoundarySystemSystemType != null && BoundarySystemSystemType.Type != null && enableBoundarySystem && boundaryVisualizationProfile != null; }
             internal set { enableBoundarySystem = value; }
         }
 
         [SerializeField]
-        [Tooltip("Boundary System class to instantiate at runtime.")]
+        [Tooltip("Boundary system class to instantiate at runtime for legacy XR.")]
         [Implements(typeof(IMixedRealityBoundarySystem), TypeGrouping.ByNamespaceFlat)]
-        private SystemType boundarySystemType;
+        private SystemType boundarySystemType = null;
+
+        [SerializeField]
+        [Tooltip("Boundary system class to instantiate at runtime for XR SDK.")]
+        [Implements(typeof(IMixedRealityBoundarySystem), TypeGrouping.ByNamespaceFlat)]
+        private SystemType xrsdkBoundarySystemType = null;
 
         /// <summary>
-        /// Boundary System class to instantiate at runtime.
+        /// Boundary system class to instantiate at runtime.
         /// </summary>
-        public SystemType BoundarySystemSystemType
-        {
-            get { return boundarySystemType; }
-            internal set { boundarySystemType = value; }
-        }
+        public SystemType BoundarySystemSystemType => (XRSettingsUtilities.XRSDKEnabled && xrsdkBoundarySystemType?.Type != null) ? xrsdkBoundarySystemType : boundarySystemType;
 
         [SerializeField]
         [Tooltip("Profile for wiring up boundary visualization assets.")]
         private MixedRealityBoundaryVisualizationProfile boundaryVisualizationProfile;
 
         /// <summary>
-        /// Active profile for boundary visualization
+        /// Active profile for boundary visualization.
         /// </summary>
         public MixedRealityBoundaryVisualizationProfile BoundaryVisualizationProfile
         {
@@ -320,13 +343,15 @@ namespace Microsoft.MixedReality.Toolkit
         /// <summary>
         /// If true, MRTK will generate components that let you to view the state of running services. These objects will not be generated at runtime.
         /// </summary>
+        [Obsolete("Service inspectors will be removed in an upcoming release")]
         public bool UseServiceInspectors
         {
             get { return useServiceInspectors; }
         }
 
+        [Obsolete("Service inspectors will be removed in an upcoming release")]
         [SerializeField]
-        [Tooltip("If true, MRTK will generate components that let you to view the state of running services. These objects will not be generated at runtime.")]
+        [Tooltip("Deprecated: If true, MRTK will generate components that let you to view the state of running services. These objects will not be generated at runtime.")]
         private bool useServiceInspectors = false;
 
         /// <summary>
@@ -340,6 +365,19 @@ namespace Microsoft.MixedReality.Toolkit
         [SerializeField]
         [Tooltip("If true, MRTK will render the depth buffer as color. Only valid in editor.")]
         private bool renderDepthBuffer = false;
+
+        /// <summary>
+        /// If true, verbose logging will be enabled for MRTK components.
+        /// </summary>
+        public bool EnableVerboseLogging
+        {
+            get { return enableVerboseLogging; }
+            set { enableVerboseLogging = value; }
+        }
+
+        [SerializeField]
+        [Tooltip("If true, verbose logging will be enabled for MRTK components.")]
+        private bool enableVerboseLogging = false;
 
         #endregion Mixed Reality Toolkit configurable properties
     }

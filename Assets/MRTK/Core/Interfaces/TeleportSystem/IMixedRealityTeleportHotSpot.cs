@@ -1,11 +1,11 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License. See LICENSE in the project root for license information.
+﻿// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
 
 using UnityEngine;
 
 namespace Microsoft.MixedReality.Toolkit.Teleport
 {
-    public interface IMixedRealityTeleportHotSpot
+    public interface IMixedRealityTeleportHotspot
     {
         /// <summary>
         /// The position the teleport will end at.
@@ -18,23 +18,19 @@ namespace Microsoft.MixedReality.Toolkit.Teleport
         Vector3 Normal { get; }
 
         /// <summary>
-        /// Is the teleport target active?
+        /// Determines whether the teleport target is active
         /// </summary>
         bool IsActive { get; }
 
         /// <summary>
-        /// Should the target orientation be overridden?
+        /// Whether to override the user's rotation on the y-axis with the hotspots TargetRotation
         /// </summary>
-        bool OverrideTargetOrientation { get; }
+        bool OverrideOrientation { get; }
 
         /// <summary>
-        /// Should the destination orientation be overridden?
-        /// Useful when you want to orient the user in a specific direction when they teleport to this position.
+        /// The rotation in angles around the y axis to set the user after teleport
         /// </summary>
-        /// <remarks>
-        /// Override orientation is the transform forward of the GameObject this component is attached to.
-        /// </remarks>
-        float TargetOrientation { get; }
+        float TargetRotation { get; }
 
         /// <summary>
         /// Returns the <see href="https://docs.unity3d.com/ScriptReference/GameObject.html">GameObject</see> reference for this teleport target.

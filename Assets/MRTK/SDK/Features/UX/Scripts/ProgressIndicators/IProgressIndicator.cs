@@ -1,5 +1,5 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License. See LICENSE in the project root for license information.
+﻿// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
 
 using System.Threading.Tasks;
 using UnityEngine;
@@ -43,6 +43,11 @@ namespace Microsoft.MixedReality.Toolkit.UI
         /// Closes the progress indicator after loading is finished. Method is async to allow for animation to complete.
         /// </summary>
         Task CloseAsync();
+
+        /// <summary>
+        /// Closes the progress indicator immediately. No fade out animation. All gameObjects for the progress indicator are reset  to the correct values.
+        /// </summary>
+        void CloseImmediate();
 
     }
 }

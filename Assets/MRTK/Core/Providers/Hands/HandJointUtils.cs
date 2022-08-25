@@ -1,5 +1,5 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License. See LICENSE in the project root for license information.
+﻿// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
 
 using Microsoft.MixedReality.Toolkit.Utilities;
 
@@ -49,10 +49,16 @@ namespace Microsoft.MixedReality.Toolkit.Input
         /// </summary>
         public static T FindHand<T>(Handedness handedness) where T : class, IMixedRealityHand
         {
-            foreach (var detectedController in CoreServices.InputSystem.DetectedControllers)
+            System.Collections.Generic.HashSet<IMixedRealityController> controllers = CoreServices.InputSystem?.DetectedControllers;
+
+            if (controllers == null)
             {
-                var hand = detectedController as T;
-                if (hand != null)
+                return null;
+            }
+
+            foreach (IMixedRealityController detectedController in controllers)
+            {
+                if (detectedController is T hand)
                 {
                     if (detectedController.ControllerHandedness.IsMatch(handedness))
                     {

@@ -1,5 +1,5 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License. See LICENSE in the project root for license information.
+﻿// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
 
 using Microsoft.MixedReality.Toolkit.Utilities;
 using System;
@@ -102,17 +102,12 @@ namespace Microsoft.MixedReality.Toolkit
             RequiresProfile = requiresProfile;
         }
 
-#if UNITY_EDITOR
         /// <summary>
         /// Convenience function for retrieving the attribute given a certain class type.
         /// </summary>
-        /// <remarks>
-        /// This function is only available in a UnityEditor context.
-        /// </remarks>
         public static MixedRealityExtensionServiceAttribute Find(Type type)
         {
             return type.GetCustomAttributes(typeof(MixedRealityExtensionServiceAttribute), true).FirstOrDefault() as MixedRealityExtensionServiceAttribute;
         }
-#endif // UNITY_EDITOR
     }
 }

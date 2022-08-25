@@ -1,5 +1,5 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License. See LICENSE in the project root for license information.
+﻿// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -70,7 +70,7 @@ namespace Microsoft.MixedReality.Toolkit.UI
         /// <summary>
         /// This function calculates the untransformed bounding box corner points of a GameObject.
         /// </summary>
-        [Obsolete("Use GetRawBBCorners and pass in TargetBounds")]
+        [Obsolete("Use GetRawBoundsCorners and pass in boundingBox.TargetBounds")]
         public void GetRawBBCorners(BoundingBox boundingBox)
         {
             GetRawBoundsCorners(boundingBox.TargetBounds);
@@ -80,7 +80,7 @@ namespace Microsoft.MixedReality.Toolkit.UI
         /// Calculates the untransformed corner points of the given collider bounds
         /// </summary>
         /// <param name="colliderBounds">The collider bounds the corner points are calculated from.</param>
-        internal void GetRawBoundsCorners(BoxCollider colliderBounds)
+        public void GetRawBoundsCorners(BoxCollider colliderBounds)
         {
             targetBounds = colliderBounds;
             rawBoundingCorners.Clear();

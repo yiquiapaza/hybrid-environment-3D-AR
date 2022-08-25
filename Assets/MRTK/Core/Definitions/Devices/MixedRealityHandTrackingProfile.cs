@@ -1,13 +1,14 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License. See LICENSE in the project root for license information.
+﻿// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
 
 using Microsoft.MixedReality.Toolkit.Utilities;
+using System;
 using UnityEngine;
 
 namespace Microsoft.MixedReality.Toolkit.Input
 {
-    [CreateAssetMenu(menuName = "Mixed Reality Toolkit/Profiles/Mixed Reality Hand Tracking Profile", fileName = "MixedRealityHandTrackingProfile", order = (int)CreateProfileMenuItemIndices.HandTracking)]
-    [HelpURL("https://microsoft.github.io/MixedRealityToolkit-Unity/Documentation/Input/HandTracking.html")]
+    [CreateAssetMenu(menuName = "Mixed Reality/Toolkit/Profiles/Mixed Reality Hand Tracking Profile", fileName = "MixedRealityHandTrackingProfile", order = (int)CreateProfileMenuItemIndices.HandTracking)]
+    [HelpURL("https://docs.microsoft.com/windows/mixed-reality/mrtk-unity/features/input/hand-tracking")]
     public class MixedRealityHandTrackingProfile : BaseMixedRealityProfile
     {
         [SerializeField]
@@ -38,22 +39,41 @@ namespace Microsoft.MixedReality.Toolkit.Input
         public GameObject FingerTipPrefab => fingertipPrefab;
 
         [SerializeField]
+        [Tooltip("The hand mesh material to use for system generated hand meshes")]
+        private Material systemHandMeshMaterial;
+
+        /// <summary>
+        /// The hand mesh material to use for system generated hand meshes
+        /// </summary>
+        public Material SystemHandMeshMaterial => systemHandMeshMaterial;
+
+        [SerializeField]
+        [Tooltip("The hand mesh material to use for rigged hand meshes")]
+        private Material riggedHandMeshMaterial;
+
+        /// <summary>
+        /// The hand mesh material to use for rigged hand meshes
+        /// </summary>
+        public Material RiggedHandMeshMaterial => riggedHandMeshMaterial;
+
+        [SerializeField]
         [Tooltip("If this is not null and hand system supports hand meshes, use this mesh to render hand mesh.")]
         private GameObject handMeshPrefab = null;
 
         /// <summary>
         /// The hand mesh prefab to use to render the hand
         /// </summary>
+        [Obsolete("The GameObject which generates the system handmesh is now created at runtime. This prefab is not used")]
         public GameObject HandMeshPrefab => handMeshPrefab;
 
         /// <summary>
         /// The hand mesh visualization enable/disable state of the current application mode.
         /// </summary>
         /// <remarks>
-        /// If this property is called while in-editor, this will only affect the in-editor settings
-        /// (i.e. the SupportedApplicationModes.Editor flag of HandMeshVisualizationModes).
-        /// If this property is called while in-player, this will only affect the in-player settings
-        /// (i.e. the SupportedApplicationModes.Player flag of HandMeshVisualizationModes).
+        /// <para>If this property is called while in-editor, this will only affect the in-editor settings
+        /// (i.e. the SupportedApplicationModes.Editor flag of HandMeshVisualizationModes).</para>
+        /// <para>If this property is called while in-player, this will only affect the in-player settings
+        /// (i.e. the SupportedApplicationModes.Player flag of HandMeshVisualizationModes).</para>
         /// </remarks>
         public bool EnableHandMeshVisualization
         {
@@ -65,10 +85,10 @@ namespace Microsoft.MixedReality.Toolkit.Input
         /// The hand joint visualization enable/disable state of the current application mode.
         /// </summary>
         /// <remarks>
-        /// If this property is called while in-editor, this will only affect the in-editor settings
-        /// (i.e. the SupportedApplicationModes.Editor flag of HandJointVisualizationModes).
-        /// If this property is called while in-player, this will only affect the in-player settings
-        /// (i.e. the SupportedApplicationModes.Player flag of HandJointVisualizationModes).
+        /// <para>If this property is called while in-editor, this will only affect the in-editor settings
+        /// (i.e. the SupportedApplicationModes.Editor flag of HandJointVisualizationModes).</para>
+        /// <para>If this property is called while in-player, this will only affect the in-player settings
+        /// (i.e. the SupportedApplicationModes.Player flag of HandJointVisualizationModes).</para>
         /// </remarks>
         public bool EnableHandJointVisualization
         {
@@ -103,9 +123,9 @@ namespace Microsoft.MixedReality.Toolkit.Input
         /// the current mode that the code is running in.
         /// </summary>
         /// <remarks>
-        /// For example, if the code is currently running in editor mode (for testing in-editor
+        /// <para>For example, if the code is currently running in editor mode (for testing in-editor
         /// simulation), this would return true if modes contained the SupportedApplicationModes.Editor 
-        /// bit.
+        /// bit.</para>
         /// </remarks>
         private static bool IsSupportedApplicationMode(SupportedApplicationModes modes)
         {
@@ -121,9 +141,9 @@ namespace Microsoft.MixedReality.Toolkit.Input
         /// currently active application mode.
         /// </summary>
         /// <remarks>
-        /// For example, if the code is currently running in editor mode (for testing in-editor
+        /// <para>For example, if the code is currently running in editor mode (for testing in-editor
         /// simulation), and modes is currently SupportedApplicationModes.Player | SupportedApplicationModes.Editor
-        /// and enabled is 'false', this would return SupportedApplicationModes.Player.
+        /// and enabled is 'false', this would return SupportedApplicationModes.Player.</para>
         /// </remarks>
         private static SupportedApplicationModes UpdateSupportedApplicationMode(bool enabled, SupportedApplicationModes modes)
         {

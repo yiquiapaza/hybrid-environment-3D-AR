@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved.
+﻿// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
 using Microsoft.MixedReality.Toolkit.Utilities.Editor;
@@ -162,7 +162,7 @@ namespace Microsoft.MixedReality.Toolkit.Editor
 
         private GUIStyle centeredStyle;
 
-        [MenuItem("Mixed Reality Toolkit/Toolbox", false, 3)]
+        [MenuItem("Mixed Reality/Toolkit/Toolbox", false, 3)]
         internal static void ShowWindow()
         {
             var window = GetWindow<MixedRealityToolboxWindow>(typeof(SceneView));
@@ -238,7 +238,7 @@ namespace Microsoft.MixedReality.Toolkit.Editor
                     List<ToolboxItem> validItems = new List<ToolboxItem>();
                     foreach (var item in bucket.Items)
                     {
-                        if (item != null && item.Prefab != null 
+                        if (item != null && item.Prefab != null
                             && (isCategoryNameSearchMatch || IsSearchMatch(item, searchString)))
                         {
                             validItems.Add(item);

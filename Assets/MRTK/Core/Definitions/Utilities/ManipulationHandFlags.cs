@@ -1,5 +1,5 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License. See LICENSE in the project root for license information.
+﻿// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
 
 namespace Microsoft.MixedReality.Toolkit.Utilities
 {
@@ -11,5 +11,24 @@ namespace Microsoft.MixedReality.Toolkit.Utilities
     {
         OneHanded = 1 << 0,
         TwoHanded = 1 << 1,
+    }
+
+    /// <summary>
+    /// Extension methods specific to the <see cref="ManipulationHandFlags"/> enum.
+    /// </summary>
+    public static class ManipulationHandFlagsExtensions
+    {
+        /// <summary>
+        /// Checks to determine if all bits in a provided mask are set.
+        /// </summary>
+        /// <param name="a"><see cref="ManipulationHandFlags"/> value.</param>
+        /// <param name="b"><see cref="ManipulationHandFlags"/> mask.</param>
+        /// <returns>
+        /// True if all of the bits in the specified mask are set in the current value.
+        /// </returns>
+        public static bool IsMaskSet(this ManipulationHandFlags a, ManipulationHandFlags b)
+        {
+            return (a & b) == b;
+        }
     }
 }

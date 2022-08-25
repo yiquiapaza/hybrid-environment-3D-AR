@@ -891,7 +891,7 @@ MonoBehaviour:
   startDimensionIndex: 0
   CanSelect: 1
   CanDeselect: 0
-  VoiceCommand: Select
+  voiceCommand: Select
   voiceRequiresFocus: 1
   profiles:
   - Target: {fileID: 1301037372891736}
@@ -950,6 +950,7 @@ MonoBehaviour:
         m_PersistentCalls:
           m_Calls: []
       Options: []
+  resetOnDestroy: 0
   enabledOnStart: 1
 --- !u!114 &4754899564184264502
 MonoBehaviour:
@@ -986,8 +987,8 @@ MonoBehaviour:
   distanceSpaceMode: 1
   startPushDistance: -0.01
   maxPushDistance: 0.2
-  pressDistance: -0.004
-  releaseDistanceDelta: 0.0008
+  pressDistance: -0.002
+  releaseDistanceDelta: 0.006
   returnSpeed: 25
   releaseOnTouchEnd: 1
   enforceFrontPush: 1
@@ -1130,7 +1131,7 @@ MonoBehaviour:
   startDimensionIndex: 0
   CanSelect: 1
   CanDeselect: 0
-  VoiceCommand: Select
+  voiceCommand: Select
   voiceRequiresFocus: 1
   profiles:
   - Target: {fileID: 1842973494018042}
@@ -1189,6 +1190,7 @@ MonoBehaviour:
         m_PersistentCalls:
           m_Calls: []
       Options: []
+  resetOnDestroy: 0
   enabledOnStart: 1
 --- !u!114 &3360437626877041567
 MonoBehaviour:
@@ -1225,8 +1227,8 @@ MonoBehaviour:
   distanceSpaceMode: 1
   startPushDistance: -0.01
   maxPushDistance: 0.2
-  pressDistance: -0.004
-  releaseDistanceDelta: 0.008
+  pressDistance: -0.002
+  releaseDistanceDelta: 0.006
   returnSpeed: 25
   releaseOnTouchEnd: 1
   enforceFrontPush: 1
@@ -1551,7 +1553,7 @@ MonoBehaviour:
   startDimensionIndex: 0
   CanSelect: 1
   CanDeselect: 0
-  VoiceCommand: Select
+  voiceCommand: Select
   voiceRequiresFocus: 1
   profiles:
   - Target: {fileID: 1903041749280706}
@@ -1610,6 +1612,7 @@ MonoBehaviour:
         m_PersistentCalls:
           m_Calls: []
       Options: []
+  resetOnDestroy: 0
   enabledOnStart: 1
 --- !u!114 &5855375433444044948
 MonoBehaviour:
@@ -1646,8 +1649,8 @@ MonoBehaviour:
   distanceSpaceMode: 1
   startPushDistance: -0.01
   maxPushDistance: 0.2
-  pressDistance: -0.004
-  releaseDistanceDelta: 0.008
+  pressDistance: -0.002
+  releaseDistanceDelta: 0.006
   returnSpeed: 25
   releaseOnTouchEnd: 1
   enforceFrontPush: 1

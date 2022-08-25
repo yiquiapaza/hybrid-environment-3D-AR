@@ -1,5 +1,5 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License. See LICENSE in the project root for license information.
+﻿// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
 
 using System;
 
@@ -38,5 +38,24 @@ namespace Microsoft.MixedReality.Toolkit.Utilities
         /// </summary>
         /// <remarks>Note, by default the specific hand actions will override settings mapped as both</remarks>
         Any = Other | Left | Right,
+    }
+
+    /// <summary>
+    /// Extension methods specific to the <see cref="Handedness"/> enum.
+    /// </summary>
+    public static class HandednessExtensions
+    {
+        /// <summary>
+        /// Checks to determine if all bits in a provided mask are set.
+        /// </summary>
+        /// <param name="a"><see cref="Handedness"/> value.</param>
+        /// <param name="b"><see cref="Handedness"/> mask.</param>
+        /// <returns>
+        /// True if all of the bits in the specified mask are set in the current value.
+        /// </returns>
+        public static bool IsMaskSet(this Handedness a, Handedness b)
+        {
+            return (a & b) == b;
+        }
     }
 }

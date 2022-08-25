@@ -1,8 +1,8 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License. See LICENSE in the project root for license information.
+﻿// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
 
-using System.Collections.Generic;
 using Microsoft.MixedReality.Toolkit.Utilities;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Microsoft.MixedReality.Toolkit.Input
@@ -14,9 +14,14 @@ namespace Microsoft.MixedReality.Toolkit.Input
     public class HandBounds : MonoBehaviour, IMixedRealitySourceStateHandler, IMixedRealityHandJointHandler
     {
         /// <summary>
-        /// Accessor for the bounds associated with a handedness.
+        /// Accessor for the bounds associated with a handedness, calculated in global-axis-aligned space.
         /// </summary>
         public Dictionary<Handedness, Bounds> Bounds { get; private set; } = new Dictionary<Handedness, Bounds>();
+
+        /// <summary>
+        /// Accessor for the bounds associated with a handedness, calculated in local hand-space, locally axis aligned.
+        /// </summary>
+        public Dictionary<Handedness, Bounds> LocalBounds { get; private set; } = new Dictionary<Handedness, Bounds>();
 
         [SerializeField]
         [Tooltip("Should a gizmo be drawn to represent the hand bounds.")]
@@ -27,9 +32,28 @@ namespace Microsoft.MixedReality.Toolkit.Input
         /// </summary>
         public bool DrawBoundsGizmo
         {
-            get { return drawBoundsGizmo; }
-            set { drawBoundsGizmo = value; }
+            get => drawBoundsGizmo;
+            set => drawBoundsGizmo = value;
         }
+
+        [SerializeField]
+        [Tooltip("Should a gizmo be drawn to represent the locally-calculated hand bounds.")]
+        private bool drawLocalBoundsGizmo = false;
+
+        /// <summary>
+        /// Should a gizmo be drawn to represent the locally-calculated hand bounds.
+        /// </summary>
+        public bool DrawLocalBoundsGizmo
+        {
+            get => drawLocalBoundsGizmo;
+            set => drawLocalBoundsGizmo = value;
+        }
+
+        /// <summary>
+        /// Mapping between controller handedness and associated hand transforms.
+        /// Used to transform the debug gizmos when rendering the hand AABBs.
+        /// </summary>
+        private Dictionary<Handedness, Matrix4x4> BoundsTransforms = new Dictionary<Handedness, Matrix4x4>();
 
         #region MonoBehaviour Implementation
 
@@ -49,8 +73,18 @@ namespace Microsoft.MixedReality.Toolkit.Input
         {
             if (drawBoundsGizmo)
             {
+                Gizmos.color = Color.yellow;
                 foreach (var kvp in Bounds)
                 {
+                    Gizmos.DrawWireCube(kvp.Value.center, kvp.Value.size);
+                }
+            }
+            if (drawLocalBoundsGizmo)
+            {
+                Gizmos.color = Color.cyan;
+                foreach (var kvp in LocalBounds)
+                {
+                    Gizmos.matrix = BoundsTransforms[kvp.Key];
                     Gizmos.DrawWireCube(kvp.Value.center, kvp.Value.size);
                 }
             }
@@ -63,31 +97,33 @@ namespace Microsoft.MixedReality.Toolkit.Input
         /// <inheritdoc />
         public void OnSourceDetected(SourceStateEventData eventData)
         {
-            var hand = eventData.Controller;
+            IMixedRealityController hand = eventData.Controller;
 
-            if (hand != null)
+            // If a hand does not contain joints, OnHandJointsUpdated will not be called the bounds should
+            // be calculated based on the proxy visuals.
+            if (hand != null && !(hand is IMixedRealityHand))
             {
-                // If a hand does not contain joints, OnHandJointsUpdated will not be called the bounds should
-                // be calculated based on the proxy visuals.
-                bool handContainsJoints = (hand as IMixedRealityHand) != null;
+                var proxy = hand.Visualizer?.GameObjectProxy;
 
-                if (!handContainsJoints)
+                if (proxy != null)
                 {
-                    var proxy = hand.Visualizer?.GameObjectProxy;
+                    // Bounds calculated in proxy-space will have an origin of zero, but bounds
+                    // calculated in global space will have an origin centered on the proxy transform.
+                    var newGlobalBounds = new Bounds(proxy.transform.position, Vector3.zero);
+                    var newLocalBounds = new Bounds(Vector3.zero, Vector3.zero);
+                    var boundsPoints = new List<Vector3>();
+                    BoundsExtensions.GetRenderBoundsPoints(proxy, boundsPoints, 0);
 
-                    if (proxy != null)
+                    foreach (var point in boundsPoints)
                     {
-                        var newBounds = new Bounds(proxy.transform.position, Vector3.zero);
-                        var boundsPoints = new List<Vector3>();
-                        BoundsExtensions.GetRenderBoundsPoints(proxy, boundsPoints, 0);
-
-                        foreach (var point in boundsPoints)
-                        {
-                            newBounds.Encapsulate(point);
-                        }
-
-                        Bounds[hand.ControllerHandedness] = newBounds;
+                        newGlobalBounds.Encapsulate(point);
+                        // Local hand-space bounds are encapsulated using proxy-space point coordinates
+                        newLocalBounds.Encapsulate(proxy.transform.InverseTransformPoint(point));
                     }
+
+                    Bounds[hand.ControllerHandedness] = newGlobalBounds;
+                    LocalBounds[hand.ControllerHandedness] = newLocalBounds;
+                    BoundsTransforms[hand.ControllerHandedness] = proxy.transform.localToWorldMatrix;
                 }
             }
         }
@@ -100,6 +136,8 @@ namespace Microsoft.MixedReality.Toolkit.Input
             if (hand != null)
             {
                 Bounds.Remove(hand.ControllerHandedness);
+                LocalBounds.Remove(hand.ControllerHandedness);
+                BoundsTransforms.Remove(hand.ControllerHandedness);
             }
         }
 
@@ -110,24 +148,34 @@ namespace Microsoft.MixedReality.Toolkit.Input
         /// <inheritdoc />
         public void OnHandJointsUpdated(InputEventData<IDictionary<TrackedHandJoint, MixedRealityPose>> eventData)
         {
-            MixedRealityPose palmPose;
-
-            if (eventData.InputData.TryGetValue(TrackedHandJoint.Palm, out palmPose))
+            if (eventData.InputData.TryGetValue(TrackedHandJoint.Palm, out MixedRealityPose palmPose))
             {
-                var newBounds = new Bounds(palmPose.Position, Vector3.zero);
+                var newGlobalBounds = new Bounds(palmPose.Position, Vector3.zero);
+                var newLocalBounds = new Bounds(Vector3.zero, Vector3.zero);
 
-                foreach (var kvp in eventData.InputData)
+                // This starts at 1 to skip over TrackedHandJoint.None.
+                for (int i = 1; i < ArticulatedHandPose.JointCount; i++)
                 {
-                    if (kvp.Key == TrackedHandJoint.None || 
-                        kvp.Key == TrackedHandJoint.Palm)
+                    TrackedHandJoint handJoint = (TrackedHandJoint)i;
+
+                    if (handJoint == TrackedHandJoint.Palm)
                     {
                         continue;
                     }
 
-                    newBounds.Encapsulate(kvp.Value.Position);
+                    if (eventData.InputData.TryGetValue(handJoint, out MixedRealityPose pose))
+                    {
+                        newGlobalBounds.Encapsulate(pose.Position);
+                        newLocalBounds.Encapsulate(Quaternion.Inverse(palmPose.Rotation) * (pose.Position - palmPose.Position));
+                    }
                 }
 
-                Bounds[eventData.Handedness] = newBounds;
+                Bounds[eventData.Handedness] = newGlobalBounds;
+                LocalBounds[eventData.Handedness] = newLocalBounds;
+
+                // We must normalize the quaternion before constructing the TRS matrix; non-unit-length quaternions
+                // may be emitted from the palm-pose and they must be renormalized.
+                BoundsTransforms[eventData.Handedness] = Matrix4x4.TRS(palmPose.Position, palmPose.Rotation.normalized, Vector3.one);
             }
         }
 

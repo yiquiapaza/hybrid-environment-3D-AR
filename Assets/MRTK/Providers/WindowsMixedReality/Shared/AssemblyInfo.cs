@@ -1,10 +1,12 @@
-﻿// Copyright (c) Microsoft Corporation.
+// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-using System.Reflection;
+using System.Runtime.CompilerServices;
 
-[assembly: AssemblyVersion("2.4.0.0")]
-[assembly: AssemblyFileVersion("2.4.0.0")]
+[assembly: InternalsVisibleTo("Microsoft.MixedReality.Toolkit.Providers.WindowsMixedReality")]
+[assembly: InternalsVisibleTo("Microsoft.MixedReality.Toolkit.Providers.XRSDK.WindowsMixedReality")]
+[assembly: System.Reflection.AssemblyVersion("2.8.2.0")]
+[assembly: System.Reflection.AssemblyFileVersion("2.8.2.0")]
 
-[assembly: AssemblyProduct("Microsoft® Mixed Reality Toolkit Providers")]
-[assembly: AssemblyCopyright("Copyright © Microsoft Corporation")]
+[assembly: System.Reflection.AssemblyProduct("Microsoft® Mixed Reality Toolkit Providers")]
+[assembly: System.Reflection.AssemblyCopyright("Copyright © Microsoft Corporation")]

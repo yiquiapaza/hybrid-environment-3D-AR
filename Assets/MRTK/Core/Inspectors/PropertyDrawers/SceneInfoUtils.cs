@@ -1,5 +1,5 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License. See LICENSE in the project root for license information.
+﻿// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
 
 using Microsoft.MixedReality.Toolkit.SceneSystem;
 using System;
@@ -114,6 +114,11 @@ namespace Microsoft.MixedReality.Toolkit.Editor
         /// </summary>
         public void OnProcessScene(Scene scene, BuildReport report)
         {
+            if (!MixedRealityToolkit.IsSceneSystemEnabled)
+            {
+                return;
+            }
+
             RefreshSceneInfoFieldsInScene(scene);
         }
 
@@ -158,7 +163,7 @@ namespace Microsoft.MixedReality.Toolkit.Editor
                     changed = true;
                 }
 
-                
+
                 // The method is using scenes by path is not reliable (code included
                 // commented out here for reference).
                 // Cached scenes are used instead (see CachedScenes).
@@ -214,12 +219,22 @@ namespace Microsoft.MixedReality.Toolkit.Editor
         [PostProcessSceneAttribute]
         public static void OnPostProcessScene()
         {
+            if (!MixedRealityToolkit.IsSceneSystemEnabled)
+            {
+                return;
+            }
+
             RefreshSceneInfoFieldsInOpenScenes();
         }
 
         [InitializeOnLoadMethod]
         private static void InitializeOnLoad()
         {
+            if (!MixedRealityToolkit.IsSceneSystemEnabled)
+            {
+                return;
+            }
+
             EditorBuildSettings.sceneListChanged += SceneListChanged;
             EditorSceneManager.sceneOpened += SceneOpened;
 
@@ -246,7 +261,7 @@ namespace Microsoft.MixedReality.Toolkit.Editor
 
             foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies())
             {
-                foreach (Type t in assembly.GetTypes().Where(t => t.IsSubclassOf(typeof(Component))))
+                foreach (Type t in assembly.GetLoadableTypes().Where(t => t.IsSubclassOf(typeof(Component))))
                 {
                     foreach (FieldInfo f in t.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
                     {
@@ -279,6 +294,11 @@ namespace Microsoft.MixedReality.Toolkit.Editor
         /// </summary>
         private static void OnPostprocessAllAssets(string[] importedAssets, string[] deletedAssets, string[] movedAssets, string[] movedFromAssetPaths)
         {
+            if (!MixedRealityToolkit.IsSceneSystemEnabled)
+            {
+                return;
+            }
+
             RefreshSceneInfoFieldsInScriptableObjects();
             RefreshSceneInfoFieldsInOpenScenes();
         }

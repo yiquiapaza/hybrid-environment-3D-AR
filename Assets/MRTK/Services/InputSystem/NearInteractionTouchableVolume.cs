@@ -1,5 +1,5 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License. See LICENSE in the project root for license information.
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
 
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -13,26 +13,10 @@ namespace Microsoft.MixedReality.Toolkit.Input
     [AddComponentMenu("Scripts/MRTK/Services/NearInteractionTouchableVolume")]
     public class NearInteractionTouchableVolume : BaseNearInteractionTouchable
     {
-#if UNITY_EDITOR
-        [UnityEditor.CustomEditor(typeof(NearInteractionTouchableVolume))]
-        public class Editor : UnityEditor.Editor
-        {
-            /// <inheritdoc />
-            public override void OnInspectorGUI()
-            {
-                base.OnInspectorGUI();
-
-                NearInteractionTouchableVolume t = (NearInteractionTouchableVolume)target;
-                Collider c = t.GetComponent<Collider>();
-                if (c == null)
-                {
-                    UnityEditor.EditorGUILayout.HelpBox("A collider is required in order to compute the touchable volume.", UnityEditor.MessageType.Warning);
-                }
-            }
-        }
-#endif
-
-        public bool ColliderEnabled { get { return touchableCollider.enabled && touchableCollider.gameObject.activeInHierarchy; } }
+        /// <summary>
+        /// Is the touchable collider enabled and active in the scene.
+        /// </summary>
+        public bool ColliderEnabled => touchableCollider.enabled && touchableCollider.gameObject.activeInHierarchy;
 
         /// <summary>
         /// The collider used by this touchable.
@@ -49,6 +33,14 @@ namespace Microsoft.MixedReality.Toolkit.Input
             touchableCollider = GetComponent<Collider>();
         }
 
+        private void Awake()
+        {
+            if (touchableCollider == null)
+            {
+                touchableCollider = GetComponent<Collider>();
+            }
+        }
+
         /// <inheritdoc />
         public override float DistanceToTouchable(Vector3 samplePoint, out Vector3 normal)
         {
@@ -60,9 +52,21 @@ namespace Microsoft.MixedReality.Toolkit.Input
                 // inside object, use vector to centre as normal
                 normal = samplePoint - TouchableCollider.bounds.center;
                 normal.Normalize();
-                // Return value less than zero so that when poke pointer is inside
-                // object, it will not raise a touch up event.
-                return -1;
+
+                // Try to calculate the proper penetration distance, to allow more accurate processing of touchable volumes.
+                // Return value less than zero so that when poke pointer is inside object, it will not raise a touch up event.
+                float rayScale = 1.1f;
+                Vector3 outsidePoint = TouchableCollider.bounds.center + normal * (TouchableCollider.bounds.extents.magnitude * rayScale);
+                if (TouchableCollider.Raycast(new Ray(outsidePoint, -normal), out RaycastHit raycastHit, TouchableCollider.bounds.size.magnitude * rayScale))
+                {
+                    return -Vector3.Distance(raycastHit.point, samplePoint);
+                }
+                else
+                {
+                    // Somehow we didn't hit the object, although we're touching it.
+                    // Fallback to the max possible value, so other volumes may get favored over this.
+                    return -TouchableCollider.bounds.extents.magnitude;
+                }
             }
             else
             {

@@ -1,15 +1,15 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License. See LICENSE in the project root for license information.
+﻿// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
 
 namespace Microsoft.MixedReality.Toolkit.Utilities
 {
     /// <summary>
-    /// todo
+    /// The possible shapes of bounding volumes for spatial awareness of the user's surroundings.
     /// </summary>
     public enum VolumeType
     {
         /// <summary>
-        /// No Specified type.
+        /// No specified type.
         /// </summary>
         None = 0,
 

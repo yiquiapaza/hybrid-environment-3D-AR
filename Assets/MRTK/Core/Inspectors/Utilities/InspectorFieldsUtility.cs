@@ -1,5 +1,5 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License. See LICENSE in the project root for license information.
+﻿// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
 
 using System;
 using System.Collections.Generic;
@@ -89,7 +89,7 @@ namespace Microsoft.MixedReality.Toolkit.Utilities.Editor
                 SerializedProperty options = settingItem.FindPropertyRelative("Options");
                 SerializedProperty name = settingItem.FindPropertyRelative("Name");
 
-                type.enumValueIndex = (int)data[i].Attributes.Type;
+                type.intValue = (int)data[i].Attributes.Type;
                 tooltip.stringValue = data[i].Attributes.Tooltip;
                 label.stringValue = data[i].Attributes.Label;
                 name.stringValue = data[i].Name;
@@ -107,7 +107,7 @@ namespace Microsoft.MixedReality.Toolkit.Utilities.Editor
                 }
             }
         }
-        
+
         /// <summary>
         /// Update a property value in a serialized PropertySettings
         /// </summary>

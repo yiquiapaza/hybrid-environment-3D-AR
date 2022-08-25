@@ -1,5 +1,5 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License. See LICENSE in the project root for license information.
+﻿// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
 
 using System;
 
@@ -32,6 +32,7 @@ namespace Microsoft.MixedReality.Toolkit
         /// The initialize function is used to setup the service once created.
         /// This method is called once all services have been registered in the Mixed Reality Toolkit.
         /// </summary>
+        /// <remarks>This will run both in edit mode and in play mode. Gate code behind `Application.isPlaying` if it should only run in one or the other.</remarks>
         void Initialize();
 
         /// <summary>

@@ -1,10 +1,11 @@
-// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License. See LICENSE in the project root for license information.
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
 
 using Microsoft.MixedReality.Toolkit.Utilities;
 using Microsoft.MixedReality.Toolkit.Utilities.Solvers;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Microsoft.MixedReality.Toolkit.UI
 {
@@ -16,6 +17,16 @@ namespace Microsoft.MixedReality.Toolkit.UI
     [AddComponentMenu("Scripts/MRTK/SDK/FollowMeToggle")]
     public class FollowMeToggle : MonoBehaviour
     {
+        /// <summary>
+        /// An enum specifying how the optional interactable should behave once the FollowMe behavior was changed.
+        /// </summary>
+        public enum FollowMeBehaviorToInteractablesToggleState
+        {
+            ToggledWhenFollowing,
+            UntoggledWhenFollowing,
+            Manual
+        }
+
         /// <summary>
         /// An optional object for visualizing the 'Follow Me' mode state.
         /// </summary>
@@ -43,6 +54,19 @@ namespace Microsoft.MixedReality.Toolkit.UI
         private Interactable interactableObject = null;
 
         /// <summary>
+        /// A way to indicate how should interactable react to the follow behavior state.
+        /// </summary>
+        public FollowMeBehaviorToInteractablesToggleState ButtonBehavior
+        {
+            get { return buttonBehavior; }
+            set { buttonBehavior = value; }
+        }
+
+        [SerializeField]
+        [Tooltip("Should following be automatically enabled when the user is further than a certain distance away?")]
+        private FollowMeBehaviorToInteractablesToggleState buttonBehavior = FollowMeBehaviorToInteractablesToggleState.ToggledWhenFollowing;
+
+        /// <summary>
         /// Should following be automatically enabled when the user is further than a certain distance away?
         /// </summary>
         public bool AutoFollowAtDistance
@@ -51,6 +75,11 @@ namespace Microsoft.MixedReality.Toolkit.UI
             set
             {
                 autoFollowAtDistance = value;
+
+                if (!enabled || !gameObject.activeInHierarchy)
+                {
+                    return;
+                }
 
                 if (autoFollowAtDistance)
                 {
@@ -65,6 +94,7 @@ namespace Microsoft.MixedReality.Toolkit.UI
                     {
                         StopCoroutine(autoFollowDistanceCheck);
                         autoFollowDistanceCheck = null;
+                        SetFollowMeBehavior(false);
                     }
                 }
             }
@@ -111,6 +141,19 @@ namespace Microsoft.MixedReality.Toolkit.UI
         private RadialView radialView = null;
         private Coroutine autoFollowDistanceCheck = null;
 
+        [SerializeField]
+        [Tooltip("Event that gets fired when auto follow is triggered.")]
+        private UnityEvent autoFollowTriggered = new UnityEvent();
+        /// <summary>
+        /// Event that gets fired when auto follow is triggered.
+        /// </summary>
+        public UnityEvent AutoFollowTriggered
+        {
+            get => autoFollowTriggered;
+            set => autoFollowTriggered = value;
+        }
+
+
         #region MonoBehaviour Implementation
 
         private void Awake()
@@ -133,6 +176,17 @@ namespace Microsoft.MixedReality.Toolkit.UI
             {
                 AutoFollowAtDistance = autoFollowAtDistance;
             }
+        }
+
+        private void OnEnable()
+        {
+            // Begin the follow coroutine when enabled.
+            AutoFollowAtDistance = autoFollowAtDistance;
+        }
+        
+        private void OnDisable()
+        {
+            autoFollowDistanceCheck = null;
         }
 
         #endregion MonoBehaviour Implementation
@@ -167,7 +221,17 @@ namespace Microsoft.MixedReality.Toolkit.UI
 
                 if (interactableObject != null)
                 {
-                    interactableObject.IsToggled = follow;
+                    switch (ButtonBehavior)
+                    {
+                        case FollowMeBehaviorToInteractablesToggleState.ToggledWhenFollowing:
+                            interactableObject.IsToggled = follow;
+                            break;
+                        case FollowMeBehaviorToInteractablesToggleState.UntoggledWhenFollowing:
+                            interactableObject.IsToggled = !follow;
+                            break;
+                        case FollowMeBehaviorToInteractablesToggleState.Manual:
+                            break;
+                    }
                 }
             }
         }
@@ -191,6 +255,7 @@ namespace Microsoft.MixedReality.Toolkit.UI
                         if ((mainCamera.transform.position - autoFollowTransformTarget.position).sqrMagnitude >= autoFollowDistanceSq)
                         {
                             SetFollowMeBehavior(true);
+                            AutoFollowTriggered?.Invoke();
                         }
                     }
                 }

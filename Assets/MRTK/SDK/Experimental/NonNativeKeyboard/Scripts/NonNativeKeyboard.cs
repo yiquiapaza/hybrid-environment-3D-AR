@@ -1,12 +1,12 @@
-// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License. See LICENSE in the project root for license information.
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
 
-using UnityEngine;
-using UnityEngine.UI;
-using System;
 using Microsoft.MixedReality.Toolkit.Input;
 using Microsoft.MixedReality.Toolkit.Utilities;
+using System;
 using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
 
 namespace Microsoft.MixedReality.Toolkit.Experimental.UI
 {
@@ -171,6 +171,17 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.UI
         /// Event fired when shift key on keyboard is pressed.
         /// </summary>
         public event Action<bool> OnKeyboardShifted = delegate { };
+
+        /// <summary>
+        /// Event fired when char key on keyboard is pressed.
+        /// </summary>
+        public event Action<KeyboardValueKey> OnKeyboardValueKeyPressed = delegate { };
+
+        /// <summary>
+        /// Event fired when function key on keyboard is pressed.
+        /// Fires before internal keyboard state is updated.
+        /// </summary>
+        public event Action<KeyboardKeyFunc> OnKeyboardFunctionKeyPressed = delegate { };
 
         /// <summary>
         /// Current shift state of keyboard.
@@ -513,32 +524,32 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.UI
             switch (keyboardType)
             {
                 case LayoutType.URL:
-                    {
-                        ShowAlphaKeyboard();
-                        TryToShowURLSubkeys();
-                        break;
-                    }
+                {
+                    ShowAlphaKeyboard();
+                    TryToShowURLSubkeys();
+                    break;
+                }
 
                 case LayoutType.Email:
-                    {
-                        ShowAlphaKeyboard();
-                        TryToShowEmailSubkeys();
-                        break;
-                    }
+                {
+                    ShowAlphaKeyboard();
+                    TryToShowEmailSubkeys();
+                    break;
+                }
 
                 case LayoutType.Symbol:
-                    {
-                        ShowSymbolKeyboard();
-                        break;
-                    }
+                {
+                    ShowSymbolKeyboard();
+                    break;
+                }
 
                 case LayoutType.Alpha:
                 default:
-                    {
-                        ShowAlphaKeyboard();
-                        TryToShowAlphaSubkeys();
-                        break;
-                    }
+                {
+                    ShowAlphaKeyboard();
+                    TryToShowAlphaSubkeys();
+                    break;
+                }
             }
         }
 
@@ -598,6 +609,8 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.UI
             IndicateActivity();
             string value = "";
 
+            OnKeyboardValueKeyPressed(valueKey);
+
             // Shift value should only be applied if a shift value is present.
             if (m_IsShifted && !string.IsNullOrEmpty(valueKey.ShiftValue))
             {
@@ -628,94 +641,95 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.UI
         public void FunctionKey(KeyboardKeyFunc functionKey)
         {
             IndicateActivity();
+            OnKeyboardFunctionKeyPressed(functionKey);
             switch (functionKey.ButtonFunction)
             {
                 case KeyboardKeyFunc.Function.Enter:
-                    {
-                        Enter();
-                        break;
-                    }
+                {
+                    Enter();
+                    break;
+                }
 
                 case KeyboardKeyFunc.Function.Tab:
-                    {
-                        Tab();
-                        break;
-                    }
+                {
+                    Tab();
+                    break;
+                }
 
                 case KeyboardKeyFunc.Function.ABC:
-                    {
-                        ActivateSpecificKeyboard(m_LastKeyboardLayout);
-                        break;
-                    }
+                {
+                    ActivateSpecificKeyboard(m_LastKeyboardLayout);
+                    break;
+                }
 
                 case KeyboardKeyFunc.Function.Symbol:
-                    {
-                        ActivateSpecificKeyboard(LayoutType.Symbol);
-                        break;
-                    }
+                {
+                    ActivateSpecificKeyboard(LayoutType.Symbol);
+                    break;
+                }
 
                 case KeyboardKeyFunc.Function.Previous:
-                    {
-                        MoveCaretLeft();
-                        break;
-                    }
+                {
+                    MoveCaretLeft();
+                    break;
+                }
 
                 case KeyboardKeyFunc.Function.Next:
-                    {
-                        MoveCaretRight();
-                        break;
-                    }
+                {
+                    MoveCaretRight();
+                    break;
+                }
 
                 case KeyboardKeyFunc.Function.Close:
-                    {
-                        Close();
-                        break;
-                    }
+                {
+                    Close();
+                    break;
+                }
 
                 case KeyboardKeyFunc.Function.Dictate:
-                    {
-                        if (dictationSystem == null) { break; }
+                {
+                    if (dictationSystem == null) { break; }
 
-                        if (IsMicrophoneActive())
-                        {
-                            EndDictation();
-                        }
-                        else
-                        {
-                            BeginDictation();
-                        }
-                        break;
+                    if (IsMicrophoneActive())
+                    {
+                        EndDictation();
                     }
+                    else
+                    {
+                        BeginDictation();
+                    }
+                    break;
+                }
 
                 case KeyboardKeyFunc.Function.Shift:
-                    {
-                        Shift(!m_IsShifted);
-                        break;
-                    }
+                {
+                    Shift(!m_IsShifted);
+                    break;
+                }
 
                 case KeyboardKeyFunc.Function.CapsLock:
-                    {
-                        CapsLock(!m_IsCapslocked);
-                        break;
-                    }
+                {
+                    CapsLock(!m_IsCapslocked);
+                    break;
+                }
 
                 case KeyboardKeyFunc.Function.Space:
-                    {
-                        Space();
-                        break;
-                    }
+                {
+                    Space();
+                    break;
+                }
 
                 case KeyboardKeyFunc.Function.Backspace:
-                    {
-                        Backspace();
-                        break;
-                    }
+                {
+                    Backspace();
+                    break;
+                }
 
                 case KeyboardKeyFunc.Function.UNDEFINED:
-                    {
-                        Debug.LogErrorFormat("The {0} key on this keyboard hasn't been assigned a function.", functionKey.name);
-                        break;
-                    }
+                {
+                    Debug.LogErrorFormat("The {0} key on this keyboard hasn't been assigned a function.", functionKey.name);
+                    break;
+                }
 
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -783,10 +797,7 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.UI
             if (SubmitOnEnter)
             {
                 // Send text entered event and close the keyboard
-                if (OnTextSubmitted != null)
-                {
-                    OnTextSubmitted(this, EventArgs.Empty);
-                }
+                OnTextSubmitted?.Invoke(this, EventArgs.Empty);
 
                 Close();
             }

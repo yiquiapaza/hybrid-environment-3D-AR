@@ -1,5 +1,5 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License. See LICENSE in the project root for license information.
+﻿// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
 
 using Microsoft.MixedReality.Toolkit.Physics;
 using Unity.Profiling;
@@ -43,6 +43,11 @@ namespace Microsoft.MixedReality.Toolkit.Input
         {
             using (OnPreSceneQueryPerfMarker.Auto())
             {
+                if (!IsInteractionEnabled)
+                {
+                    return;
+                }
+
                 Rays[0].CopyRay(TouchRay, PointerExtent);
 
                 if (RayStabilizer != null)
@@ -63,22 +68,10 @@ namespace Microsoft.MixedReality.Toolkit.Input
         }
 
         /// <inheritdoc />
-        public override Vector3 Position
-        {
-            get
-            {
-                return TouchRay.origin;
-            }
-        }
+        public override Vector3 Position => TouchRay.origin;
 
         /// <inheritdoc />
-        public override Quaternion Rotation
-        {
-            get
-            {
-                return Quaternion.LookRotation(TouchRay.direction);
-            }
-        }
+        public override Quaternion Rotation => Quaternion.LookRotation(TouchRay.direction);
 
         private static readonly ProfilerMarker OnSourceDetectedPerfMarker = new ProfilerMarker("[MRTK] TouchPointer.OnSourceDetected");
 

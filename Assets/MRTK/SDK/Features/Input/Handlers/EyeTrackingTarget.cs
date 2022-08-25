@@ -1,9 +1,9 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License. See LICENSE in the project root for license information.
+﻿// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
 
+using System;
 using UnityEngine;
 using UnityEngine.Events;
-using System;
 using UnityEngine.Serialization;
 
 namespace Microsoft.MixedReality.Toolkit.Input
@@ -97,7 +97,31 @@ namespace Microsoft.MixedReality.Toolkit.Input
             get { return onSelected; }
             set { onSelected = value; }
         }
-        
+
+        [SerializeField]
+        private UnityEvent onTapDown = new UnityEvent();
+
+        /// <summary>
+        /// Event is triggered when the RaiseEventManually_TapDown is called.
+        /// </summary>
+        public UnityEvent OnTapDown
+        {
+            get { return onTapDown; }
+            set { onTapDown = value; }
+        }
+
+        [SerializeField]
+        private UnityEvent onTapUp = new UnityEvent();
+
+        /// <summary>
+        /// Event is triggered when the RaiseEventManually_TapUp is called.
+        /// </summary>
+        public UnityEvent OnTapUp
+        {
+            get { return onTapUp; }
+            set { onTapUp = value; }
+        }
+
         [SerializeField]
         [Tooltip("If true, the eye cursor (if enabled) will snap to the center of this object.")]
         private bool eyeCursorSnapToTargetCenter = false;
@@ -121,7 +145,7 @@ namespace Microsoft.MixedReality.Toolkit.Input
         /// Returns true if the user has been looking at the target for a certain amount of time specified by dwellTimeInSec.
         /// </summary>
         public bool IsDwelledOn { get; private set; } = false;
-        
+
         private DateTime lookAtStartTime;
 
         /// <summary>
@@ -137,32 +161,61 @@ namespace Microsoft.MixedReality.Toolkit.Input
         /// <summary>
         /// The time stamp from the eye tracker has its own time frame, which makes it difficult to compare to local times. 
         /// </summary>
-        private static DateTime lastEyeSignalUpdateTimeLocal = DateTime.MinValue; 
+        private static DateTime lastEyeSignalUpdateTimeLocal = DateTime.MinValue;
 
-        public static GameObject LookedAtTarget { get;  private set; }
+        private DateTime lastTimeClicked;
+        private float minTimeoutBetweenClicksInMs = 20f;
+
+        /// <summary>
+        /// GameObject eye gaze is currently targeting, updated once per frame.
+        /// null if no object with collider is currently being looked at.
+        /// </summary>
+        public static GameObject LookedAtTarget =>
+            (CoreServices.InputSystem != null &&
+            CoreServices.InputSystem.EyeGazeProvider != null &&
+            CoreServices.InputSystem.EyeGazeProvider.IsEyeTrackingEnabledAndValid) ? CoreServices.InputSystem.EyeGazeProvider.GazeTarget : null;
+
+        /// <summary>
+        /// The point in space where the eye gaze hit. 
+        /// set to the origin if the EyeGazeProvider is not currently enabled
+        /// </summary>
+        public static Vector3 LookedAtPoint =>
+            (CoreServices.InputSystem != null &&
+            CoreServices.InputSystem.EyeGazeProvider != null &&
+            CoreServices.InputSystem.EyeGazeProvider.IsEyeTrackingEnabledAndValid) ? CoreServices.InputSystem.EyeGazeProvider.HitPosition : Vector3.zero;
+
+        /// <summary>
+        /// EyeTrackingTarget eye gaze is currently looking at.
+        /// null if currently gazed at object has no EyeTrackingTarget, or if
+        /// no object with collider is being looked at.
+        /// </summary>
         public static EyeTrackingTarget LookedAtEyeTarget { get; private set; }
-        public static Vector3 LookedAtPoint { get; private set; }
+
+        /// <summary>
+        /// Most recently selected target, selected either using pointer
+        /// or voice.
+        /// </summary>
+        public static GameObject SelectedTarget { get; set; }
 
         #region Focus handling
         protected override void Start()
         {
             base.Start();
             IsLookedAt = false;
-            LookedAtTarget = null;
             LookedAtEyeTarget = null;
         }
 
         private void Update()
         {
-            var eyeGazeProvider = CoreServices.InputSystem?.EyeGazeProvider;
             // Try to manually poll the eye tracking data
-            if (eyeGazeProvider != null 
-                && eyeGazeProvider.IsEyeTrackingEnabledAndValid)
+            if ((CoreServices.InputSystem != null) && (CoreServices.InputSystem.EyeGazeProvider != null) &&
+                CoreServices.InputSystem.EyeGazeProvider.IsEyeTrackingEnabled &&
+                CoreServices.InputSystem.EyeGazeProvider.IsEyeTrackingDataValid)
             {
                 UpdateHitTarget();
 
                 bool isLookedAtNow = (LookedAtTarget == this.gameObject);
-                                
+
                 if (IsLookedAt && (!isLookedAtNow))
                 {
                     // Stopped looking at the target
@@ -187,14 +240,13 @@ namespace Microsoft.MixedReality.Toolkit.Input
             OnEyeFocusStop();
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         protected override void RegisterHandlers()
         {
             CoreServices.InputSystem?.RegisterHandler<IMixedRealityPointerHandler>(this);
             CoreServices.InputSystem?.RegisterHandler<IMixedRealitySpeechHandler>(this);
         }
-
-        /// <inheritdoc />
+        /// <inheritdoc/>
         protected override void UnregisterHandlers()
         {
             CoreServices.InputSystem?.UnregisterHandler<IMixedRealityPointerHandler>(this);
@@ -203,49 +255,35 @@ namespace Microsoft.MixedReality.Toolkit.Input
 
         private void UpdateHitTarget()
         {
-            var eyeGazeProvider = CoreServices.InputSystem?.EyeGazeProvider;
-            if (eyeGazeProvider != null)
+            if (lastEyeSignalUpdateTimeFromET != CoreServices.InputSystem?.EyeGazeProvider?.Timestamp)
             {
-                if (lastEyeSignalUpdateTimeFromET != eyeGazeProvider.Timestamp)
+                if ((CoreServices.InputSystem != null) && (CoreServices.InputSystem.EyeGazeProvider != null))
                 {
-                    lastEyeSignalUpdateTimeFromET = eyeGazeProvider.Timestamp;
+                    lastEyeSignalUpdateTimeFromET = (CoreServices.InputSystem?.EyeGazeProvider?.Timestamp).Value;
                     lastEyeSignalUpdateTimeLocal = DateTime.UtcNow;
 
-                    // ToDo: Handle raycasting layers
-                    RaycastHit hitInfo = default(RaycastHit);
-                    Ray lookRay = new Ray(eyeGazeProvider.GazeOrigin, eyeGazeProvider.GazeDirection.normalized);
-                    bool isHit = UnityEngine.Physics.Raycast(lookRay, out hitInfo);
-
-                    if (isHit)
+                    if (LookedAtTarget != null)
                     {
-                        LookedAtTarget = hitInfo.collider.gameObject;
                         LookedAtEyeTarget = LookedAtTarget.GetComponent<EyeTrackingTarget>();
-                        LookedAtPoint = hitInfo.point;
                     }
-                    else
-                    {
-                        LookedAtTarget = null;
-                        LookedAtEyeTarget = null;
-                    }
-                }
-                else if ((DateTime.UtcNow - lastEyeSignalUpdateTimeLocal).TotalMilliseconds > EyeTrackingTimeoutInMilliseconds)
-                {
-                    LookedAtTarget = null;
-                    LookedAtEyeTarget = null;
                 }
             }
+            else if ((DateTime.UtcNow - lastEyeSignalUpdateTimeLocal).TotalMilliseconds > EyeTrackingTimeoutInMilliseconds)
+            {
+                LookedAtEyeTarget = null;
+            }
         }
-        
+
         protected void OnEyeFocusStart()
         {
             lookAtStartTime = DateTime.UtcNow;
             IsLookedAt = true;
-            OnLookAtStart.Invoke();            
+            OnLookAtStart?.Invoke();
         }
 
         protected void OnEyeFocusStay()
         {
-            WhileLookingAtTarget.Invoke();
+            WhileLookingAtTarget?.Invoke();
 
             if ((!IsDwelledOn) && (DateTime.UtcNow - lookAtStartTime).TotalSeconds > dwellTimeInSec)
             {
@@ -256,14 +294,14 @@ namespace Microsoft.MixedReality.Toolkit.Input
         protected void OnEyeFocusDwell()
         {
             IsDwelledOn = true;
-            OnDwell.Invoke();
+            OnDwell?.Invoke();
         }
 
         protected void OnEyeFocusStop()
         {
             IsDwelledOn = false;
             IsLookedAt = false;
-            OnLookAway.Invoke();            
+            OnLookAway?.Invoke();
         }
 
         #endregion 
@@ -277,12 +315,14 @@ namespace Microsoft.MixedReality.Toolkit.Input
 
         void IMixedRealityPointerHandler.OnPointerClicked(MixedRealityPointerEventData eventData)
         {
-            if ((eventData.MixedRealityInputAction == selectAction) && IsLookedAt)
+            if ((eventData.MixedRealityInputAction == selectAction) && IsLookedAt && ((DateTime.UtcNow - lastTimeClicked).TotalMilliseconds > minTimeoutBetweenClicksInMs))
             {
+                lastTimeClicked = DateTime.UtcNow;
+                EyeTrackingTarget.SelectedTarget = this.gameObject;
                 OnSelected.Invoke();
             }
         }
-        
+
         void IMixedRealitySpeechHandler.OnSpeechKeywordRecognized(SpeechEventData eventData)
         {
             if ((IsLookedAt) && (this.gameObject == LookedAtTarget))
@@ -293,11 +333,20 @@ namespace Microsoft.MixedReality.Toolkit.Input
                     {
                         if (eventData.MixedRealityInputAction == voiceSelect[i])
                         {
+                            EyeTrackingTarget.SelectedTarget = this.gameObject;
                             OnSelected.Invoke();
                         }
                     }
                 }
             }
+        }
+        #endregion
+
+        #region Methods to Invoke Events Manually
+        public void RaiseSelectEventManually()
+        {
+            EyeTrackingTarget.SelectedTarget = this.gameObject;
+            OnSelected.Invoke();
         }
         #endregion
     }

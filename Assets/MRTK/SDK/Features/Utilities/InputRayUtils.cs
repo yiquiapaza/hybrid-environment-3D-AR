@@ -1,5 +1,5 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License. See LICENSE in the project root for license information.
+﻿// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
 
 using Microsoft.MixedReality.Toolkit.Utilities;
 using UnityEngine;
@@ -34,12 +34,12 @@ namespace Microsoft.MixedReality.Toolkit.Input
             IMixedRealityEyeGazeProvider eyeGazeProvider = CoreServices.InputSystem?.EyeGazeProvider;
             if ((eyeGazeProvider == null) ||
                 !eyeGazeProvider.IsEyeTrackingDataValid)
-            { 
-                return false; 
+            {
+                return false;
             }
-          
+
             ray = eyeGazeProvider.LatestEyeGaze;
-            
+
             return true;
         }
 
@@ -110,7 +110,14 @@ namespace Microsoft.MixedReality.Toolkit.Input
         {
             controller = null;
 
-            foreach (IMixedRealityController c in CoreServices.InputSystem.DetectedControllers)
+            System.Collections.Generic.HashSet<IMixedRealityController> controllers = CoreServices.InputSystem?.DetectedControllers;
+
+            if (controllers == null)
+            {
+                return false;
+            }
+
+            foreach (IMixedRealityController c in controllers)
             {
                 if ((c.InputSource?.SourceType == sourceType) &&
                     (c.ControllerHandedness == hand))

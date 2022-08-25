@@ -46,13 +46,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dfa7178ac1c18947adff71ef2792a84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handedness: 1
   destroyOnSourceLost: 0
   useSourcePoseData: 0
+  useSourcePoseAsFallback: 1
   poseAction:
     id: 3
     description: Grip Pose
     axisConstraint: 7
+  handedness: 1
   cursorPrefab: {fileID: 0}
   disableCursorOnStart: 0
   setCursorVisibilityOnSourceDetected: 0
@@ -65,18 +66,29 @@ MonoBehaviour:
     id: 7
     description: Grip Press
     axisConstraint: 3
+  grabAction:
+    id: 0
+    description: None
+    axisConstraint: 0
   requiresHoldAction: 0
   requiresActionBeforeEnabling: 0
   overrideGlobalPointerExtent: 0
   pointerExtent: 10
   defaultPointerExtent: 10
   sphereCastRadius: 0.05
+  pullbackDistance: 0
+  nearObjectSectorAngle: 360
   nearObjectMargin: 0.2
+  nearObjectAxisLerp: 0.9
+  nearObjectSmoothingFactor: 0.4
   grabLayerMasks:
   - serializedVersion: 2
-    m_Bits: 563
+    m_Bits: 51
   triggerInteraction: 0
   sceneQueryBufferSize: 64
+  ignoreCollidersNotInFOV: 1
+  graspPointPlacement: 0
+  nearInteractableCacheCapacity: 50
 --- !u!114 &7376459786343609486
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,6 +228,7 @@ LineRenderer:
   m_MotionVectors: 0
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -227,6 +240,7 @@ LineRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -466,6 +480,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -477,6 +492,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0

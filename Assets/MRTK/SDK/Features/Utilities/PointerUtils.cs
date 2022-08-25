@@ -1,5 +1,5 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License. See LICENSE in the project root for license information.
+﻿// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
 
 using Microsoft.MixedReality.Toolkit.Physics;
 using Microsoft.MixedReality.Toolkit.Utilities;
@@ -44,7 +44,7 @@ namespace Microsoft.MixedReality.Toolkit.Input
         /// <param name="inputType">Input type of pointer</param>
         /// <param name="endPoint">Output point position</param>
         /// <returns>True if pointer found, false otherwise. If not found, endPoint is set to zero</returns>
-        public static bool TryGetPointerEndpoint<T>(Handedness handedness, InputSourceType inputType, out Vector3 endPoint) where T: IMixedRealityPointer
+        public static bool TryGetPointerEndpoint<T>(Handedness handedness, InputSourceType inputType, out Vector3 endPoint) where T : IMixedRealityPointer
         {
             foreach (var pointer in GetPointers<IMixedRealityPointer>(handedness, inputType))
             {
@@ -136,9 +136,16 @@ namespace Microsoft.MixedReality.Toolkit.Input
         /// </summary>
         public static IEnumerable<IMixedRealityPointer> GetPointers()
         {
-            foreach (var inputSource in CoreServices.InputSystem.DetectedInputSources)
+            HashSet<IMixedRealityInputSource> inputSources = CoreServices.InputSystem?.DetectedInputSources;
+
+            if (inputSources == null)
             {
-                foreach (var pointer in inputSource.Pointers)
+                yield break;
+            }
+
+            foreach (IMixedRealityInputSource inputSource in inputSources)
+            {
+                foreach (IMixedRealityPointer pointer in inputSource.Pointers)
                 {
                     yield return pointer;
                 }
@@ -153,7 +160,7 @@ namespace Microsoft.MixedReality.Toolkit.Input
         /// <returns><seealso cref="Microsoft.MixedReality.Toolkit.Input.PointerBehavior"/> for the given pointer type and handedness</returns>
         public static PointerBehavior GetPointerBehavior<T>(Handedness handedness, InputSourceType inputSourceType) where T : class, IMixedRealityPointer
         {
-            if (CoreServices.InputSystem.FocusProvider is IPointerPreferences preferences)
+            if (CoreServices.InputSystem?.FocusProvider is IPointerPreferences preferences)
             {
                 if (typeof(T) == typeof(GGVPointer))
                 {

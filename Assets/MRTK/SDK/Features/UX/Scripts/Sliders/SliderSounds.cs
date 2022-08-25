@@ -1,12 +1,8 @@
 ﻿//
-// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License. See LICENSE in the project root for license information.
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
 //
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 namespace Microsoft.MixedReality.Toolkit.UI
 {
@@ -17,6 +13,9 @@ namespace Microsoft.MixedReality.Toolkit.UI
     [AddComponentMenu("Scripts/MRTK/SDK/SliderSounds")]
     public class SliderSounds : MonoBehaviour
     {
+        [SerializeField]
+        private bool playSoundsOnlyOnInteract = false;
+
         [Header("Audio Clips")]
         [SerializeField]
         [Tooltip("Sound to play when interaction with slider starts")]
@@ -30,6 +29,10 @@ namespace Microsoft.MixedReality.Toolkit.UI
         [SerializeField]
         [Tooltip("Whether to play 'tick tick' sounds as the slider passes notches")]
         private bool playTickSounds = true;
+
+        [SerializeField]
+        [Tooltip("Whether to line up the 'tick tick' sounds with slider step divisions when those are in use")]
+        private bool alignWithStepSlider = true;
 
         [SerializeField]
         [Tooltip("Sound to play when slider passes a notch")]
@@ -48,10 +51,12 @@ namespace Microsoft.MixedReality.Toolkit.UI
         [SerializeField]
         private float minSecondsBetweenTicks = 0.01f;
 
-
         #region Private members
         private PinchSlider slider;
-        
+
+        // Check to see if the slider is being interacted with
+        private bool isInteracting;
+
         // Play sound when passing through slider notches
         private float accumulatedDeltaSliderValue = 0;
         private float lastSoundPlayTime;
@@ -70,7 +75,12 @@ namespace Microsoft.MixedReality.Toolkit.UI
             {
                 passNotchAudioSource = gameObject.AddComponent<AudioSource>();
             }
+
             slider = GetComponent<PinchSlider>();
+            if (alignWithStepSlider && slider.UseSliderStepDivisions)
+            {
+                tickEvery = 1.0f / slider.SliderStepDivisions;
+            }
             slider.OnInteractionStarted.AddListener(OnInteractionStarted);
             slider.OnInteractionEnded.AddListener(OnInteractionEnded);
             slider.OnValueUpdated.AddListener(OnValueUpdated);
@@ -78,15 +88,18 @@ namespace Microsoft.MixedReality.Toolkit.UI
 
         private void OnValueUpdated(SliderEventData eventData)
         {
-            if (playTickSounds && passNotchAudioSource != null && passNotchSound != null)
+            if (!(playSoundsOnlyOnInteract && !isInteracting) && playTickSounds && passNotchAudioSource != null && passNotchSound != null)
             {
                 float delta = eventData.NewValue - eventData.OldValue;
                 accumulatedDeltaSliderValue += Mathf.Abs(delta);
                 var now = Time.timeSinceLevelLoad;
-                if (accumulatedDeltaSliderValue > tickEvery && now - lastSoundPlayTime > minSecondsBetweenTicks)
+                if (accumulatedDeltaSliderValue >= tickEvery && now - lastSoundPlayTime > minSecondsBetweenTicks)
                 {
                     passNotchAudioSource.pitch = Mathf.Lerp(startPitch, endPitch, eventData.NewValue);
-                    passNotchAudioSource.PlayOneShot(passNotchSound);
+                    if (passNotchAudioSource.isActiveAndEnabled)
+                    {
+                        passNotchAudioSource.PlayOneShot(passNotchSound);
+                    }
 
                     accumulatedDeltaSliderValue = 0;
                     lastSoundPlayTime = now;
@@ -96,7 +109,8 @@ namespace Microsoft.MixedReality.Toolkit.UI
 
         private void OnInteractionEnded(SliderEventData arg0)
         {
-            if (interactionEndSound != null && grabReleaseAudioSource != null)
+            isInteracting = false;
+            if (interactionEndSound != null && grabReleaseAudioSource != null && grabReleaseAudioSource.isActiveAndEnabled)
             {
                 grabReleaseAudioSource.PlayOneShot(interactionEndSound);
             }
@@ -104,7 +118,8 @@ namespace Microsoft.MixedReality.Toolkit.UI
 
         private void OnInteractionStarted(SliderEventData arg0)
         {
-            if (interactionStartSound != null && grabReleaseAudioSource != null)
+            isInteracting = true;
+            if (interactionStartSound != null && grabReleaseAudioSource != null && grabReleaseAudioSource.isActiveAndEnabled)
             {
                 grabReleaseAudioSource.PlayOneShot(interactionStartSound);
             }
