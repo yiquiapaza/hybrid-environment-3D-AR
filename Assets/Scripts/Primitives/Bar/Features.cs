@@ -9,6 +9,10 @@ public class Features : MonoBehaviour
 
     [SerializeField]
     private Vector3 InitialScale;
+
+    [SerializeField]
+    private GameObject Axis;
+
     private Vector3 InitialBoxCollider;
 
     Vector3 TempScale;
@@ -17,7 +21,7 @@ public class Features : MonoBehaviour
     void Start()
     {
         InitialScale = transform.localScale;
-        InitialBoxCollider = GetComponent<BoxCollider>().size; 
+        InitialBoxCollider = GetComponent<BoxCollider>().size;
     }
 
     // Update is called once per frame
@@ -41,12 +45,17 @@ public class Features : MonoBehaviour
     private void UpdateScale()
     {
         TempScale = InitialScale;
-        transform.localScale = InitialScale;    
+        transform.localScale = InitialScale;
     }
 
     private void UpdateCollider()
     {
         TempCollider = InitialBoxCollider;
         GetComponent<BoxCollider>().size = InitialScale;
+    }
+
+    private void Resize(float amount)
+    {
+        transform.position
     }
 }
