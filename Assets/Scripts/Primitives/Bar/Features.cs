@@ -56,6 +56,5 @@ public class Features : MonoBehaviour
 
     private void Resize(float amount)
     {
-        transform.position
     }
 }

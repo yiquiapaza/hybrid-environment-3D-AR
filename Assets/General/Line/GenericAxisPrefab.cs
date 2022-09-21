@@ -6,13 +6,13 @@ using UnityEngine;
 public class GenericAxisPrefab : MonoBehaviour
 {
     [SerializeField]
-    private TextMeshPro _axisLabelPrefab = null;
+    public TextMeshPro _axisLabelPrefab = null;
     [SerializeField]
-    private Transform _axisRoot = null;
+    public Transform _axisRoot = null;
     [SerializeField]
-    private bool _swapped = true;
+    public bool _swapped = true;
     [SerializeField]
-    private string _nameAxisLabel = null;
+    public string _nameAxisLabel = null;
 
     private float _length = 1.0f;
 
