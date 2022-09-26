@@ -5,14 +5,17 @@ using SimpleJSON;
 
 public class DataUtility : MonoBehaviour
 {
-    JSONObject example;
+    [SerializeField]
+    TextAsset Data;
+
+    JSONArray example;
 
     // Start is called before the first frame update
     void Start()
     {
-        example = (JSONObject)JSON.Parse("{id:1, name: 'nuevo'}");
+        example = (JSONArray)JSON.Parse(Data.text);
         Debug.Log(example.ToString());
-        Debug.Log(example["name"]);
+        Debug.Log(example[0]["country"]);
     }
 
     // Update is called once per frame

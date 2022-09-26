@@ -1,339 +1,338 @@
-{
-	"countries":[
-		{	
-			"country": "A",
-			"region": "OC",
-			"code": "AUS",
-			"year":[
-				{
-					"population": 12925179,
-					"areble_area": 41283,
-					"energy_consumption": 57974,
-					"gdp_per_capita": 3798,
-					"life_expectancy_women": 73.76,
-					"life_expectancy_men": 67.02,
-					"life_expectancy": 70.26,
-					"infant_mortality": 19.33,
-					"number_personal_computer": 0,
-					"indexed_population": 0.010545315378442414,
-					"indexed_energy_consumption": 0.015716243380290852,
-					"indexed_gdp": 0.13058726447531288
-				}
-			]
-		},
-		{
-			"country": "B",
-			"region": "AS",
-			"code": "CHN",
-			"year":[
-				{
-					"population": 851410624,
-					"areble_area": 102165,
-					"energy_consumption": 138400,
-					"gdp_per_capita": 206,
-					"life_expectancy_women": 61.98,
-					"life_expectancy_men": 60.9,
-					"life_expectancy": 61.52,
-					"infant_mortality": 67.16,
-					"number_personal_computer": 0,
-					"indexed_population": 0.6946436522570753,
-					"indexed_energy_consumption": 0.03751902721620475,
-					"indexed_gdp": 0.007082932196396644
-				}
-			]
-		},
-		{	
-			"country": "C",
-			"region": "EU",
-			"code": "DNK",
-			"year":[
-				{
-					"population": 4959189,
-					"areble_area": 2662,
-					"energy_consumption": 16664,
-					"gdp_per_capita": 3535,
-					"life_expectancy_women": 75.68,
-					"life_expectancy_men": 70.58,
-					"life_expectancy": 73.11,
-					"infant_mortality": 13.86,
-					"number_personal_computer": 0,
-					"indexed_population": 0.004046072555459577,
-					"indexed_energy_consumption": 0.004517464375222803,
-					"indexed_gdp": 0.12154449181680649
-				}
-			]
-		},
-		{
-			"country": "D",
-			"region": "AF",
-			"code": "GMB",
-			"year":[
-				{
-					"population": 497455,
-					"areble_area": 133,
-					"energy_consumption": 13,
-					"gdp_per_capita": 400,
-					"life_expectancy_women": 35.83,
-					"life_expectancy_men": 35.07,
-					"life_expectancy": 35.5,
-					"infant_mortality": 184.14,
-					"number_personal_computer": 0,
-					"indexed_population": 0.0004058605193462366,
-					"indexed_energy_consumption": 0.0000035241860824469778,
-					"indexed_gdp": 0.013753266400770183
-				}
-			]
-		},
-		{	
-			"country": "E",
-			"region": "EU",
-			"code": "HUN",
-			"year":[
-				{
-					"population": 10375077,
-					"areble_area": 5578,
-					"energy_consumption": 19340,
-					"gdp_per_capita": 2102,
-					"life_expectancy_women": 71.89,
-					"life_expectancy_men": 66.66,
-					"life_expectancy": 69.21,
-					"infant_mortality": 39.03,
-					"number_personal_computer": 0,
-					"indexed_population": 0.008464753876184167,
-					"indexed_energy_consumption": 0.0052429045257326575,
-					"indexed_gdp": 0.07227341493604732
-				}
-			]
-		},
-		{
-			"country": "F",
-			"region": "AS",
-			"code": "IND",
-			"year":[
-				{
-					"population": 561427382,
-					"areble_area": 164440,
-					"energy_consumption": 66383,
-					"gdp_per_capita": 344,
-					"life_expectancy_women": 46.88,
-					"life_expectancy_men": 48.83,
-					"life_expectancy": 47.72,
-					"infant_mortality": 125.07,
-					"number_personal_computer": 0,
-					"indexed_population": 0.45805391207992274,
-					"indexed_energy_consumption": 0.017995849593159825,
-					"indexed_gdp": 0.011827809104662357
-				}
-			]
-		},
-		{	
-			"country": "G",
-			"region": "EU",
-			"code": "ISL",
-			"year":[
-				{
-					"population": 206821,
-					"areble_area": 7,
-					"energy_consumption": 1621,
-					"gdp_per_capita": 3324,
-					"life_expectancy_women": 75.88,
-					"life_expectancy_men": 69.8,
-					"life_expectancy": 72.7,
-					"infant_mortality": 13.63,
-					"number_personal_computer": 0,
-					"indexed_population": 0.00016873984274297775,
-					"indexed_energy_consumption": 0.00043943889535742704,
-					"indexed_gdp": 0.11428964379040021
-				}
-			]
-		},
-		{
-			"country": "H",
-			"region": "AS",
-			"code": "ISR",
-			"year":[
-				{
-					"population": 2981178,
-					"areble_area": 411,
-					"energy_consumption": 7606,
-					"gdp_per_capita": 4456,
-					"life_expectancy_women": 72.1,
-					"life_expectancy_men": 69.05,
-					"life_expectancy": 70.39,
-					"infant_mortality": 24.56,
-					"number_personal_computer": 0,
-					"indexed_population": 0.0024322651322100995,
-					"indexed_energy_consumption": 0.0020619199494685933,
-					"indexed_gdp": 0.15321138770457984
-				}
-			]
-		},
-		{	
-			"country": "I",
-			"region": "AF",
-			"code": "LBR",
-			"year":[
-				{
-					"population": 1427168,
-					"areble_area": 571,
-					"energy_consumption": 650,
-					"gdp_per_capita": 383,
-					"life_expectancy_women": 42.46,
-					"life_expectancy_men": 41,
-					"life_expectancy": 41.64,
-					"infant_mortality": 170.03,
-					"number_personal_computer": 0,
-					"indexed_population": 0.0011643890315190919,
-					"indexed_energy_consumption": 0.0001762093041223489,
-					"indexed_gdp": 0.013168752578737451
-				}
-			]
-		},
-		{	
-			"country": "J",
-			"region": "EU",
-			"code": "NOR",
-			"year":[
-				{
-					"population": 3906491,
-					"areble_area": 806,
-					"energy_consumption": 71642,
-					"gdp_per_capita": 3102,
-					"life_expectancy_women": 76.8,
-					"life_expectancy_men": 70.76,
-					"life_expectancy": 73.68,
-					"infant_mortality": 13.46,
-					"number_personal_computer": 0,
-					"indexed_population": 0.0031872037995022647,
-					"indexed_energy_consumption": 0.019421518409128185,
-					"indexed_gdp": 0.10665658093797277
-				}
-			]
-		},
-		{	
-			"country": "K",
-			"region": "OC",
-			"code": "PYF",
-			"year":[
-				{
-					"population": 114592,
-					"areble_area": 24,
-					"energy_consumption": 102,
-					"gdp_per_capita": 3408,
-					"life_expectancy_women": 61.48,
-					"life_expectancy_men": 58.33,
-					"life_expectancy": 59.69,
-					"infant_mortality": 69.33,
-					"number_personal_computer": 0,
-					"indexed_population": 0.0000934926146745413,
-					"indexed_energy_consumption": 0.00002765130618535321,
-					"indexed_gdp": 0.11717782973456196
-				}
-			]
-		},
-		{
-			"country": "L",
-			"region": "AF",
-			"code": "RWA",
-			"year":[
-				{
-					"population": 3898015,
-					"areble_area": 748,
-					"energy_consumption": 87,
-					"gdp_per_capita": 39,
-					"life_expectancy_women": 46.04,
-					"life_expectancy_men": 42.83,
-					"life_expectancy": 44.28,
-					"infant_mortality": 135.8,
-					"number_personal_computer": 0,
-					"indexed_population": 0.003180288452863918,
-					"indexed_energy_consumption": 0.00002358493762868362,
-					"indexed_gdp": 0.0013409434740750928
-				}
-			]
-		},{	
-			"country": "M",
-			"region": "AS",
-			"code": "SAU",
-			"year":[
-				{
-					"population": 5991369,
-					"areble_area": 1467,
-					"energy_consumption": 1150,
-					"gdp_per_capita": 3918,
-					"life_expectancy_women": 51.98,
-					"life_expectancy_men": 48.23,
-					"life_expectancy": 50.05,
-					"infant_mortality": 123,
-					"number_personal_computer": 0,
-					"indexed_population": 0.004888201212039164,
-					"indexed_energy_consumption": 0.0003117549226780019,
-					"indexed_gdp": 0.13471324439554394
-				}
-			]
-		},
-		{
-			"country": "N",
-			"region": "EU",
-			"code": "SWE",
-			"year":[
-				{
-					"population": 8084965,
-					"areble_area": 3055,
-					"energy_consumption": 73571,
-					"gdp_per_capita": 4745,
-					"life_expectancy_women": 76.86,
-					"life_expectancy_men": 71.94,
-					"life_expectancy": 74.3,
-					"infant_mortality": 11.73,
-					"number_personal_computer": 0,
-					"indexed_population": 0.006596311412682848,
-					"indexed_energy_consumption": 0.019944453405515893,
-					"indexed_gdp": 0.16314812267913628
-				}
-			]
-		},
-		{	
-			"country": "O",
-			"region": "NA",
-			"code": "USA",
-			"year":[
-				{
-					"population": 212124541,
-					"areble_area": 189900,
-					"energy_consumption": 1721317,
-					"gdp_per_capita": 4346,
-					"life_expectancy_women": 73.96,
-					"life_expectancy_men": 66.44,
-					"life_expectancy": 70.06,
-					"infant_mortality": 20.76,
-					"number_personal_computer": 0,
-					"indexed_population": 0.1730668630857908,
-					"indexed_energy_consumption": 0.4666339549907219,
-					"indexed_gdp": 0.14942923944436803
-				}
-			]
-		},
-		{
-			"country": "P",
-			"region": "AF",
-			"code": "ZAP",
-			"year":[
-				{
-					"population": 23105679,
-					"areble_area": 13248,
-					"energy_consumption": 54823,
-					"gdp_per_capita": 3082,
-					"life_expectancy_women": 54.84,
-					"life_expectancy_men": 49.8,
-					"life_expectancy": 52.26,
-					"infant_mortality": 81.43,
-					"number_personal_computer": 0,
-					"indexed_population": 0.018851318971137957,
-					"indexed_energy_consumption": 0.014862034892153129,
-					"indexed_gdp": 0.10596891761793426
-				}
-			]
-		}
-	]
-}
+[
+	{	
+		"country": "A",
+		"region": "OC",
+		"code": "AUS",
+		"year":[
+			{
+				"population": 12925179,
+				"areble_area": 41283,
+				"energy_consumption": 57974,
+				"gdp_per_capita": 3798,
+				"life_expectancy_women": 73.76,
+				"life_expectancy_men": 67.02,
+				"life_expectancy": 70.26,
+				"infant_mortality": 19.33,
+				"number_personal_computer": 0,
+				"indexed_population": 0.010545315378442414,
+				"indexed_energy_consumption": 0.015716243380290852,
+				"indexed_gdp": 0.13058726447531288
+			}
+		]
+	},
+	{
+		"country": "B",
+		"region": "AS",
+		"code": "CHN",
+		"year":[
+			{
+				"population": 851410624,
+				"areble_area": 102165,
+				"energy_consumption": 138400,
+				"gdp_per_capita": 206,
+				"life_expectancy_women": 61.98,
+				"life_expectancy_men": 60.9,
+				"life_expectancy": 61.52,
+				"infant_mortality": 67.16,
+				"number_personal_computer": 0,
+				"indexed_population": 0.6946436522570753,
+				"indexed_energy_consumption": 0.03751902721620475,
+				"indexed_gdp": 0.007082932196396644
+			}
+		]
+	},
+	{	
+		"country": "C",
+		"region": "EU",
+		"code": "DNK",
+		"year":[
+			{
+				"population": 4959189,
+				"areble_area": 2662,
+				"energy_consumption": 16664,
+				"gdp_per_capita": 3535,
+				"life_expectancy_women": 75.68,
+				"life_expectancy_men": 70.58,
+				"life_expectancy": 73.11,
+				"infant_mortality": 13.86,
+				"number_personal_computer": 0,
+				"indexed_population": 0.004046072555459577,
+				"indexed_energy_consumption": 0.004517464375222803,
+				"indexed_gdp": 0.12154449181680649
+			}
+		]
+	},
+	{
+		"country": "D",
+		"region": "AF",
+		"code": "GMB",
+		"year":[
+			{
+				"population": 497455,
+				"areble_area": 133,
+				"energy_consumption": 13,
+				"gdp_per_capita": 400,
+				"life_expectancy_women": 35.83,
+				"life_expectancy_men": 35.07,
+				"life_expectancy": 35.5,
+				"infant_mortality": 184.14,
+				"number_personal_computer": 0,
+				"indexed_population": 0.0004058605193462366,
+				"indexed_energy_consumption": 0.0000035241860824469778,
+				"indexed_gdp": 0.013753266400770183
+			}
+		]
+	},
+	{	
+		"country": "E",
+		"region": "EU",
+		"code": "HUN",
+		"year":[
+			{
+				"population": 10375077,
+				"areble_area": 5578,
+				"energy_consumption": 19340,
+				"gdp_per_capita": 2102,
+				"life_expectancy_women": 71.89,
+				"life_expectancy_men": 66.66,
+				"life_expectancy": 69.21,
+				"infant_mortality": 39.03,
+				"number_personal_computer": 0,
+				"indexed_population": 0.008464753876184167,
+				"indexed_energy_consumption": 0.0052429045257326575,
+				"indexed_gdp": 0.07227341493604732
+			}
+		]
+	},
+	{
+		"country": "F",
+		"region": "AS",
+		"code": "IND",
+		"year":[
+			{
+				"population": 561427382,
+				"areble_area": 164440,
+				"energy_consumption": 66383,
+				"gdp_per_capita": 344,
+				"life_expectancy_women": 46.88,
+				"life_expectancy_men": 48.83,
+				"life_expectancy": 47.72,
+				"infant_mortality": 125.07,
+				"number_personal_computer": 0,
+				"indexed_population": 0.45805391207992274,
+				"indexed_energy_consumption": 0.017995849593159825,
+				"indexed_gdp": 0.011827809104662357
+			}
+		]
+	},
+	{	
+		"country": "G",
+		"region": "EU",
+		"code": "ISL",
+		"year":[
+			{
+				"population": 206821,
+				"areble_area": 7,
+				"energy_consumption": 1621,
+				"gdp_per_capita": 3324,
+				"life_expectancy_women": 75.88,
+				"life_expectancy_men": 69.8,
+				"life_expectancy": 72.7,
+				"infant_mortality": 13.63,
+				"number_personal_computer": 0,
+				"indexed_population": 0.00016873984274297775,
+				"indexed_energy_consumption": 0.00043943889535742704,
+				"indexed_gdp": 0.11428964379040021
+			}
+		]
+	},
+	{
+		"country": "H",
+		"region": "AS",
+		"code": "ISR",
+		"year":[
+			{
+				"population": 2981178,
+				"areble_area": 411,
+				"energy_consumption": 7606,
+				"gdp_per_capita": 4456,
+				"life_expectancy_women": 72.1,
+				"life_expectancy_men": 69.05,
+				"life_expectancy": 70.39,
+				"infant_mortality": 24.56,
+				"number_personal_computer": 0,
+				"indexed_population": 0.0024322651322100995,
+				"indexed_energy_consumption": 0.0020619199494685933,
+				"indexed_gdp": 0.15321138770457984
+			}
+		]
+	},
+	{	
+		"country": "I",
+		"region": "AF",
+		"code": "LBR",
+		"year":[
+			{
+				"population": 1427168,
+				"areble_area": 571,
+				"energy_consumption": 650,
+				"gdp_per_capita": 383,
+				"life_expectancy_women": 42.46,
+				"life_expectancy_men": 41,
+				"life_expectancy": 41.64,
+				"infant_mortality": 170.03,
+				"number_personal_computer": 0,
+				"indexed_population": 0.0011643890315190919,
+				"indexed_energy_consumption": 0.0001762093041223489,
+				"indexed_gdp": 0.013168752578737451
+			}
+		]
+	},
+	{	
+		"country": "J",
+		"region": "EU",
+		"code": "NOR",
+		"year":[
+			{
+				"population": 3906491,
+				"areble_area": 806,
+				"energy_consumption": 71642,
+				"gdp_per_capita": 3102,
+				"life_expectancy_women": 76.8,
+				"life_expectancy_men": 70.76,
+				"life_expectancy": 73.68,
+				"infant_mortality": 13.46,
+				"number_personal_computer": 0,
+				"indexed_population": 0.0031872037995022647,
+				"indexed_energy_consumption": 0.019421518409128185,
+				"indexed_gdp": 0.10665658093797277
+			}
+		]
+	},
+	{	
+		"country": "K",
+		"region": "OC",
+		"code": "PYF",
+		"year":[
+			{
+				"population": 114592,
+				"areble_area": 24,
+				"energy_consumption": 102,
+				"gdp_per_capita": 3408,
+				"life_expectancy_women": 61.48,
+				"life_expectancy_men": 58.33,
+				"life_expectancy": 59.69,
+				"infant_mortality": 69.33,
+				"number_personal_computer": 0,
+				"indexed_population": 0.0000934926146745413,
+				"indexed_energy_consumption": 0.00002765130618535321,
+				"indexed_gdp": 0.11717782973456196
+			}
+		]
+	},
+	{
+		"country": "L",
+		"region": "AF",
+		"code": "RWA",
+		"year":[
+			{
+				"population": 3898015,
+				"areble_area": 748,
+				"energy_consumption": 87,
+				"gdp_per_capita": 39,
+				"life_expectancy_women": 46.04,
+				"life_expectancy_men": 42.83,
+				"life_expectancy": 44.28,
+				"infant_mortality": 135.8,
+				"number_personal_computer": 0,
+				"indexed_population": 0.003180288452863918,
+				"indexed_energy_consumption": 0.00002358493762868362,
+				"indexed_gdp": 0.0013409434740750928
+			}
+		]
+	},
+	{	
+		"country": "M",
+		"region": "AS",
+		"code": "SAU",
+		"year":[
+			{
+				"population": 5991369,
+				"areble_area": 1467,
+				"energy_consumption": 1150,
+				"gdp_per_capita": 3918,
+				"life_expectancy_women": 51.98,
+				"life_expectancy_men": 48.23,
+				"life_expectancy": 50.05,
+				"infant_mortality": 123,
+				"number_personal_computer": 0,
+				"indexed_population": 0.004888201212039164,
+				"indexed_energy_consumption": 0.0003117549226780019,
+				"indexed_gdp": 0.13471324439554394
+			}
+		]
+	},
+	{
+		"country": "N",
+		"region": "EU",
+		"code": "SWE",
+		"year":[
+			{
+				"population": 8084965,
+				"areble_area": 3055,
+				"energy_consumption": 73571,
+				"gdp_per_capita": 4745,
+				"life_expectancy_women": 76.86,
+				"life_expectancy_men": 71.94,
+				"life_expectancy": 74.3,
+				"infant_mortality": 11.73,
+				"number_personal_computer": 0,
+				"indexed_population": 0.006596311412682848,
+				"indexed_energy_consumption": 0.019944453405515893,
+				"indexed_gdp": 0.16314812267913628
+			}
+		]
+	},
+	{	
+		"country": "O",
+		"region": "NA",
+		"code": "USA",
+		"year":[
+			{
+				"population": 212124541,
+				"areble_area": 189900,
+				"energy_consumption": 1721317,
+				"gdp_per_capita": 4346,
+				"life_expectancy_women": 73.96,
+				"life_expectancy_men": 66.44,
+				"life_expectancy": 70.06,
+				"infant_mortality": 20.76,
+				"number_personal_computer": 0,
+				"indexed_population": 0.1730668630857908,
+				"indexed_energy_consumption": 0.4666339549907219,
+				"indexed_gdp": 0.14942923944436803
+			}
+		]
+	},
+	{
+		"country": "P",
+		"region": "AF",
+		"code": "ZAP",
+		"year":[
+			{
+				"population": 23105679,
+				"areble_area": 13248,
+				"energy_consumption": 54823,
+				"gdp_per_capita": 3082,
+				"life_expectancy_women": 54.84,
+				"life_expectancy_men": 49.8,
+				"life_expectancy": 52.26,
+				"infant_mortality": 81.43,
+				"number_personal_computer": 0,
+				"indexed_population": 0.018851318971137957,
+				"indexed_energy_consumption": 0.014862034892153129,
+				"indexed_gdp": 0.10596891761793426
+			}
+		]
+	}
+]
