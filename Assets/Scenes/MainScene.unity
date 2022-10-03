@@ -8374,9 +8374,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9398beb6c623d74fbcc90fa33dd6ef9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BarElement: {fileID: 737393418331571148, guid: 1251abf548282b445801f22403c9db7c,
+  _barElement: {fileID: 737393418331571148, guid: 1251abf548282b445801f22403c9db7c,
     type: 3}
-  Length: 20
+  _countries: 8
+  _years: 10
+  _materialCountry1: {fileID: 2100000, guid: 3c55769e893c4f4c8c51b7fa69bee2b9, type: 2}
+  _materialCountry2: {fileID: 2100000, guid: b0fcdc3322e34d9ea83e8399bd9f4031, type: 2}
+  _materialCountry3: {fileID: 2100000, guid: 47f3c5e1cb6142ba9697cd4c86d74321, type: 2}
+  _materialCountry4: {fileID: 2100000, guid: 71d471797c0e430783230146721c3fcb, type: 2}
+  _materialCountry5: {fileID: 2100000, guid: c4a1b7475a654dd0acaa0cfdfba2e20c, type: 2}
+  _materialCountry6: {fileID: 2100000, guid: d808c628536649eaa61f2a2f2d16c6cc, type: 2}
+  _materialCountry7: {fileID: 2100000, guid: 67e4ae112f094f3082e033060c3cd298, type: 2}
+  _materialCountry8: {fileID: 2100000, guid: 56848fd596f082a43844edfc0e7647ae, type: 2}
 --- !u!1 &1624372097
 GameObject:
   m_ObjectHideFlags: 0
