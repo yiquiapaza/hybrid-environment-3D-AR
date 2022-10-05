@@ -18,6 +18,7 @@ namespace BarChart
 
     public class BarchartManagement : MonoBehaviour
     {
+        #region Features
         [SerializeField]
         public GameObject _barElement;
         [SerializeField]
@@ -43,6 +44,7 @@ namespace BarChart
 
         private GameObject TempObj;
 
+        #endregion
         // Start is called before the first frame update
         void Start()
         {
@@ -70,9 +72,9 @@ namespace BarChart
         {
             gameObject.transform.localPosition = Vector3.zero;
             gameObject.transform.localPosition = new Vector3(
-                (gameObject.transform.localPosition.x + gameObject.transform.localScale.x * index * 0.6f) / gameObject.transform.localScale.x,
+                0.2f + gameObject.transform.localScale.x / 2 + (gameObject.transform.localPosition.x + gameObject.transform.localScale.x * index * 0.6f) / gameObject.transform.localScale.x,
                 gameObject.transform.localScale.y / 2 + gameObject.transform.localPosition.y,
-                -(gameObject.transform.localPosition.z + gameObject.transform.localScale.z * indexY * 0.6f / gameObject.transform.localScale.z));
+                -0.2f - gameObject.transform.localScale.x / 2 - (gameObject.transform.localPosition.z + gameObject.transform.localScale.z * indexY * 0.6f / gameObject.transform.localScale.z));
 
 
         }
@@ -83,6 +85,7 @@ namespace BarChart
             Debug.Log(gameObject.transform.localScale);
         }
 
+        #region Material
         void SetMaterial(GameObject country, int index)
         {
             switch (index)
@@ -113,5 +116,8 @@ namespace BarChart
                     break;
             }
         }
+        #endregion
+ 
+        
     }
 }
