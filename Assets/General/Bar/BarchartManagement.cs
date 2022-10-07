@@ -19,30 +19,22 @@ namespace BarChart
     public class BarchartManagement : MonoBehaviour
     {
         #region Features
-        [SerializeField]
-        public GameObject _barElement;
-        [SerializeField]
-        public int _countries;
-        [SerializeField]
-        public int _years;
-        [SerializeField]
-        public Material _materialCountry1;
-        [SerializeField]
-        public Material _materialCountry2;
-        [SerializeField]
-        public Material _materialCountry3;
-        [SerializeField]
-        public Material _materialCountry4;
-        [SerializeField]
-        public Material _materialCountry5;
-        [SerializeField]
-        public Material _materialCountry6;
-        [SerializeField]
-        public Material _materialCountry7;
-        [SerializeField]
-        public Material _materialCountry8;
+        [SerializeField] GameObject _barElement;
+        [SerializeField] int _countries;
+        [SerializeField] int _years;
+        [SerializeField] Material _materialCountry1;
+        [SerializeField] Material _materialCountry2;
+        [SerializeField] Material _materialCountry3;
+        [SerializeField] Material _materialCountry4;
+        [SerializeField] Material _materialCountry5;
+        [SerializeField] Material _materialCountry6;
+        [SerializeField] Material _materialCountry7;
+        [SerializeField] Material _materialCountry8;
 
         private GameObject TempObj;
+        private Vector3 _relativeScale;
+        private Vector3 _relativePostion;
+
 
         #endregion
         // Start is called before the first frame update
@@ -57,7 +49,7 @@ namespace BarChart
                     UpdateBarSize(TempObj, i);
                     UpdateBarPosition(TempObj, i, j);
                     SetMaterial(TempObj, i);
-                    //TempObj.transform.localScale = transform.localScale;
+                    UpdateBarSizeMessage(TempObj);
                 }
             }
         }
@@ -70,54 +62,67 @@ namespace BarChart
 
         void UpdateBarPosition(GameObject gameObject, int index, int indexY)
         {
+            Vector3 gameParentPosition = gameObject.transform.localPosition;
+            Debug.Log(gameParentPosition);
+            _relativePostion = gameObject.transform.localPosition;
+            gameObject = gameObject.transform.GetChild(0).gameObject;
+            Debug.Log(gameObject.transform.position);
             gameObject.transform.localPosition = Vector3.zero;
             gameObject.transform.localPosition = new Vector3(
-                0.2f + gameObject.transform.localScale.x / 2 + (gameObject.transform.localPosition.x + gameObject.transform.localScale.x * index * 0.6f) / gameObject.transform.localScale.x,
-                gameObject.transform.localScale.y / 2 + gameObject.transform.localPosition.y,
-                -0.2f - gameObject.transform.localScale.x / 2 - (gameObject.transform.localPosition.z + gameObject.transform.localScale.z * indexY * 0.6f / gameObject.transform.localScale.z));
-
-
+                0.2f + gameObject.transform.localScale.x / transform.localScale.x + (gameObject.transform.localPosition.x + gameObject.transform.localScale.x * index * 0.6f) / gameObject.transform.localScale.x,
+                ( gameParentPosition.y / 2 + gameParentPosition.y),
+                -0.2f - gameObject.transform.localScale.x / transform.localScale.z - (gameObject.transform.localPosition.z + gameObject.transform.localScale.z * indexY * 0.6f / gameObject.transform.localScale.z));
         }
 
         void UpdateBarSize(GameObject gameObject, float size = 0)
         {
-            gameObject.transform.localScale = new Vector3(transform.localScale.x, Random.Range(0f, transform.localScale.y), transform.localScale.y);
+            _relativeScale = gameObject.transform.localScale;
+            gameObject = gameObject.transform.GetChild(0).gameObject;
+            gameObject.transform.localScale = new Vector3(
+                gameObject.transform.localScale.x / _relativeScale.x , 
+                Random.Range(0f, gameObject.transform.localScale.y / _relativeScale.y), 
+                gameObject.transform.localScale.z / _relativeScale.z);
             Debug.Log(gameObject.transform.localScale);
         }
 
         #region Material
-        void SetMaterial(GameObject country, int index)
+        void SetMaterial(GameObject gameObject, int index)
         {
+            gameObject = gameObject.transform.GetChild(0).gameObject;
             switch (index)
             {
                 case (int) MaterialSelector.ObjectA:
-                    country.GetComponent<MeshRenderer>().material = _materialCountry1;
+                    gameObject.GetComponent<MeshRenderer>().material = _materialCountry1;
                     break;
                 case (int) MaterialSelector.ObjectB:
-                    country.GetComponent<MeshRenderer>().material = _materialCountry2;
+                    gameObject.GetComponent<MeshRenderer>().material = _materialCountry2;
                     break;
                 case (int)MaterialSelector.ObjectC:
-                    country.GetComponent<MeshRenderer>().material = _materialCountry3;
+                    gameObject.GetComponent<MeshRenderer>().material = _materialCountry3;
                     break;
                 case (int)MaterialSelector.ObjectD:
-                    country.GetComponent<MeshRenderer>().material = _materialCountry4;
+                    gameObject.GetComponent<MeshRenderer>().material = _materialCountry4;
                     break;
                 case (int)MaterialSelector.ObjectE:
-                    country.GetComponent<MeshRenderer>().material = _materialCountry5;
+                    gameObject.GetComponent<MeshRenderer>().material = _materialCountry5;
                     break;
                 case (int)MaterialSelector.ObjectF:
-                    country.GetComponent<MeshRenderer>().material = _materialCountry6;
+                    gameObject.GetComponent<MeshRenderer>().material = _materialCountry6;
                     break;
                 case (int)MaterialSelector.ObjectG:
-                    country.GetComponent<MeshRenderer>().material = _materialCountry7;
+                    gameObject.GetComponent<MeshRenderer>().material = _materialCountry7;
                     break;
                 case (int)MaterialSelector.ObjectH:
-                    country.GetComponent<MeshRenderer>().material = _materialCountry8;
+                    gameObject.GetComponent<MeshRenderer>().material = _materialCountry8;
                     break;
             }
         }
         #endregion
- 
-        
+
+        void UpdateBarSizeMessage(GameObject gameObject)
+        {
+            gameObject = gameObject.transform.GetChild(1).gameObject;
+            gameObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+        }
     }
 }
