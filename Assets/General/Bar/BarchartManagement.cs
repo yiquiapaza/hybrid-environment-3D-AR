@@ -6,14 +6,14 @@ namespace BarChart
 {
     public enum MaterialSelector
     {
-        ObjectA,
-        ObjectB,
-        ObjectC,
-        ObjectD,
-        ObjectE,
-        ObjectF,
-        ObjectG,
-        ObjectH
+        ObjectA = 1,
+        ObjectB = 2,
+        ObjectC = 3,
+        ObjectD = 4,
+        ObjectE = 5,
+        ObjectF = 6,
+        ObjectG = 7,
+        ObjectH = 8
     }
 
     public class BarchartManagement : MonoBehaviour
@@ -40,9 +40,9 @@ namespace BarChart
         // Start is called before the first frame update
         void Start()
         {
-            for (int i = 0; _countries > i; i++) // Country
+            for (int i = 1; _countries >= i; i++) // Country
             {
-                for (int j = 0; _years > j; j++)
+                for (int j = 1; _years >= j; j++)
                 {
                     TempObj = Instantiate(_barElement) as GameObject;
                     TempObj.transform.parent = transform;
@@ -60,18 +60,18 @@ namespace BarChart
 
         }
 
-        void UpdateBarPosition(GameObject gameObject, int index, int indexY)
+        void UpdateBarPosition(GameObject gameObject, int index, int indexz)
         {
-            Vector3 gameParentPosition = gameObject.transform.localPosition;
-            Debug.Log(gameParentPosition);
             _relativePostion = gameObject.transform.localPosition;
-            gameObject = gameObject.transform.GetChild(0).gameObject;
-            Debug.Log(gameObject.transform.position);
-            gameObject.transform.localPosition = Vector3.zero;
-            gameObject.transform.localPosition = new Vector3(
-                0.2f + gameObject.transform.localScale.x / transform.localScale.x + (gameObject.transform.localPosition.x + gameObject.transform.localScale.x * index * 0.6f) / gameObject.transform.localScale.x,
-                ( gameParentPosition.y / 2 + gameParentPosition.y),
-                -0.2f - gameObject.transform.localScale.x / transform.localScale.z - (gameObject.transform.localPosition.z + gameObject.transform.localScale.z * indexY * 0.6f / gameObject.transform.localScale.z));
+            _relativeScale = gameObject.transform.localScale;
+            var tempChild = gameObject.transform.GetChild(0).gameObject;
+            //gameObject = gameObject.transform.GetChild(0).gameObject;
+            Debug.Log(_relativePostion);
+            //gameObject.transform.localPosition = Vector3.zero;
+            gameObject.transform.localPosition = new Vector3( 
+                ( transform.position.x * _relativeScale.x ) + _relativePostion.x + 0.08f * index * (_relativeScale.x),
+                (tempChild.transform.localScale.y / _relativeScale.y) + (tempChild.transform.localScale.y / 2 ) * _relativeScale.y , 
+                ( -transform.position.z * _relativeScale.z ) - (_relativePostion.z + 0.08f * indexz * (_relativeScale.z)));
         }
 
         void UpdateBarSize(GameObject gameObject, float size = 0)
@@ -82,7 +82,6 @@ namespace BarChart
                 gameObject.transform.localScale.x / _relativeScale.x , 
                 Random.Range(0f, gameObject.transform.localScale.y / _relativeScale.y), 
                 gameObject.transform.localScale.z / _relativeScale.z);
-            Debug.Log(gameObject.transform.localScale);
         }
 
         #region Material
