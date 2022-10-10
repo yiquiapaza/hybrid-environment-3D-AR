@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Microsoft.MixedReality.Toolkit;
 
 namespace BarChart
 {
@@ -20,6 +21,7 @@ namespace BarChart
     {
         #region Features
         [SerializeField] GameObject _barElement;
+        [SerializeField] GameObject _message;
         [SerializeField] int _countries;
         [SerializeField] int _years;
         [SerializeField] Material _materialCountry1;
@@ -33,7 +35,7 @@ namespace BarChart
 
         private GameObject TempObj;
         private Vector3 _relativeScale;
-        private Vector3 _relativePostion;
+        private Vector3 _relativePosition;
 
 
         #endregion
@@ -49,7 +51,6 @@ namespace BarChart
                     UpdateBarSize(TempObj, i);
                     UpdateBarPosition(TempObj, i, j);
                     SetMaterial(TempObj, i);
-                    UpdateBarSizeMessage(TempObj);
                 }
             }
         }
@@ -57,21 +58,18 @@ namespace BarChart
         // Update is called once per frame
         void Update()
         {
-
+            ObjectInfo();
         }
 
         void UpdateBarPosition(GameObject gameObject, int index, int indexz)
         {
-            _relativePostion = gameObject.transform.localPosition;
+            _relativePosition = gameObject.transform.localPosition;
             _relativeScale = gameObject.transform.localScale;
             var tempChild = gameObject.transform.GetChild(0).gameObject;
-            //gameObject = gameObject.transform.GetChild(0).gameObject;
-            Debug.Log(_relativePostion);
-            //gameObject.transform.localPosition = Vector3.zero;
             gameObject.transform.localPosition = new Vector3( 
-                ( transform.position.x * _relativeScale.x ) + _relativePostion.x + 0.08f * index * (_relativeScale.x),
+                ( transform.position.x * _relativeScale.x ) + _relativePosition.x + 0.08f * index * (_relativeScale.x),
                 (tempChild.transform.localScale.y / _relativeScale.y) + (tempChild.transform.localScale.y / 2 ) * _relativeScale.y , 
-                ( -transform.position.z * _relativeScale.z ) - (_relativePostion.z + 0.08f * indexz * (_relativeScale.z)));
+                ( -transform.position.z * _relativeScale.z ) - (_relativePosition.z + 0.08f * indexz * (_relativeScale.z)));
         }
 
         void UpdateBarSize(GameObject gameObject, float size = 0)
@@ -118,10 +116,29 @@ namespace BarChart
         }
         #endregion
 
-        void UpdateBarSizeMessage(GameObject gameObject)
+        void ObjectInfo ()
         {
-            gameObject = gameObject.transform.GetChild(1).gameObject;
-            gameObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+            if (CoreServices.InputSystem.GazeProvider.GazeTarget)
+            {
+                var tempPosition = CoreServices.InputSystem.GazeProvider.GazeTarget.transform.position;
+                _message.transform.SetPositionAndRotation(new Vector3(tempPosition.x, tempPosition.y + 0.08f, tempPosition.z), Quaternion.LookRotation(Camera.main.transform.forward));
+            }
+            else
+            {
+                _message.transform.position = new Vector3(0, 0, -10);
+            }
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
