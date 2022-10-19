@@ -8336,6 +8336,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1623419659}
   - component: {fileID: 1623419660}
+  - component: {fileID: 1623419661}
   m_Layer: 0
   m_Name: BarChart
   m_TagString: Untagged
@@ -8383,6 +8384,19 @@ MonoBehaviour:
   _materialCountry6: {fileID: 2100000, guid: d808c628536649eaa61f2a2f2d16c6cc, type: 2}
   _materialCountry7: {fileID: 2100000, guid: 67e4ae112f094f3082e033060c3cd298, type: 2}
   _materialCountry8: {fileID: 2100000, guid: 56848fd596f082a43844edfc0e7647ae, type: 2}
+--- !u!114 &1623419661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1623419658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6996cf6d23667a49b271ad28cfc5273, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _changeMaterial: {fileID: 2100000, guid: 680505b4b4f3400f9fd3ebb242751819, type: 2}
 --- !u!1 &1624372097
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,7 +1,7 @@
-﻿using System.Collections;
+﻿using System.Text;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Networking;
 using Microsoft.MixedReality.Toolkit;
 
 
@@ -40,7 +40,7 @@ namespace BarChart
         private GameObject TempObj;
         private Vector3 _relativeScale;
         private Vector3 _relativePosition;
-
+        private readonly string _nameObject = "bar";
 
         #endregion
         // Start is called before the first frame update
@@ -55,10 +55,9 @@ namespace BarChart
                     UpdateBarSize(TempObj, i);
                     UpdateBarPosition(TempObj, i, j);
                     SetMaterial(TempObj, i);
+                    AddNameObject(TempObj, i, j);
                 }
             }
-
-            StartCoroutine(WaitServer());
         }
 
         // Update is called once per frame
@@ -134,32 +133,11 @@ namespace BarChart
                 _message.transform.position = new Vector3(0, 0, -10);
             }
         }
-
-        IEnumerator RequestServer()
+    
+        void AddNameObject(GameObject gameObject, int indexX, int indexY)
         {
-            using (UnityWebRequest request = UnityWebRequest.Get(Constants.ENDPOINT_RAWDATA))
-            {
-                yield return request.SendWebRequest();
-                if (request.isHttpError || request.isNetworkError)
-                {
-                    Debug.Log(request.error);
-                }
-                else
-                {
-                    Debug.Log(request.downloadHandler.text);
-                }
-
-            }
-        }
-
-        IEnumerator WaitServer()
-        {
-            while (true)
-            {
-                StartCoroutine(RequestServer());
-                Debug.Log("Wait for next Update");
-                yield return new WaitForSecondsRealtime(1f);
-            }
+            gameObject = gameObject.transform.GetChild(0).gameObject;
+            gameObject.name = string.Concat(_nameObject, indexX, indexY);
         }
     }
 }
