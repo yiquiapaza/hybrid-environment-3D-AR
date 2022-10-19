@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 using Microsoft.MixedReality.Toolkit;
+
 
 namespace BarChart
 {
+    #region Materials
     public enum MaterialSelector
     {
         ObjectA = 1,
@@ -16,6 +19,7 @@ namespace BarChart
         ObjectG = 7,
         ObjectH = 8
     }
+    #endregion
 
     public class BarchartManagement : MonoBehaviour
     {
@@ -53,6 +57,8 @@ namespace BarChart
                     SetMaterial(TempObj, i);
                 }
             }
+
+            StartCoroutine(WaitServer());
         }
 
         // Update is called once per frame
@@ -126,6 +132,33 @@ namespace BarChart
             else
             {
                 _message.transform.position = new Vector3(0, 0, -10);
+            }
+        }
+
+        IEnumerator RequestServer()
+        {
+            using (UnityWebRequest request = UnityWebRequest.Get(Constants.ENDPOINT_RAWDATA))
+            {
+                yield return request.SendWebRequest();
+                if (request.isHttpError || request.isNetworkError)
+                {
+                    Debug.Log(request.error);
+                }
+                else
+                {
+                    Debug.Log(request.downloadHandler.text);
+                }
+
+            }
+        }
+
+        IEnumerator WaitServer()
+        {
+            while (true)
+            {
+                StartCoroutine(RequestServer());
+                Debug.Log("Wait for next Update");
+                yield return new WaitForSecondsRealtime(1f);
             }
         }
     }
