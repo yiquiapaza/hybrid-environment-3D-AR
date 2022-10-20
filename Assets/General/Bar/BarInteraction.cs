@@ -4,30 +4,10 @@ using UnityEngine;
 using UnityEngine.Networking;
 using Microsoft.MixedReality.Toolkit.Input;
 
-public class BarInteraction : MonoBehaviour, IMixedRealityGestureHandler
+public class BarInteraction : MonoBehaviour, IMixedRealityInputHandler
 {
 
-    public void OnGestureCanceled(InputEventData eventData)
-    {
-        Debug.Log("Cancel event");
-    }
 
-    public void OnGestureCompleted(InputEventData eventData)
-    {
-        Debug.Log(gameObject.name);
-        Debug.Log("Gesture complete");
-        StartCoroutine(SendRequest());
-    }
-
-    public void OnGestureStarted(InputEventData eventData)
-    {
-        Debug.Log("Gesture start");
-    }
-
-    public void OnGestureUpdated(InputEventData eventData)
-    {
-        Debug.Log("gesture update");
-    }
 
     // Start is called before the first frame update
     void Start()
@@ -54,5 +34,17 @@ public class BarInteraction : MonoBehaviour, IMixedRealityGestureHandler
                 Debug.Log(request.downloadHandler.text);
         }
 
+    }
+
+    public void OnInputUp(InputEventData eventData)
+    {
+        Debug.Log(gameObject.name);
+        Debug.Log("Gesture complete");
+        StartCoroutine(SendRequest());
+    }
+
+    public void OnInputDown(InputEventData eventData)
+    {
+        Debug.Log("OnInputDown");
     }
 }
