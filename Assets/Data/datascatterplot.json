@@ -1,0 +1,137 @@
+[
+  {
+    "id": "bar0",
+    "parameter": "",
+    "parameter1": "",
+    "parameter2": "",
+    "status": false
+  },
+  {
+    "id": "bar1",
+    "parameter": "A",
+    "parameter1": "OC",
+    "parameter2": "AUS",
+    "parameter3": [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26 ],
+    "status": true
+  },
+  {
+    "id": "bar2",
+    "parameter": "B",
+    "parameter1": "AS",
+    "parameter2": "CHN",
+    "parameter3": [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26 ],
+    "status": true
+  },
+  {
+    "id": "bar3",
+    "parameter": "C",
+    "parameter1": "EU",
+    "parameter2": "DNK",
+    "parameter3": [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26 ],
+    "status": true
+  },
+  {
+    "id": "bar4",
+    "parameter": "D",
+    "parameter1": "AF",
+    "parameter2": "GMB",
+    "parameter3": [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26 ],
+    "status": true
+  },
+  {
+    "id": "bar5",
+    "parameter": "E",
+    "parameter1": "EU",
+    "parameter2": "HUN",
+    "parameter3": [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26 ],
+    "status": true
+  },
+  {
+    "id": "bar6",
+    "parameter": "F",
+    "parameter1": "AS",
+    "parameter2": "IND",
+    "parameter3": [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26 ],
+    "status": true
+  },
+  {
+    "id": "bar7",
+    "parameter": "G",
+    "parameter1": "EU",
+    "parameter2": "ISL",
+    "parameter3": [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26 ],
+    "status": true
+  },
+  {
+    "id": "bar8",
+    "parameter": "H",
+    "parameter1": "AS",
+    "parameter2": "ISR",
+    "parameter3": [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26 ],
+    "status": true
+  },
+  {
+    "id": "bar9",
+    "parameter": "I",
+    "parameter1": "AF",
+    "parameter2": "LBR",
+    "parameter3": [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26 ],
+    "status": true
+  },
+  {
+    "id": "bar10",
+    "parameter": "J",
+    "parameter1": "EU",
+    "parameter2": "NOR",
+    "parameter3": [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26 ],
+    "status": true
+  },
+  {
+    "id": "bar11",
+    "parameter": "K",
+    "parameter1": "OC",
+    "parameter2": "PYF",
+    "parameter3": [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26 ],
+    "status": true
+  },
+  {
+    "id": "bar12",
+    "parameter": "L",
+    "parameter1": "AF",
+    "parameter2": "RWA",
+    "parameter3": [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26 ],
+    "status": true
+  },
+  {
+    "id": "bar13",
+    "parameter": "M",
+    "parameter1": "AS",
+    "parameter2": "SAU",
+    "parameter3": [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26 ],
+    "status": true
+  },
+  {
+    "id": "bar14",
+    "parameter": "N",
+    "parameter1": "EU",
+    "parameter2": "SWE",
+    "parameter3": [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26 ],
+    "status": true
+  },
+  {
+    "id": "bar15",
+    "parameter": "O",
+    "parameter1": "NA",
+    "parameter2": "USA",
+    "parameter3": [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26 ],
+    "status": true
+  },
+  {
+    "id": "bar16",
+    "parameter": "P",
+    "parameter1": "AF",
+    "parameter2": "ZAP",
+    "parameter3": [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26 ],
+    "status": true
+  }
+]
