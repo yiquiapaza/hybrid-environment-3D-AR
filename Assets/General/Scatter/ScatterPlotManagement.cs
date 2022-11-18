@@ -18,7 +18,7 @@ namespace ScatterPlot
         public const string CATEGORY8 = "03";
     }
 
-    public class ScatterPlottManagement : MonoBehaviour
+    public class ScatterPlotManagement : MonoBehaviour
     {
         // Start is called before the first frame update
         #region Input Features
@@ -78,8 +78,6 @@ namespace ScatterPlot
                 Debug.Log(_tempObject.transform.localPosition);
                 Debug.Log(_tempData[i][x]);
                 _tempObject.transform.localPosition = new Vector3(_tempData[i][x][value], _tempData[i][y][value], 0);
-                //_tempObject.transform.localScale = new Vector3(_tempData[i][x], _tempData[i][x], _tempData[i][x]);
-                //_tempObject.transform.localPosition = new Vector3(6, 6, 0);
             }
         }
     }

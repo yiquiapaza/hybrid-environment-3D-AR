@@ -4,15 +4,16 @@ using UnityEngine;
 using UnityEngine.Networking;
 using SimpleJSON;
 
-namespace BarChart { 
 
-    public class BarChartClient : MonoBehaviour
+namespace ScatterPlot
+{
+    public class ScatterPlotClient : MonoBehaviour
     {
-        [SerializeField] Material _changeMaterial;
+        #region Features
+        [SerializeField] Material _selectMaterial;
         private JSONNode _dataRequest;
-        private Material _tempMaterial;
-        private readonly string _nameObject = "bar00";
         private GameObject _tempObject;
+        #endregion
 
         // Start is called before the first frame update
         void Start()
@@ -25,15 +26,15 @@ namespace BarChart {
         {
 
         }
-
+        
         IEnumerator RequestServer()
         {
             using (UnityWebRequest request = UnityWebRequest.Get(Constants.ENDPOINT_RAWDATA))
             {
                 yield return request.SendWebRequest();
-                if (request.isHttpError || request.isNetworkError)
+                if (!request.isHttpError || !request.isNetworkError)
                 {
-                    Debug.Log(request.error);
+                   
                 }
                 else
                 {
@@ -42,14 +43,11 @@ namespace BarChart {
                     if (!_dataRequest["state"].Equals("bar00"))
                     {
                         _tempObject = GameObject.Find(_dataRequest["state"]);
-                        //_tempMaterial = _tempObject.GetComponent<MeshRenderer>().material;
-                        _tempObject.GetComponent<MeshRenderer>().material = _changeMaterial; 
-                        Debug.Log(_tempObject.transform.position);
+                        _tempObject.GetComponent<MeshRenderer>().material = _selectMaterial;
                     }
-                    Debug.Log(_dataRequest["state"]);
                 }
-
-            }
+            
+            }                
         }
 
         IEnumerator WaitServer()
@@ -57,7 +55,6 @@ namespace BarChart {
             while (true)
             {
                 StartCoroutine(RequestServer());
-                Debug.Log("Wait for next Update");
                 yield return new WaitForSecondsRealtime(1f);
             }
         }
