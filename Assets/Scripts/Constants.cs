@@ -29,10 +29,12 @@ public class Constants
     public const string NAME_FILE = "data.json";
     public const string NAME_DIRECTORY = "Data";
 
-    public const string HOST = "http://143.54.49.74:3000";
+    public const string HOST = "http://192.168.31.242:3000";
 
     public const string ENDPOINT_RAWDATA = HOST + "/";
-    public const string ENDPOINT_COUNTRY = HOST + "/country";
+    public const string ENDPOINT_BARCHART_GET = HOST + "/barchart";
+    public const string ENDPOINT_BARCHART_HOLOLENS_POST = HOST + "/barchart/desktop";
+    public const string ENDPOINT_COUNTRY = HOST + "/desktop";
     public const string ENDPOINT_ROTATE  = HOST + "/rotation";
 
     public const int POPULATION = 0;

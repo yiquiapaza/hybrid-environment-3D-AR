@@ -21,8 +21,9 @@ public class ScatterInteraction : MonoBehaviour, IMixedRealityInputHandler
     IEnumerator SendResquest()
     {
         WWWForm form = new WWWForm();
-        form.AddField("state", gameObject.name);
-        using (UnityWebRequest request = UnityWebRequest.Post(Constants.ENDPOINT_RAWDATA, form))
+        form.AddField("id", gameObject.name);
+        form.AddField("state", 0);
+        using (UnityWebRequest request = UnityWebRequest.Post(Constants.ENDPOINT_BARCHART_HOLOLENS_POST, form))
         {
             yield return request.SendWebRequest();
             if (!request.isNetworkError || !request.isHttpError)

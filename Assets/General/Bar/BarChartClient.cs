@@ -28,7 +28,7 @@ namespace BarChart {
 
         IEnumerator RequestServer()
         {
-            using (UnityWebRequest request = UnityWebRequest.Get(Constants.ENDPOINT_RAWDATA))
+            using (UnityWebRequest request = UnityWebRequest.Get(Constants.ENDPOINT_BARCHART_GET))
             {
                 yield return request.SendWebRequest();
                 if (request.isHttpError || request.isNetworkError)
@@ -38,13 +38,18 @@ namespace BarChart {
                 else
                 {
                     Debug.Log(request.downloadHandler.text);
-                    _dataRequest = (JSONNode)JSON.Parse(request.downloadHandler.text);
-                    if (!_dataRequest["state"].Equals("bar00"))
+                    _dataRequest = (JSONArray)JSON.Parse(request.downloadHandler.text);
+                    Debug.Log(_dataRequest);
+                    if (_dataRequest.Count != 0)
                     {
-                        _tempObject = GameObject.Find(_dataRequest["state"]);
+                        for (int i = 0; i < _dataRequest.Count; i++)
+                        {
+                            _tempObject = GameObject.Find(_dataRequest[i]["id"]);
+                            _tempObject.GetComponent<MeshRenderer>().material = _changeMaterial; 
+                            Debug.Log(_tempObject.transform.position);
+
+                        }
                         //_tempMaterial = _tempObject.GetComponent<MeshRenderer>().material;
-                        _tempObject.GetComponent<MeshRenderer>().material = _changeMaterial; 
-                        Debug.Log(_tempObject.transform.position);
                     }
                     Debug.Log(_dataRequest["state"]);
                 }
