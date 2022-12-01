@@ -8450,6 +8450,7 @@ MonoBehaviour:
   _materialCountry6: {fileID: 2100000, guid: d808c628536649eaa61f2a2f2d16c6cc, type: 2}
   _materialCountry7: {fileID: 2100000, guid: 67e4ae112f094f3082e033060c3cd298, type: 2}
   _materialCountry8: {fileID: 2100000, guid: 56848fd596f082a43844edfc0e7647ae, type: 2}
+  _data: {fileID: 4900000, guid: 69cc3fe5a735ba341a831174200d287f, type: 3}
 --- !u!114 &1623419661
 MonoBehaviour:
   m_ObjectHideFlags: 0
