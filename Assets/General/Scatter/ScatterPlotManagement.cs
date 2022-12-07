@@ -73,7 +73,7 @@ namespace ScatterPlot
 
         private void UpdatePosition(string x, string y, int value)
         {
-            for (int i = 1; _tempData.Count > i; i++)
+            for (int i = 0; _tempData.Count > i; i++)
             {
                 _tempObject = GameObject.Find("scatter" + i) as GameObject;
                 Debug.Log(_tempObject.transform.localScale);
