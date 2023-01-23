@@ -27,8 +27,6 @@ namespace BarChart
         #region Features
         [SerializeField] GameObject _barElement;
         [SerializeField] GameObject _message;
-        [SerializeField] int _countries;
-        [SerializeField] int _years;
         [SerializeField] Material _materialCountry1;
         [SerializeField] Material _materialCountry2;
         [SerializeField] Material _materialCountry3;
@@ -51,13 +49,13 @@ namespace BarChart
         void Start()
         {
             _tempData = (JSONArray)JSON.Parse(_data.text);
-            for (int i = 1; _tempData.Count >= i; i++) // Country
+            for (int i = 0; _tempData.Count > i; i++) // Country
             {
-                for (int j = 1; _tempData[i]["parameter3"].Count >= j; j++)
+                for (int j = 0; _tempData[i]["parameter3"].Count > j; j++)
                 {
                     TempObj = Instantiate(_barElement) as GameObject;
                     TempObj.transform.parent = transform;
-                    UpdateBarSize(TempObj, i);
+                    UpdateBarSize(TempObj, _tempData[i]["parameter3"][j]);
                     UpdateBarPosition(TempObj, i, j);
                     SetMaterial(TempObj, _tempData[i]["parameter1"]);
                     AddNameObject(TempObj, i, j);
@@ -88,7 +86,7 @@ namespace BarChart
             gameObject = gameObject.transform.GetChild(0).gameObject;
             gameObject.transform.localScale = new Vector3(
                 gameObject.transform.localScale.x / _relativeScale.x , 
-                Random.Range(0f, gameObject.transform.localScale.y / _relativeScale.y), 
+                size, 
                 gameObject.transform.localScale.z / _relativeScale.z);
         }
 

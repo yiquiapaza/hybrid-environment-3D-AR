@@ -68,7 +68,7 @@ namespace ScatterPlot
         }
         private void AddTagObject(GameObject tempObject, int i)
         {
-            tempObject.name = string.Concat("scatter", i);
+            tempObject.tag = string.Concat("scatter", i);
         }
 
         private void UpdatePosition(string x, string y, int value)
