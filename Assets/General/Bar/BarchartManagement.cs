@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Microsoft.MixedReality.Toolkit;
 using SimpleJSON;
-
+using System;
+using TMPro;
 
 namespace BarChart
 {
@@ -126,21 +127,33 @@ namespace BarChart
 
         void ObjectInfo ()
         {
+            GameObject tmpGameObject;
             if (CoreServices.InputSystem.GazeProvider.GazeTarget)
             {
                 var tempPosition = CoreServices.InputSystem.GazeProvider.GazeTarget.transform.position;
-                _message.transform.SetPositionAndRotation(new Vector3(tempPosition.x, tempPosition.y + 0.08f, tempPosition.z), Quaternion.LookRotation(Camera.main.transform.forward));
+
+                string[] data = CoreServices.InputSystem.GazeProvider.GazeTarget.name.Split('-');
+                if (data.IsNotNull())
+                {
+                    var temData = _tempData[Int16.Parse(data[1])]["parameter"];
+                    Debug.Log(temData);
+                    tmpGameObject = _message.transform.GetChild(1).gameObject;
+                    tmpGameObject.GetComponent<TextMeshPro>().text = _tempData[Int16.Parse(data[1])]["parameter"] + "\n" + _tempData[Int16.Parse(data[1])]["parameter3"][Int16.Parse(data[2])];
+                    Debug.Log(tmpGameObject.name);
+                    
+                }
+                _message.transform.SetPositionAndRotation(new Vector3(tempPosition.x, 2*tempPosition.y + 0.08f, tempPosition.z), Quaternion.LookRotation(Camera.main.transform.forward));
             }
             else
             {
                 _message.transform.position = new Vector3(0, 0, -10);
             }
         }
-    
+
         void AddNameObject(GameObject gameObject, int indexX, int indexY)
         {
             gameObject = gameObject.transform.GetChild(0).gameObject;
-            gameObject.name = string.Concat(_nameObject, indexX, indexY);
+            gameObject.name = string.Concat(_nameObject, "-", indexX, "-", indexY);
         }
     }
 }

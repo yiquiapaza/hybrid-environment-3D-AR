@@ -2232,6 +2232,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1540336783135690610, guid: a46e10a81ab54c34594b37e75dba0e1c,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1540336783135690610, guid: a46e10a81ab54c34594b37e75dba0e1c,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1540336783135690610, guid: a46e10a81ab54c34594b37e75dba0e1c,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.003
+      objectReference: {fileID: 0}
     - target: {fileID: 7115892570857439524, guid: a46e10a81ab54c34594b37e75dba0e1c,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -5725,7 +5740,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1019725335
 Transform:
   m_ObjectHideFlags: 0
@@ -8440,8 +8455,6 @@ MonoBehaviour:
   _barElement: {fileID: 6833128755854664083, guid: 49e766a00a6587b4e9dfbec0f011a50f,
     type: 3}
   _message: {fileID: 411536340}
-  _countries: 8
-  _years: 8
   _materialCountry1: {fileID: 2100000, guid: 3c55769e893c4f4c8c51b7fa69bee2b9, type: 2}
   _materialCountry2: {fileID: 2100000, guid: b0fcdc3322e34d9ea83e8399bd9f4031, type: 2}
   _materialCountry3: {fileID: 2100000, guid: 47f3c5e1cb6142ba9697cd4c86d74321, type: 2}
