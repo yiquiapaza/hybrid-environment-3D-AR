@@ -44,6 +44,7 @@ namespace BarChart
         private Vector3 _relativePosition;
         private readonly string _nameObject = "bar";
         private JSONArray _tempData;
+        private string[] data;
 
         #endregion
         // Start is called before the first frame update
@@ -133,14 +134,17 @@ namespace BarChart
                 var tempPosition = CoreServices.InputSystem.GazeProvider.GazeTarget.transform.position;
 
                 string[] data = CoreServices.InputSystem.GazeProvider.GazeTarget.name.Split('-');
-                if (data.IsNotNull())
+                if (!data.IsNotNull())
                 {
-                    var temData = _tempData[Int16.Parse(data[1])]["parameter"];
-                    Debug.Log(temData);
-                    tmpGameObject = _message.transform.GetChild(1).gameObject;
-                    tmpGameObject.GetComponent<TextMeshPro>().text = _tempData[Int16.Parse(data[1])]["parameter"] + "\n" + _tempData[Int16.Parse(data[1])]["parameter3"][Int16.Parse(data[2])];
-                    Debug.Log(tmpGameObject.name);
-                    
+                    //var temData = _tempData[Int16.Parse(data[1])]["parameter"];
+                    Debug.Log(data[0]);
+                    Debug.Log(data[1]);
+                    Debug.Log(data[2]);
+
+                    //tmpGameObject = _message.transform.GetChild(1).gameObject;
+                    //tmpGameObject.GetComponent<TextMeshPro>().text = _tempData[Int16.Parse(data[1])]["parameter"] + "\n" + _tempData[Int16.Parse(data[1])]["parameter3"][Int16.Parse(data[2])];
+                    //Debug.Log(tmpGameObject.name);
+
                 }
                 _message.transform.SetPositionAndRotation(new Vector3(tempPosition.x, 2*tempPosition.y + 0.08f, tempPosition.z), Quaternion.LookRotation(Camera.main.transform.forward));
             }

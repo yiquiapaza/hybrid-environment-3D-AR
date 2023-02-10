@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &2963586983210188188
+--- !u!114 &3939360984255966183
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5459605026595333791}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9ff9224381286449bd95e8e6277f674, type: 3}
+  m_Script: {fileID: 11500000, guid: c73fe047103feb7488ae3b5e0b917202, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &6833128755854664083
@@ -21,7 +21,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1922343043645147319}
-  - component: {fileID: 3737228939793906548}
   m_Layer: 0
   m_Name: BarElement
   m_TagString: Untagged
@@ -44,18 +43,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3737228939793906548
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6833128755854664083}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ada05c53899382142b223bb2b6e72a5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &4755755784128406867
 PrefabInstance:
   m_ObjectHideFlags: 0

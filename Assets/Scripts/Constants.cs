@@ -29,13 +29,13 @@ public class Constants
     public const string NAME_FILE = "data.json";
     public const string NAME_DIRECTORY = "Data";
 
-    public const string HOST = "http://192.168.31.242:3000";
+    public const string HOST = "http://192.168.31.242:3000/";
 
-    public const string ENDPOINT_RAWDATA = HOST + "/";
-    public const string ENDPOINT_BARCHART_GET = HOST + "/barchart";
-    public const string ENDPOINT_BARCHART_HOLOLENS_POST = HOST + "/barchart/desktop";
-    public const string ENDPOINT_COUNTRY = HOST + "/desktop";
-    public const string ENDPOINT_ROTATE  = HOST + "/rotation";
+    public const string ENDPOINT_BARCHART_GET = HOST + "barchart";
+    public const string ENDPOINT_BARCHART_HOLOLENS_POST = HOST + "barchart/hololens";
+
+    public const string ENDPOINT_SCATTERPLOT_GET = HOST + "scatterplot";
+    public const string ENDPOINT_SCATTERPLOT_HOLOLENS_POST  = HOST + "scatterplot/hololens";
 
     public const int POPULATION = 0;
     public const int AREBLE_AREA = 1;

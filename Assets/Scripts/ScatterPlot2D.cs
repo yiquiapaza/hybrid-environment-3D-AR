@@ -60,7 +60,7 @@ public class ScatterPlot2D : MonoBehaviour
 
     public IEnumerator ObjectPositionUpdate()
     {
-        using (UnityWebRequest client = UnityWebRequest.Get(Constants.ENDPOINT_COUNTRY))
+        using (UnityWebRequest client = UnityWebRequest.Get(Constants.ENDPOINT_SCATTERPLOT_GET))
         {
 
             yield return client.SendWebRequest();
@@ -87,7 +87,7 @@ public class ScatterPlot2D : MonoBehaviour
 
     public IEnumerator GetDataServer()
     {
-        using (UnityWebRequest client = UnityWebRequest.Get(Constants.ENDPOINT_RAWDATA))
+        using (UnityWebRequest client = UnityWebRequest.Get(Constants.ENDPOINT_SCATTERPLOT_GET))
         {
 
             yield return client.SendWebRequest();

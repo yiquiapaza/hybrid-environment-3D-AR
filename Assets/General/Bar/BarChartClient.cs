@@ -11,7 +11,7 @@ namespace BarChart {
         [SerializeField] Material _changeMaterial;
         private JSONNode _dataRequest;
         private Material _tempMaterial;
-        private readonly string _nameObject = "bar00";
+        private readonly string _nameObject = "bar";
         private GameObject _tempObject;
 
         // Start is called before the first frame update
@@ -40,14 +40,14 @@ namespace BarChart {
                     Debug.Log(request.downloadHandler.text);
                     _dataRequest = (JSONArray)JSON.Parse(request.downloadHandler.text);
                     Debug.Log(_dataRequest);
-                    if (_dataRequest.Count != 0)
+                    if (!_dataRequest.IsNull)
                     {
                         for (int i = 0; i < _dataRequest.Count; i++)
                         {
-                            _tempObject = GameObject.Find(_dataRequest[i]["id"]);
-                            _tempObject.GetComponent<MeshRenderer>().material = _changeMaterial; 
-                            Debug.Log(_tempObject.transform.position);
-
+                            Debug.Log(_dataRequest[i]["element"]);
+                            Debug.Log(_dataRequest[i]["element"]["value"]);
+                            //_tempObject = GameObject.Find(string.Concat(_nameObject, "-", _dataRequest[i]["element"], _dataRequest[i]["element"]["value"]));
+                            //_tempObject.GetComponent<MeshRenderer>().material = _changeMaterial;
                         }
                         //_tempMaterial = _tempObject.GetComponent<MeshRenderer>().material;
                     }
