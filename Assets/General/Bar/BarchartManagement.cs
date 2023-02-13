@@ -68,7 +68,7 @@ namespace BarChart
         // Update is called once per frame
         void Update()
         {
-            ObjectInfo();
+            //ObjectInfo();
         }
 
         void UpdateBarPosition(GameObject gameObject, int index, int indexz)
