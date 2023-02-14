@@ -40,16 +40,13 @@ namespace BarChart {
                     Debug.Log(request.downloadHandler.text);
                     _dataRequest = (JSONArray)JSON.Parse(request.downloadHandler.text);
                     Debug.Log(_dataRequest);
-                    if (!_dataRequest.IsNull)
+                    if (_dataRequest.Count > 0)
                     {
                         for (int i = 0; i < _dataRequest.Count; i++)
                         {
-                            Debug.Log(_dataRequest[i]["element"]);
-                            Debug.Log(_dataRequest[i]["element"]["value"]);
-                            //_tempObject = GameObject.Find(string.Concat(_nameObject, "-", _dataRequest[i]["element"], _dataRequest[i]["element"]["value"]));
-                            //_tempObject.GetComponent<MeshRenderer>().material = _changeMaterial;
+                            _tempObject = GameObject.Find(string.Concat(_nameObject, "-", _dataRequest[i]["element"], "-", _dataRequest[i]["value"]));
+                            _tempObject.GetComponent<MeshRenderer>().material = _changeMaterial;
                         }
-                        //_tempMaterial = _tempObject.GetComponent<MeshRenderer>().material;
                     }
                     Debug.Log(_dataRequest["state"]);
                 }
