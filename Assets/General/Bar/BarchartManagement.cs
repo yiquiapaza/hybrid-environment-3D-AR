@@ -77,9 +77,9 @@ namespace BarChart
             _relativeScale = gameObject.transform.localScale;
             var tempChild = gameObject.transform.GetChild(0).gameObject;
             gameObject.transform.localPosition = new Vector3( 
-                ( transform.position.x * _relativeScale.x ) + _relativePosition.x + 0.08f * index * (_relativeScale.x),
+                ( transform.position.x * _relativeScale.x ) + _relativePosition.x + 0.02f * index * (_relativeScale.x),
                 (tempChild.transform.localScale.y / _relativeScale.y) + (tempChild.transform.localScale.y / 2 ) * _relativeScale.y , 
-                ( -transform.position.z * _relativeScale.z ) - (_relativePosition.z + 0.08f * indexz * (_relativeScale.z)));
+                ( -transform.position.z * _relativeScale.z ) - (_relativePosition.z + 0.02f * indexz * (_relativeScale.z)));
         }
 
         void UpdateBarSize(GameObject gameObject, float size = 0)
