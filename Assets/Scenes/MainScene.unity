@@ -4818,7 +4818,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 181cd563a8349c34ea8978b0bc8d9c7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hostTransform: {fileID: 0}
+  hostTransform: {fileID: 776637126}
   manipulationType: 3
   twoHandedManipulationType: 7
   allowFarManipulation: 1
@@ -4835,7 +4835,7 @@ MonoBehaviour:
   rotateLerpTime: 0.001
   scaleLerpTime: 0.001
   enableConstraints: 1
-  constraintsManager: {fileID: 0}
+  constraintsManager: {fileID: 776637130}
   elasticsManager: {fileID: 0}
   onManipulationStarted:
     m_PersistentCalls:
@@ -8833,7 +8833,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9398beb6c623d74fbcc90fa33dd6ef9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _barElement: {fileID: 6833128755854664083, guid: 49e766a00a6587b4e9dfbec0f011a50f,
+  _barElement: {fileID: 6093732016389025804, guid: 6a2a25ce9d4f79549b7a68fa3b2fdf75,
     type: 3}
   _message: {fileID: 0}
   _materialCountry1: {fileID: 2100000, guid: 3c55769e893c4f4c8c51b7fa69bee2b9, type: 2}

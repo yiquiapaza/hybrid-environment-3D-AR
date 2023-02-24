@@ -45,13 +45,14 @@ namespace BarChart
         private readonly string _nameObject = "bar";
         private JSONArray _tempData;
         private string[] data;
+        private float _temp = 0;
 
         #endregion
         // Start is called before the first frame update
         void Start()
         {
             _tempData = (JSONArray)JSON.Parse(_data.text);
-            for (int i = 0; _tempData.Count > i; i++) // Country
+            for (int i = 0; _tempData.Count > i; i++) 
             {
                 for (int j = 0; _tempData[i]["parameter3"].Count > j; j++)
                 {
@@ -68,34 +69,35 @@ namespace BarChart
         // Update is called once per frame
         void Update()
         {
-            //ObjectInfo();
+
         }
 
-        void UpdateBarPosition(GameObject gameObject, int index, int indexz)
+        void UpdateBarPosition(GameObject gameObject, int indexX, int indexz)
         {
             _relativePosition = gameObject.transform.localPosition;
             _relativeScale = gameObject.transform.localScale;
-            var tempChild = gameObject.transform.GetChild(0).gameObject;
-            gameObject.transform.localPosition = new Vector3( 
-                ( transform.position.x * _relativeScale.x ) + _relativePosition.x + 0.02f * index * (_relativeScale.x),
-                (tempChild.transform.localScale.y / _relativeScale.y) + (tempChild.transform.localScale.y / 2 ) * _relativeScale.y , 
-                ( -transform.position.z * _relativeScale.z ) - (_relativePosition.z + 0.02f * indexz * (_relativeScale.z)));
+            if (indexz == 0 && indexX == 0)
+            {
+                gameObject.transform.localPosition = new Vector3(indexX + 0.25f, _relativeScale.y / 2, -indexz - 0.25f);
+            }
+            else
+            {
+                gameObject.transform.localPosition = new Vector3(indexX + 0.25f*(indexX +1) , _relativeScale.y / 2, -indexz - 0.25f * (indexz + 1));
+            }
         }
 
         void UpdateBarSize(GameObject gameObject, float size = 0)
         {
             _relativeScale = gameObject.transform.localScale;
-            gameObject = gameObject.transform.GetChild(0).gameObject;
             gameObject.transform.localScale = new Vector3(
                 gameObject.transform.localScale.x / _relativeScale.x , 
-                size, 
+                size*3f, 
                 gameObject.transform.localScale.z / _relativeScale.z);
         }
 
         #region Material
         void SetMaterial(GameObject gameObject, string category)
         {
-            gameObject = gameObject.transform.GetChild(0).gameObject;
             switch (category)
             {
                 case MaterialSelector.CATEGORY1:
@@ -126,37 +128,9 @@ namespace BarChart
         }
         #endregion
 
-        void ObjectInfo ()
-        {
-            GameObject tmpGameObject;
-            if (CoreServices.InputSystem.GazeProvider.GazeTarget)
-            {
-                var tempPosition = CoreServices.InputSystem.GazeProvider.GazeTarget.transform.position;
-
-                string[] data = CoreServices.InputSystem.GazeProvider.GazeTarget.name.Split('-');
-                if (!data.IsNotNull())
-                {
-                    //var temData = _tempData[Int16.Parse(data[1])]["parameter"];
-                    Debug.Log(data[0]);
-                    Debug.Log(data[1]);
-                    Debug.Log(data[2]);
-
-                    //tmpGameObject = _message.transform.GetChild(1).gameObject;
-                    //tmpGameObject.GetComponent<TextMeshPro>().text = _tempData[Int16.Parse(data[1])]["parameter"] + "\n" + _tempData[Int16.Parse(data[1])]["parameter3"][Int16.Parse(data[2])];
-                    //Debug.Log(tmpGameObject.name);
-
-                }
-                _message.transform.SetPositionAndRotation(new Vector3(tempPosition.x, 2*tempPosition.y + 0.08f, tempPosition.z), Quaternion.LookRotation(Camera.main.transform.forward));
-            }
-            else
-            {
-                _message.transform.position = new Vector3(0, 0, -10);
-            }
-        }
 
         void AddNameObject(GameObject gameObject, int indexX, int indexY)
         {
-            gameObject = gameObject.transform.GetChild(0).gameObject;
             gameObject.name = string.Concat(_nameObject, "-", indexX, "-", indexY);
         }
     }
