@@ -3,7 +3,23 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - scatter-0
+  - scatter-1
+  - scatter-2
+  - scatter-3
+  - scatter-4
+  - scatter-5
+  - scatter-6
+  - scatter-7
+  - scatter-8
+  - scatter-9
+  - scatter-10
+  - scatter-11
+  - scatter-12
+  - scatter-13
+  - scatter-14
+  - scatter-15
   layers:
   - Default
   - TransparentFX

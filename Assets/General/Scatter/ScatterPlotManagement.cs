@@ -36,6 +36,7 @@ namespace ScatterPlot
         [SerializeField] Material _materialCategory8;
 
         [SerializeField] TextAsset _data;
+        [SerializeField] int _parameter;
 
         #endregion
 
@@ -54,11 +55,13 @@ namespace ScatterPlot
                 {
                     _tempObject = Instantiate(_scatterElement);
                     _tempObject.transform.parent = transform;
+                    AddName(_tempObject, _parameter, i);
                     AddTagObject(_tempObject, i);
                     SetMaterial(_tempObject, _tempData[i]["parameter1"]);
+                    UpdatePosition(_tempObject, i, "parameter3", "parameter3", _parameter);
+
                 }
             }
-            UpdatePosition("parameter3", "parameter3", 2);
         }
 
         // Update is called once per frame
@@ -66,23 +69,23 @@ namespace ScatterPlot
         {
 
         }
+        private void UpdatePosition(GameObject gameObject, int element, string x, string y, int value)
+        {
+            Debug.Log(_tempObject.transform.localScale.ToString());
+            Debug.Log(_tempObject.transform.position.ToString());
+            Debug.Log(_tempData[value][x]);
+            gameObject.transform.localPosition = new Vector3(_tempData[element][x][value], _tempData[element][y][value], 0);
+        }
+        private void AddName(GameObject gameObject, int position, int value)
+        {
+            gameObject.name = string.Concat("scatter", "-", position, "-", value);
+
+        }
         private void AddTagObject(GameObject tempObject, int i)
         {
-            tempObject.tag = string.Concat("scatter", i);
+            tempObject.tag = string.Concat("scatter-", i);
         }
 
-        private void UpdatePosition(string x, string y, int value)
-        {
-            for (int i = 0; _tempData.Count > i; i++)
-            {
-                _tempObject = GameObject.Find("scatter" + i) as GameObject;
-                Debug.Log(_tempObject.transform.localScale);
-                Debug.Log(_tempObject.transform.position);
-                Debug.Log(_tempObject.transform.localPosition);
-                Debug.Log(_tempData[i][x]);
-                _tempObject.transform.localPosition = new Vector3(_tempData[i][x][value], _tempData[i][y][value], 0);
-            }
-        }
         #region Select Material
         void SetMaterial(GameObject gameObject, string category)
         {

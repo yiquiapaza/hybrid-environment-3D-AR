@@ -45,6 +45,7 @@ namespace BarChart {
                         for (int i = 0; i < _dataRequest.Count; i++)
                         {
                             _tempObject = GameObject.Find(string.Concat(_nameObject, "-", _dataRequest[i]["element"], "-", _dataRequest[i]["value"]));
+                            Debug.Log(string.Concat(_nameObject, "-", _dataRequest[i]["element"], "-", _dataRequest[i]["value"]));
                             _tempObject.GetComponent<MeshRenderer>().material = _changeMaterial;
                         }
                     }
