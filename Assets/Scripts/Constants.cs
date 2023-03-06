@@ -36,6 +36,8 @@ public class Constants
 
     public const string ENDPOINT_SCATTERPLOT_GET = HOST + "scatterplot";
     public const string ENDPOINT_SCATTERPLOT_HOLOLENS_POST  = HOST + "scatterplot/hololens";
+    public const string ENDPOINT_POSITION_POST = HOST + "position";
+    public const string ENDPOINT_POSITION_GET = HOST + "position";
 
     public const int POPULATION = 0;
     public const int AREBLE_AREA = 1;
