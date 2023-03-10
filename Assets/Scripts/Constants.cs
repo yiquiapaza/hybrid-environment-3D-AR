@@ -32,6 +32,7 @@ public class Constants
     public const string HOST = "http://192.168.31.242:3000/";
 
     public const string ENDPOINT_BARCHART_GET = HOST + "barchart";
+    public const string ENDPOINT_BARCHART_RESET = HOST + "barchart/reset";
     public const string ENDPOINT_BARCHART_HOLOLENS_POST = HOST + "barchart/hololens";
 
     public const string ENDPOINT_SCATTERPLOT_GET = HOST + "scatterplot";

@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using SimpleJSON;
+using System;
 
 namespace BarChart { 
 
     public class BarChartClient : MonoBehaviour
     {
         [SerializeField] Material _changeMaterial;
-        private JSONNode _dataRequest;
+        private JSONArray _dataRequest;
+        private JSONNode _resetData;
         private Material _tempMaterial;
         private readonly string _nameObject = "bar";
         private GameObject _tempObject;
@@ -49,9 +51,30 @@ namespace BarChart {
                             _tempObject.GetComponent<MeshRenderer>().material = _changeMaterial;
                         }
                     }
+                    else 
                     Debug.Log(_dataRequest["state"]);
                 }
 
+            }
+        }
+
+        IEnumerator ResetData()
+        {
+            using (UnityWebRequest request = UnityWebRequest.Get(Constants.ENDPOINT_BARCHART_RESET))
+            {
+                yield return request.SendWebRequest();
+                if (request.isHttpError || request.isNetworkError)
+                {
+                    Debug.Log(request.error);
+                }
+                else
+                {
+                    _resetData = JSON.Parse(request.downloadHandler.text);
+                    if (string.Equals(_resetData["active"], "normal"))
+                    {
+
+                    }
+                }
             }
         }
 
@@ -60,6 +83,7 @@ namespace BarChart {
             while (true)
             {
                 StartCoroutine(RequestServer());
+                StartCoroutine(ResetData());
                 Debug.Log("Wait for next Update");
                 yield return new WaitForSecondsRealtime(1f);
             }

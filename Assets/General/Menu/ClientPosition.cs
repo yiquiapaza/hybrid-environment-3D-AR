@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using SimpleJSON;
 
+[AddComponentMenu("General/Menu/ClientPosition")]
 public class ClientPosition : MonoBehaviour
 {
     private GameObject tem;
@@ -11,13 +12,18 @@ public class ClientPosition : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(WaitServer());
+
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void UpdatePosition ()
+    {
+        StartCoroutine(UpdatePostionCorutine());
     }
 
     IEnumerator UpdatePostionCorutine()
@@ -29,11 +35,10 @@ public class ClientPosition : MonoBehaviour
                 Debug.Log("Error Request");
             else
             {
-                dataRequest = (JSONNode)JSON.Parse(request.downloadHandler.text);
-                Debug.Log(dataRequest.ToString());                
+                dataRequest = JSON.Parse(request.downloadHandler.text);
                 if (dataRequest["state"])
                 {
-                    tem = GameObject.Find("Parent");
+                    tem = GameObject.Find("Yell");
                     tem.transform.position = new Vector3(dataRequest["x"], dataRequest["y"], dataRequest["z"]);
                 }
            }
