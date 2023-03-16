@@ -11,8 +11,6 @@ namespace BarChart {
     {
         [SerializeField] Material _changeMaterial;
         private JSONArray _dataRequest;
-        private JSONNode _resetData;
-        private Material _tempMaterial;
         private readonly string _nameObject = "bar";
         private GameObject _tempObject;
 
@@ -58,32 +56,11 @@ namespace BarChart {
             }
         }
 
-        IEnumerator ResetData()
-        {
-            using (UnityWebRequest request = UnityWebRequest.Get(Constants.ENDPOINT_BARCHART_RESET))
-            {
-                yield return request.SendWebRequest();
-                if (request.isHttpError || request.isNetworkError)
-                {
-                    Debug.Log(request.error);
-                }
-                else
-                {
-                    _resetData = JSON.Parse(request.downloadHandler.text);
-                    if (string.Equals(_resetData["active"], "normal"))
-                    {
-
-                    }
-                }
-            }
-        }
-
         IEnumerator WaitServer()
         {
             while (true)
             {
                 StartCoroutine(RequestServer());
-                StartCoroutine(ResetData());
                 Debug.Log("Wait for next Update");
                 yield return new WaitForSecondsRealtime(1f);
             }

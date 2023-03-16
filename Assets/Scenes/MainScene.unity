@@ -5942,6 +5942,8 @@ Transform:
   m_LocalScale: {x: 1.8195083, y: 2.4999998, z: 1.3323154}
   m_Children:
   - {fileID: 1250790550}
+  - {fileID: 1019725335}
+  - {fileID: 1623419659}
   m_Father: {fileID: 332816342}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8300,8 +8302,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1019725334}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.45, y: 0, z: 0.58}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -1.2700013, y: 0, z: -0.29799995}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.40000007}
   m_Children:
   - {fileID: 1752155147}
   - {fileID: 1894665593}
@@ -8327,8 +8329,8 @@ Transform:
   - {fileID: 677034836}
   - {fileID: 911020414}
   - {fileID: 1897149957}
-  m_Father: {fileID: 1250790550}
-  m_RootOrder: 0
+  m_Father: {fileID: 776637126}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1019725336
 MonoBehaviour:
@@ -9602,9 +9604,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -1.09, y: 0, z: -0.53}
   m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
-  m_Children:
-  - {fileID: 1019725335}
-  - {fileID: 1623419659}
+  m_Children: []
   m_Father: {fileID: 776637126}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11345,6 +11345,26 @@ PrefabInstance:
       propertyPath: m_textAlignment
       value: 65535
       objectReference: {fileID: 0}
+    - target: {fileID: 3015033265155075187, guid: 6dfc5f0a5fe04f94ab15177720f4bf05,
+        type: 3}
+      propertyPath: m_text
+      value: Reset barchart
+      objectReference: {fileID: 0}
+    - target: {fileID: 3015033265155075187, guid: 6dfc5f0a5fe04f94ab15177720f4bf05,
+        type: 3}
+      propertyPath: m_TextStyleHashCode
+      value: -1183493901
+      objectReference: {fileID: 0}
+    - target: {fileID: 5662296087584166688, guid: 6dfc5f0a5fe04f94ab15177720f4bf05,
+        type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1623419662}
+    - target: {fileID: 5662296087584166688, guid: 6dfc5f0a5fe04f94ab15177720f4bf05,
+        type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ResetBarChart
+      objectReference: {fileID: 0}
     - target: {fileID: 5684875915651602478, guid: 6dfc5f0a5fe04f94ab15177720f4bf05,
         type: 3}
       propertyPath: m_HorizontalAlignment
@@ -12511,12 +12531,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1623419658}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.09, y: 0, z: -0.27}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalPosition: {x: -0.654001, y: 0, z: -0.6379983}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.20000003}
   m_Children:
   - {fileID: 968789683}
-  m_Father: {fileID: 1250790550}
-  m_RootOrder: 1
+  m_Father: {fileID: 776637126}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1623419660
 MonoBehaviour:
@@ -12567,6 +12587,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebfb51f7bf8857f4c870f75dd62b454d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _data: {fileID: 4900000, guid: 69cc3fe5a735ba341a831174200d287f, type: 3}
+  _materialCategory1: {fileID: 2100000, guid: 099ebf7963579c24088decb6cedd336b, type: 2}
+  _materialCategory2: {fileID: 2100000, guid: 04dc6f116e0f3e94ab7238daab84c566, type: 2}
+  _materialCategory3: {fileID: 2100000, guid: 9b0e95bb72ab89745b0b8715d7c0d428, type: 2}
+  _materialCategory4: {fileID: 2100000, guid: 39a2e3b76e50dfe41a8884b29fc81cdc, type: 2}
+  _materialCategory5: {fileID: 2100000, guid: ad9cc71c19c87364b8407e5f30132dfa, type: 2}
+  _materialCategory6: {fileID: 2100000, guid: bb4b5a642ed2b5841ba9b07d05f95fe6, type: 2}
+  _materialCategory7: {fileID: 2100000, guid: 212e3a8d5fe832b4d88c0df8595a2d6d, type: 2}
+  _materialCategory8: {fileID: 2100000, guid: 3681f974cae4cb541bf4c5295bde3f68, type: 2}
 --- !u!1 &1624372097
 GameObject:
   m_ObjectHideFlags: 0
