@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 9151219793922895757}
   - component: {fileID: 7387647404541562534}
   - component: {fileID: 5384632266674495513}
+  - component: {fileID: -2226905008496632874}
   m_Layer: 0
   m_Name: ScatterElement
   m_TagString: Untagged
@@ -93,3 +94,18 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-2226905008496632874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2358252429214663210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b24e01f8d4363634b81f4819267d1fe0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _data: {fileID: 4900000, guid: 69cc3fe5a735ba341a831174200d287f, type: 3}
+  _message: {fileID: 7115892571083044649, guid: a46e10a81ab54c34594b37e75dba0e1c,
+    type: 3}

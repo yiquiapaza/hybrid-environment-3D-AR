@@ -4,6 +4,8 @@ using UnityEngine;
 using Microsoft.MixedReality.Toolkit;
 using Microsoft.MixedReality.Toolkit.Input;
 using SimpleJSON;
+using System;
+using TMPro;
 
 namespace BarChart
 {
@@ -36,22 +38,17 @@ namespace BarChart
             if (CoreServices.InputSystem.GazeProvider.GazeTarget != null)
             {
                 message.SetActive(true);
-                Debug.Log("==" + eventData.ToString());
-                GameObject temp = CoreServices.InputSystem.GazeProvider.GazeTarget;
                 string[] data = CoreServices.InputSystem.GazeProvider.GazeTarget.name.Split('-');
+                message.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.lossyScale.y + 0.2f, gameObject.transform.position.z);
+                message.transform.rotation =  Quaternion.LookRotation(Camera.main.transform.forward);
 
-                if(data.IsNull())
-                {
-                    Debug.Log(data[0]);
-                    Debug.Log(data[1]);
-                    Debug.Log(data[2]);
-                }
-                //var temData = _tempData[Int16.Parse(data[1])]["parameter"];
+                Debug.Log(gameObject.transform.position.ToString());
+                //var temData = _tempData[1]["parameter"];
 
-                //tmpGameObject = _message.transform.GetChild(1).gameObject;
-                //tmpGameObject.GetComponent<TextMeshPro>().text = _tempData[Int16.Parse(data[1])]["parameter"] + "\n" + _tempData[Int16.Parse(data[1])]["parameter3"][Int16.Parse(data[2])];
+                //Debug.Log(temData);
+                GameObject tmpGameObject = _message.transform.GetChild(1).gameObject;
+                tmpGameObject.GetComponent<TextMeshPro>().text = _tempData[Int16.Parse(data[1])]["parameter"] + "\n" + _tempData[Int16.Parse(data[1])]["parameter3"][data[2]];
                 //Debug.Log(tmpGameObject.name);
-                message.transform.SetPositionAndRotation(new Vector3(gameObject.transform.position.x, 2 * gameObject.transform.position.y + 0.2f, gameObject.transform.position.z), Quaternion.LookRotation(Camera.main.transform.forward));
 
             }
         }
