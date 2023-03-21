@@ -49,8 +49,6 @@ namespace BarChart {
                             _tempObject.GetComponent<MeshRenderer>().material = _changeMaterial;
                         }
                     }
-                    else 
-                    Debug.Log(_dataRequest["state"]);
                 }
 
             }

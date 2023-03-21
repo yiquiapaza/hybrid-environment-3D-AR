@@ -67,19 +67,20 @@ public class BarChartComponent : MonoBehaviour
             else
             {
                 dataRequest = (JSONArray)JSON.Parse(request.downloadHandler.text);
-                for (int i = 0; dataRequest.Count > i; i++)
+                for (int i = 0; _tempData.Count > i; i++)
                 {
-                    if (!dataRequest)
+                    for (int j = 0; _tempData[i]["parameter3"].Count > j; j++)
                     {
-                        Debug.Log(string.Concat("bar-", dataRequest[i]["element"],  "-",dataRequest[i]["value"]));
-                        _temObj = GameObject.Find(string.Concat("bar-", dataRequest[i]["element"], "-", dataRequest[i]["value"]));
-                        SetMaterial(_temObj, _tempData[int.Parse(dataRequest[i]["element"])]["parameter1"]);
+                        _temObj = GameObject.Find(string.Concat("bar-", i, "-", j));
+                        SetMaterial(_temObj, _tempData[i]["parameter1"]);
+
                     }
                 }
 
             }
         }
     }
+
 
     public void ResetBarChart ()
     {

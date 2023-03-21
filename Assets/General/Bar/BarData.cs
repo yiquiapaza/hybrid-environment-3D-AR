@@ -39,7 +39,7 @@ namespace BarChart
             {
                 message.SetActive(true);
                 string[] data = CoreServices.InputSystem.GazeProvider.GazeTarget.name.Split('-');
-                message.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.lossyScale.y + 0.2f, gameObject.transform.position.z);
+                message.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 0.15f, gameObject.transform.position.z);
                 message.transform.rotation =  Quaternion.LookRotation(Camera.main.transform.forward);
 
                 Debug.Log(gameObject.transform.position.ToString());
@@ -47,7 +47,7 @@ namespace BarChart
 
                 //Debug.Log(temData);
                 GameObject tmpGameObject = _message.transform.GetChild(1).gameObject;
-                tmpGameObject.GetComponent<TextMeshPro>().text = _tempData[Int16.Parse(data[1])]["parameter"] + "\n" + _tempData[Int16.Parse(data[1])]["parameter3"][data[2]];
+                tmpGameObject.GetComponent<TextMeshPro>().text = _tempData[short.Parse(data[1])]["parameter"] + "\n" + _tempData[short.Parse(data[1])]["parameter3"][data[2]];
                 //Debug.Log(tmpGameObject.name);
 
             }

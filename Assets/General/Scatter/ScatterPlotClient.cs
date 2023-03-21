@@ -10,8 +10,9 @@ namespace ScatterPlot
     public class ScatterPlotClient : MonoBehaviour
     {
         #region Features
-        [SerializeField] Material _selectMaterial;
-        private JSONNode _dataRequest;
+        [SerializeField] Material _changeMaterial;
+        private JSONArray _dataRequest;
+        private readonly string _nameObject = "scatter";
         private GameObject _tempObject;
         #endregion
 
@@ -32,18 +33,22 @@ namespace ScatterPlot
             using (UnityWebRequest request = UnityWebRequest.Get(Constants.ENDPOINT_SCATTERPLOT_GET))
             {
                 yield return request.SendWebRequest();
-                if (!request.isHttpError || !request.isNetworkError)
+                if (request.isHttpError || request.isNetworkError)
                 {
-                   
+                    Debug.Log(request.error);
                 }
                 else
                 {
                     Debug.Log(request.downloadHandler.text);
-                    _dataRequest = (JSONNode)JSON.Parse(request.downloadHandler.text);
-                    if (!_dataRequest["state"].Equals("bar00"))
+                    _dataRequest = (JSONArray)JSON.Parse(request.downloadHandler.text);
+                    if (_dataRequest.Count > 0)
                     {
-                        _tempObject = GameObject.Find(_dataRequest["state"]);
-                        _tempObject.GetComponent<MeshRenderer>().material = _selectMaterial;
+                        for (int i = 0; i < _dataRequest.Count; i++)
+                        {
+                            Debug.Log(string.Concat(_nameObject, "-", _dataRequest[i]["element"], "-", _dataRequest[i]["value"]));
+                            _tempObject = GameObject.Find(string.Concat(_nameObject, "-", _dataRequest[i]["element"], "-", _dataRequest[i]["value"]));
+                            _tempObject.GetComponent<MeshRenderer>().material = _changeMaterial;
+                        }
                     }
                 }
             

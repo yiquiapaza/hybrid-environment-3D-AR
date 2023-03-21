@@ -28,7 +28,7 @@ namespace BarChart
             elementInfo = new WWWForm();
             elementInfo.AddField("element", dataElement[1]);
             elementInfo.AddField("value", dataElement[2]);
-            using (UnityWebRequest client = UnityWebRequest.Post(Constants.ENDPOINT_BARCHART_HOLOLENS_POST + "?task=3", elementInfo))
+            using (UnityWebRequest client = UnityWebRequest.Post(Constants.ENDPOINT_BARCHART_HOLOLENS_POST, elementInfo))
             {
                 yield return client.SendWebRequest();
                 if (client.isHttpError)
