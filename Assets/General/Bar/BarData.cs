@@ -46,7 +46,7 @@ namespace BarChart
                 //var temData = _tempData[1]["parameter"];
 
                 //Debug.Log(temData);
-                GameObject tmpGameObject = _message.transform.GetChild(1).gameObject;
+                GameObject tmpGameObject = message.transform.GetChild(1).gameObject;
                 tmpGameObject.GetComponent<TextMeshPro>().text = _tempData[short.Parse(data[1])]["parameter"] + "\n" + _tempData[short.Parse(data[1])]["parameter3"][data[2]];
                 //Debug.Log(tmpGameObject.name);
 
