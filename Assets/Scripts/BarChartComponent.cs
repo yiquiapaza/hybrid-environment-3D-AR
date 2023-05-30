@@ -26,6 +26,7 @@ public class BarChartComponent : MonoBehaviour
     private bool activeComponent = false;
     private GameObject _temObj = null;
     private JSONArray dataRequest;
+    private Vector3 barchartPosition;
     #region Input Features
     private JSONArray _tempData;
     [SerializeField] TextAsset _data;
@@ -42,6 +43,7 @@ public class BarChartComponent : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        barchartPosition = gameObject.transform.position;
         _tempData = (JSONArray)JSON.Parse(_data.text);
     }
 
@@ -53,8 +55,16 @@ public class BarChartComponent : MonoBehaviour
 
     public void ActiveGameObject()
     {
-        gameObject.SetActive(activeComponent);
-        activeComponent = !activeComponent;
+        if (activeComponent)
+        {
+            gameObject.transform.position = new Vector3(50, 0, 0);
+            activeComponent = !activeComponent;
+        }
+        else
+        {
+            gameObject.transform.position = barchartPosition;
+            activeComponent = !activeComponent;
+        }
     }
 
     IEnumerator ResetBarChartCoroutine()

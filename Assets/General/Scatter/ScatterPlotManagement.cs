@@ -37,6 +37,8 @@ namespace ScatterPlot
 
         [SerializeField] TextAsset _data;
         [SerializeField] int _parameter;
+        [SerializeField] int _parameterEnegy;
+        [SerializeField] int _parameterGDP;
 
         #endregion
 
@@ -55,7 +57,7 @@ namespace ScatterPlot
                 {
                     _tempObject = Instantiate(_scatterElement);
                     _tempObject.transform.parent = transform;
-                    AddName(_tempObject, _parameter, i);
+                    AddName(_tempObject, i, _parameter);
                     AddTagObject(_tempObject, i);
                     SetMaterial(_tempObject, _tempData[i]["parameter1"]);
                     UpdatePosition(_tempObject, i, "parameter3", "parameter3", _parameter);

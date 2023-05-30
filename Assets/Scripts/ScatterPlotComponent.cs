@@ -8,12 +8,28 @@ using SimpleJSON;
 public class ScatterPlotComponent : MonoBehaviour
 {
     private bool activeComponent = false;
-    private GameObject tem;
+    private GameObject _temObj = null;
     private JSONArray dataRequest;
+    private Vector3 scatterPosition;
+    #region Input Features
+    private JSONArray _tempData;
+    [SerializeField] TextAsset _data;
+
+    [SerializeField] Material _materialCategory1;
+    [SerializeField] Material _materialCategory2;
+    [SerializeField] Material _materialCategory3;
+    [SerializeField] Material _materialCategory4;
+    [SerializeField] Material _materialCategory5;
+    [SerializeField] Material _materialCategory6;
+    [SerializeField] Material _materialCategory7;
+    [SerializeField] Material _materialCategory8;
+    #endregion
     // Start is called before the first frame update
     void Start()
     {
-        
+        scatterPosition = gameObject.transform.position;
+        _tempData = (JSONArray)JSON.Parse(_data.text);
+
     }
 
     // Update is called once per frame
@@ -24,27 +40,82 @@ public class ScatterPlotComponent : MonoBehaviour
 
     public void ActiveGameObject()
     {
-        gameObject.SetActive(activeComponent);
-        activeComponent = !activeComponent;
+        if (activeComponent)
+        {
+            gameObject.transform.position = new Vector3(50, 0, 0);
+            activeComponent = !activeComponent;
+        }
+        else
+        {
+            gameObject.transform.position = scatterPosition;
+            activeComponent = !activeComponent;
+        }
     }
 
-    IEnumerator UpdatePostionCorutine()
+    IEnumerator ResetScatterPlotCoroutine()
     {
-        using (UnityWebRequest request = UnityWebRequest.Get(Constants.ENDPOINT_BARCHART_RESET))
+        using (UnityWebRequest request = UnityWebRequest.Get(Constants.ENDPOINT_SCATTERPLOT_RESET))
         {
+            Debug.Log("$$$$$$$$$");
+
             yield return request.SendWebRequest();
             if (request.isHttpError || request.isNetworkError)
                 Debug.Log("Error Request");
             else
             {
+                Debug.Log("$$$$$$$$$");
+
                 dataRequest = (JSONArray)JSON.Parse(request.downloadHandler.text);
-                if (dataRequest["state"])
+                for (int i = 0; _tempData.Count > i; i++)
                 {
-                    tem = GameObject.Find("Yell");
-                    tem.transform.position = new Vector3(dataRequest["x"], dataRequest["y"], dataRequest["z"]);
+                    for (int j = 0; _tempData[i]["parameter3"].Count > j; j++)
+                    {
+                        Debug.Log(string.Concat("scatter-", i, "-", j));
+                        _temObj = GameObject.Find(string.Concat("scatter-", i, "-", j));
+                        if (_temObj != null)
+                            SetMaterial(_temObj, _tempData[i]["parameter1"]);
+                    }
                 }
             }
         }
     }
 
+    public void ResetScatterPlot()
+    {
+        Debug.Log("$$$$$$$$$");
+        StartCoroutine(ResetScatterPlotCoroutine());
+    }
+
+    #region Select Material
+    void SetMaterial(GameObject gameObject, string category)
+    {
+        switch (category)
+        {
+            case MaterialSelector.CATEGORY1:
+                gameObject.GetComponent<MeshRenderer>().material = _materialCategory1;
+                break;
+            case MaterialSelector.CATEGORY2:
+                gameObject.GetComponent<MeshRenderer>().material = _materialCategory2;
+                break;
+            case MaterialSelector.CATEGORY3:
+                gameObject.GetComponent<MeshRenderer>().material = _materialCategory3;
+                break;
+            case MaterialSelector.CATEGORY4:
+                gameObject.GetComponent<MeshRenderer>().material = _materialCategory4;
+                break;
+            case MaterialSelector.CATEGORY5:
+                gameObject.GetComponent<MeshRenderer>().material = _materialCategory5;
+                break;
+            case MaterialSelector.CATEGORY6:
+                gameObject.GetComponent<MeshRenderer>().material = _materialCategory6;
+                break;
+            case MaterialSelector.CATEGORY7:
+                gameObject.GetComponent<MeshRenderer>().material = _materialCategory7;
+                break;
+            case MaterialSelector.CATEGORY8:
+                gameObject.GetComponent<MeshRenderer>().material = _materialCategory8;
+                break;
+        }
+    }
+    #endregion
 }
