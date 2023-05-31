@@ -37,8 +37,8 @@ namespace ScatterPlot
 
         [SerializeField] TextAsset _data;
         [SerializeField] int _parameter;
-        [SerializeField] int _parameterEnegy;
-        [SerializeField] int _parameterGDP;
+        [SerializeField] string _firstParameter;
+        [SerializeField] string _secondParameter;
 
         #endregion
 
@@ -60,7 +60,7 @@ namespace ScatterPlot
                     AddName(_tempObject, i, _parameter);
                     AddTagObject(_tempObject, i);
                     SetMaterial(_tempObject, _tempData[i]["parameter1"]);
-                    UpdatePosition(_tempObject, i, "parameter3", "parameter3", _parameter);
+                    UpdatePosition(_tempObject, i, _firstParameter, _secondParameter, _parameter);
 
                 }
             }
@@ -76,7 +76,7 @@ namespace ScatterPlot
             Debug.Log(_tempObject.transform.localScale.ToString());
             Debug.Log(_tempObject.transform.position.ToString());
             Debug.Log(_tempData[value][x]);
-            gameObject.transform.localPosition = new Vector3(_tempData[element][x][value], _tempData[element][y][value], 0);
+            gameObject.transform.localPosition = new Vector3(Util.ScaleGDPPercapita(_tempData[element][y][_parameter] * 8.5f)*1.2f, _tempData[element][x][_parameter] * 8.5f, 0);
         }
         private void AddName(GameObject gameObject, int position, int value)
         {

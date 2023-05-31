@@ -938,6 +938,8 @@ MonoBehaviour:
   _materialCategory8: {fileID: 0}
   _data: {fileID: 4900000, guid: 69cc3fe5a735ba341a831174200d287f, type: 3}
   _parameter: 18
+  _firstParameter: parameter3
+  _secondParameter: parameter4
 --- !u!1001 &148631108
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2782,6 +2784,8 @@ MonoBehaviour:
   _materialCategory8: {fileID: 0}
   _data: {fileID: 4900000, guid: 69cc3fe5a735ba341a831174200d287f, type: 3}
   _parameter: 17
+  _firstParameter: parameter3
+  _secondParameter: parameter4
 --- !u!1 &372908164
 GameObject:
   m_ObjectHideFlags: 0
@@ -2838,6 +2842,8 @@ MonoBehaviour:
   _materialCategory8: {fileID: 0}
   _data: {fileID: 4900000, guid: 69cc3fe5a735ba341a831174200d287f, type: 3}
   _parameter: 9
+  _firstParameter: parameter3
+  _secondParameter: parameter4
 --- !u!1 &411792792
 GameObject:
   m_ObjectHideFlags: 0
@@ -3013,6 +3019,8 @@ MonoBehaviour:
   _materialCategory8: {fileID: 0}
   _data: {fileID: 4900000, guid: 69cc3fe5a735ba341a831174200d287f, type: 3}
   _parameter: 19
+  _firstParameter: parameter3
+  _secondParameter: parameter4
 --- !u!1 &448867823
 GameObject:
   m_ObjectHideFlags: 0
@@ -3641,6 +3649,8 @@ MonoBehaviour:
   _materialCategory8: {fileID: 0}
   _data: {fileID: 4900000, guid: 69cc3fe5a735ba341a831174200d287f, type: 3}
   _parameter: 13
+  _firstParameter: parameter3
+  _secondParameter: parameter4
 --- !u!1001 &533450788
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5184,6 +5194,8 @@ MonoBehaviour:
   _materialCategory8: {fileID: 2100000, guid: d8efdb3c98967354dad720c9f34297fb, type: 2}
   _data: {fileID: 4900000, guid: 69cc3fe5a735ba341a831174200d287f, type: 3}
   _parameter: 2
+  _firstParameter: parameter3
+  _secondParameter: parameter4
 --- !u!1 &677034835
 GameObject:
   m_ObjectHideFlags: 0
@@ -5240,6 +5252,8 @@ MonoBehaviour:
   _materialCategory8: {fileID: 0}
   _data: {fileID: 4900000, guid: 69cc3fe5a735ba341a831174200d287f, type: 3}
   _parameter: 21
+  _firstParameter: parameter3
+  _secondParameter: parameter4
 --- !u!1 &684955496
 GameObject:
   m_ObjectHideFlags: 0
@@ -5941,6 +5955,8 @@ MonoBehaviour:
   _materialCategory8: {fileID: 0}
   _data: {fileID: 4900000, guid: 69cc3fe5a735ba341a831174200d287f, type: 3}
   _parameter: 10
+  _firstParameter: parameter3
+  _secondParameter: parameter4
 --- !u!1 &759357141
 GameObject:
   m_ObjectHideFlags: 0
@@ -5997,6 +6013,8 @@ MonoBehaviour:
   _materialCategory8: {fileID: 0}
   _data: {fileID: 4900000, guid: 69cc3fe5a735ba341a831174200d287f, type: 3}
   _parameter: 15
+  _firstParameter: parameter3
+  _secondParameter: parameter4
 --- !u!1 &774745972
 GameObject:
   m_ObjectHideFlags: 0
@@ -6351,6 +6369,8 @@ MonoBehaviour:
   _materialCategory8: {fileID: 0}
   _data: {fileID: 4900000, guid: 69cc3fe5a735ba341a831174200d287f, type: 3}
   _parameter: 14
+  _firstParameter: parameter3
+  _secondParameter: parameter4
 --- !u!1001 &819816936
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6617,6 +6637,8 @@ MonoBehaviour:
   _materialCategory8: {fileID: 0}
   _data: {fileID: 4900000, guid: 69cc3fe5a735ba341a831174200d287f, type: 3}
   _parameter: 5
+  _firstParameter: parameter3
+  _secondParameter: parameter4
 --- !u!1 &853248787
 GameObject:
   m_ObjectHideFlags: 0
@@ -7395,6 +7417,8 @@ MonoBehaviour:
   _materialCategory8: {fileID: 0}
   _data: {fileID: 4900000, guid: 69cc3fe5a735ba341a831174200d287f, type: 3}
   _parameter: 22
+  _firstParameter: parameter3
+  _secondParameter: parameter4
 --- !u!1 &926001925
 GameObject:
   m_ObjectHideFlags: 0
@@ -7451,6 +7475,8 @@ MonoBehaviour:
   _materialCategory8: {fileID: 0}
   _data: {fileID: 4900000, guid: 92de866f4f2792b479c12de2fd3b4e9c, type: 3}
   _parameter: 3
+  _firstParameter: parameter3
+  _secondParameter: parameter4
 --- !u!1001 &929909501
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8229,6 +8255,8 @@ MonoBehaviour:
   _materialCategory8: {fileID: 0}
   _data: {fileID: 4900000, guid: 69cc3fe5a735ba341a831174200d287f, type: 3}
   _parameter: 16
+  _firstParameter: parameter3
+  _secondParameter: parameter4
 --- !u!4 &968789683 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5218315091022256066, guid: cae62278fdd23a34f993e7e6affec7dd,
@@ -8503,6 +8531,8 @@ MonoBehaviour:
   _materialCategory8: {fileID: 0}
   _data: {fileID: 4900000, guid: 69cc3fe5a735ba341a831174200d287f, type: 3}
   _parameter: 12
+  _firstParameter: parameter3
+  _secondParameter: parameter4
 --- !u!1001 &1014603384
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8827,6 +8857,8 @@ MonoBehaviour:
   _materialCategory8: {fileID: 0}
   _data: {fileID: 4900000, guid: 69cc3fe5a735ba341a831174200d287f, type: 3}
   _parameter: 6
+  _firstParameter: parameter3
+  _secondParameter: parameter4
 --- !u!1 &1070745372
 GameObject:
   m_ObjectHideFlags: 0
@@ -9173,6 +9205,8 @@ MonoBehaviour:
   _materialCategory8: {fileID: 0}
   _data: {fileID: 4900000, guid: 69cc3fe5a735ba341a831174200d287f, type: 3}
   _parameter: 7
+  _firstParameter: parameter3
+  _secondParameter: parameter4
 --- !u!1 &1151920611
 GameObject:
   m_ObjectHideFlags: 0
@@ -10940,6 +10974,8 @@ MonoBehaviour:
   _materialCategory8: {fileID: 0}
   _data: {fileID: 4900000, guid: 69cc3fe5a735ba341a831174200d287f, type: 3}
   _parameter: 8
+  _firstParameter: parameter3
+  _secondParameter: parameter4
 --- !u!1001 &1420694774
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13607,6 +13643,8 @@ MonoBehaviour:
   _materialCategory8: {fileID: 2100000, guid: d8efdb3c98967354dad720c9f34297fb, type: 2}
   _data: {fileID: 4900000, guid: 69cc3fe5a735ba341a831174200d287f, type: 3}
   _parameter: 0
+  _firstParameter: parameter3
+  _secondParameter: parameter4
 --- !u!1 &1771351644
 GameObject:
   m_ObjectHideFlags: 0
@@ -14434,6 +14472,8 @@ MonoBehaviour:
   _materialCategory8: {fileID: 0}
   _data: {fileID: 4900000, guid: 69cc3fe5a735ba341a831174200d287f, type: 3}
   _parameter: 20
+  _firstParameter: parameter3
+  _secondParameter: parameter4
 --- !u!1 &1894665592
 GameObject:
   m_ObjectHideFlags: 0
@@ -14490,6 +14530,8 @@ MonoBehaviour:
   _materialCategory8: {fileID: 2100000, guid: d8efdb3c98967354dad720c9f34297fb, type: 2}
   _data: {fileID: 4900000, guid: 69cc3fe5a735ba341a831174200d287f, type: 3}
   _parameter: 1
+  _firstParameter: parameter3
+  _secondParameter: parameter4
 --- !u!1 &1894788189
 GameObject:
   m_ObjectHideFlags: 0
@@ -14678,6 +14720,8 @@ MonoBehaviour:
   _materialCategory8: {fileID: 0}
   _data: {fileID: 4900000, guid: 69cc3fe5a735ba341a831174200d287f, type: 3}
   _parameter: 23
+  _firstParameter: parameter3
+  _secondParameter: parameter4
 --- !u!1 &1902887317
 GameObject:
   m_ObjectHideFlags: 0
@@ -16129,6 +16173,8 @@ MonoBehaviour:
   _materialCategory8: {fileID: 0}
   _data: {fileID: 4900000, guid: 69cc3fe5a735ba341a831174200d287f, type: 3}
   _parameter: 11
+  _firstParameter: parameter3
+  _secondParameter: parameter4
 --- !u!1001 &2045194185
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16582,6 +16628,8 @@ MonoBehaviour:
   _materialCategory8: {fileID: 0}
   _data: {fileID: 4900000, guid: 69cc3fe5a735ba341a831174200d287f, type: 3}
   _parameter: 4
+  _firstParameter: parameter3
+  _secondParameter: parameter4
 --- !u!1 &2112352711
 GameObject:
   m_ObjectHideFlags: 0

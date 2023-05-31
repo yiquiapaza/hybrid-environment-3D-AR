@@ -42,9 +42,7 @@ public class ScatterData : MonoBehaviour, IMixedRealityFocusHandler
             message.SetActive(true);
             message.transform.position = new Vector3(gameObject.transform.position.x,gameObject.transform.position.y + 0.2f, gameObject.transform.position.z);
             tmpGameObject = message.transform.GetChild(1).gameObject;
-            tmpGameObject.GetComponent<TextMeshPro>().text = _temData[short.Parse(data[1])]["parameter"] + "\n" + _temData[short.Parse(data[1])]["parameter3"][short.Parse(data[2])];
-            Debug.Log(gameObject.name);
-            Debug.Log(gameObject.tag);
+            tmpGameObject.GetComponent<TextMeshPro>().text = _temData[short.Parse(data[1])]["parameter"] + "\n" + "Energy Consumption: " + _temData[short.Parse(data[1])]["parameter3"][short.Parse(data[2])] + "\n" + "PDG Per Capita: " + _temData[short.Parse(data[1])]["parameter4"][short.Parse(data[2])] + "\n";
         }
     }
 
