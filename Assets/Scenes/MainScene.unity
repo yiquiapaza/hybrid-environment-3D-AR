@@ -14721,7 +14721,7 @@ MonoBehaviour:
   _data: {fileID: 4900000, guid: 69cc3fe5a735ba341a831174200d287f, type: 3}
   _parameter: 23
   _firstParameter: parameter3
-  _secondParameter: parameter4
+  _secondParameter: parameter1
 --- !u!1 &1902887317
 GameObject:
   m_ObjectHideFlags: 0
